@@ -9,6 +9,14 @@ const TTS = (function(){
   // Detect mobile: on mobile, skip Web Speech entirely → use audio directly
   const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
+  // Debug: show toast messages on screen (visible on mobile)
+  function dbg(msg){
+    console.log('[TTS]', msg);
+    var t = document.getElementById('tts-toast');
+    if(t){ t.textContent = '[TTS] ' + msg; t.style.opacity = '1'; setTimeout(function(){ t.style.opacity='0'; }, 3000); }
+  }
+  dbg('init: mobile=' + isMobile);
+
   // Audio element for playback
   let audioEl = null;
   function getAudio(){
@@ -77,11 +85,20 @@ const TTS = (function(){
     if(btn) btn.classList.add('tts-playing');
 
     audio.onended = function(){
+      dbg('audio ended OK');
       clearState();
       if(onEnd) onEnd();
     };
-    audio.onerror = function(){ clearState(); };
-    audio.play().catch(function(){ clearState(); });
+    audio.onerror = function(e){
+      dbg('audio error: ' + (e.message||'unknown'));
+      clearState();
+    };
+    audio.play().then(function(){
+      dbg('audio play started');
+    }).catch(function(e){
+      dbg('audio play blocked: ' + e.message);
+      clearState();
+    });
   }
 
   /* ── Web Speech playback (desktop) ── */
@@ -114,13 +131,16 @@ const TTS = (function(){
 
   /* ── Main speak: single text ── */
   function speak(text, btn, onEnd){
+    dbg('speak called, text=' + (text||'').slice(0,30));
     // Toggle off if clicking same button
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
     if(isMobile || !synth){
+      dbg('using audio fallback (youdao)');
       playAudio(text, btn, onEnd);
     } else {
+      dbg('using Web Speech');
       playSpeech(text, btn, onEnd);
     }
   }
