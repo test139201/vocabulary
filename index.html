@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>北京初一英语词汇多维度分析</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app-root"><p style="color:#888;padding:2rem">Loading...</p></div>
+
+<!-- Data files -->
+<script src="vocab-data-u1.js"></script>
+<script src="vocab-data-u2.js"></script>
+<script src="vocab-data-u3.js"></script>
+<script src="vocab-data-u4.js"></script>
+<script src="vocab-data-u5.js"></script>
+<script src="vocab-data-u6.js"></script>
+<script src="vocab-data-u7.js"></script>
+<script src="vocab-data-u8.js"></script>
+<script src="vocab-data-u9.js"></script>
+<!-- Renderer -->
+<script src="word-renderer.js"></script>
+<script>
+  const units = [UNIT1,UNIT2,UNIT3,UNIT4,UNIT5,UNIT6,UNIT7,UNIT8,UNIT9];
+  WordRenderer.renderIndex(units, document.getElementById('app-root'));
+</script>
+</body>
+</html>
