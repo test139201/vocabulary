@@ -1,4 +1,4 @@
-/* ===== TTS Engine — Web Speech API + 有道词典音频回退 ===== */
+/* ===== TTS Engine — Web Speech API + Baidu TTS 音频回退 ===== */
 const TTS = (function(){
   const synth = window.speechSynthesis || null;
   let enVoice = null;
@@ -18,11 +18,10 @@ const TTS = (function(){
       t.innerHTML += '<br>' + msg;
     }
   }
-  dbg('init: mobile=' + isMobile + ', synth=' + !!synth);
+  dbg('v10 init: mobile=' + isMobile + ', synth=' + !!synth);
 
-  // Audio element for playback — create eagerly so we can unlock it
+  // Audio element for playback
   let audioEl = null;
-  let audioUnlocked = false;
   function getAudio(){
     if(!audioEl){
       audioEl = new Audio();
@@ -30,38 +29,6 @@ const TTS = (function(){
       dbg('audio element created');
     }
     return audioEl;
-  }
-
-  /* ── Unlock audio on first user tap (mobile requirement) ── */
-  function unlockAudio(){
-    if(audioUnlocked) return;
-    var a = getAudio();
-    // Play a tiny silent data URI to unlock the audio context
-    try {
-      a.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAYYoRwmHAAAAAAD/+1DEAAAHAAGf9AAAIgAANIAAAARMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7UMQbA8AAAaQAAAAAAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==';
-      var p = a.play();
-      if(p && p.then){
-        p.then(function(){
-          audioUnlocked = true;
-          a.pause();
-          dbg('audio UNLOCKED ok');
-        }).catch(function(e){
-          dbg('audio unlock failed: ' + e.message);
-        });
-      }
-    } catch(e){
-      dbg('audio unlock error: ' + e.message);
-    }
-  }
-
-  // Try to unlock on any user interaction
-  if(isMobile){
-    var unlockEvents = ['touchstart','touchend','click'];
-    function onFirstInteraction(){
-      unlockAudio();
-      unlockEvents.forEach(function(ev){ document.removeEventListener(ev, onFirstInteraction, true); });
-    }
-    unlockEvents.forEach(function(ev){ document.addEventListener(ev, onFirstInteraction, true); });
   }
 
   /* ── Pick best English voice (desktop only) ── */
@@ -95,7 +62,14 @@ const TTS = (function(){
     } catch(e){}
   }
 
-  /* ── 有道词典 TTS ── */
+  /* ── TTS audio URL providers ── */
+  // Baidu Translate TTS — returns MP3, supports sentences, works in China
+  function baiduUrl(text, spd){
+    spd = spd || 3;
+    return 'https://fanyi.baidu.com/gettts?lan=en&text=' + encodeURIComponent(text) + '&spd=' + spd + '&source=web';
+  }
+
+  // Youdao as backup — only good for single words
   function youdaoUrl(text){
     return 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
   }
@@ -106,49 +80,76 @@ const TTS = (function(){
     currentBtn = null;
   }
 
-  /* ── Audio playback (有道) ── */
+  /* ── Core audio playback with fallback chain ── */
+  function playWithUrl(url, audio, onOk, onFail){
+    audio.src = url;
+    audio.onloadeddata = function(){
+      dbg('loaded dur=' + audio.duration);
+    };
+    audio.onended = function(){
+      dbg('ended OK');
+      onOk();
+    };
+    audio.onerror = function(){
+      var code = audio.error ? audio.error.code : '?';
+      var msg = audio.error ? audio.error.message : '';
+      dbg('error code=' + code + ' ' + msg);
+      onFail();
+    };
+    audio.play().then(function(){
+      dbg('playing!');
+    }).catch(function(e){
+      dbg('play BLOCKED: ' + e.message);
+      onFail();
+    });
+  }
+
+  /* ── Audio playback: try Baidu → Youdao fallback ── */
   function playAudio(text, btn, onEnd){
     var audio = getAudio();
-    // Stop any current playback
     audio.pause();
     audio.currentTime = 0;
 
-    var shortText = text.length > 300 ? text.slice(0, 300) : text;
-    var url = youdaoUrl(shortText);
-    dbg('playAudio url=' + url.slice(0, 80) + '...');
-    audio.src = url;
+    var shortText = text.length > 200 ? text.slice(0, 200) : text;
 
     speaking = true;
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
-    audio.onloadeddata = function(){
-      dbg('audio loaded, duration=' + audio.duration);
-    };
-    audio.onended = function(){
-      dbg('audio ended OK');
-      clearState();
-      if(onEnd) onEnd();
-    };
-    audio.onerror = function(e){
-      var code = audio.error ? audio.error.code : '?';
-      var msg = audio.error ? audio.error.message : 'unknown';
-      dbg('audio error: code=' + code + ' msg=' + msg);
-      clearState();
-    };
-    audio.play().then(function(){
-      dbg('audio play started!');
-    }).catch(function(e){
-      dbg('audio play BLOCKED: ' + e.message);
-      clearState();
-    });
+    // Speed mapping: our rate 0.6-1.2 → Baidu spd 2-5
+    var spd = rate <= 0.6 ? 2 : rate <= 0.8 ? 3 : rate <= 1 ? 4 : 5;
+
+    dbg('try Baidu: "' + shortText.slice(0,30) + '..."');
+    playWithUrl(baiduUrl(shortText, spd), audio,
+      function(){
+        // Success
+        clearState();
+        if(onEnd) onEnd();
+      },
+      function(){
+        // Baidu failed → try Youdao (only for short text / single words)
+        dbg('Baidu failed, try Youdao...');
+        audio.pause();
+        audio.currentTime = 0;
+        playWithUrl(youdaoUrl(shortText), audio,
+          function(){
+            clearState();
+            if(onEnd) onEnd();
+          },
+          function(){
+            dbg('both Baidu & Youdao failed');
+            clearState();
+          }
+        );
+      }
+    );
   }
 
   /* ── Web Speech playback (desktop) ── */
   function playSpeech(text, btn, onEnd){
     try { synth.cancel(); } catch(e){}
 
-    const utter = new SpeechSynthesisUtterance(text);
+    var utter = new SpeechSynthesisUtterance(text);
     if(enVoice) utter.voice = enVoice;
     utter.lang = 'en-US';
     utter.rate = rate;
@@ -165,7 +166,7 @@ const TTS = (function(){
 
     // Chrome long utterance hack
     if(/chrome/i.test(navigator.userAgent) && !/edg/i.test(navigator.userAgent)){
-      const keepAlive = setInterval(()=>{
+      var keepAlive = setInterval(function(){
         if(!synth.speaking){ clearInterval(keepAlive); return; }
         try { synth.pause(); synth.resume(); } catch(e){ clearInterval(keepAlive); }
       }, 10000);
@@ -174,69 +175,57 @@ const TTS = (function(){
 
   /* ── Main speak: single text ── */
   function speak(text, btn, onEnd){
-    dbg('speak called, text="' + (text||'').slice(0,30) + '"');
-    // Toggle off if clicking same button
+    dbg('speak: "' + (text||'').slice(0,30) + '"');
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
     if(isMobile || !synth){
-      dbg('→ audio path (youdao)');
       playAudio(text, btn, onEnd);
     } else {
-      dbg('→ Web Speech path');
       playSpeech(text, btn, onEnd);
     }
   }
 
   /* ── Speak long text (story chapters) ── */
   function speakLong(text, btn){
-    dbg('speakLong called, len=' + text.length);
+    dbg('speakLong len=' + text.length);
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
-    var chunks = splitText(text, 250);
-    dbg('speakLong: ' + chunks.length + ' chunks');
-    var i = 0;
+    // Baidu TTS handles up to ~200 chars well, split into sentence chunks
+    var chunks = splitText(text, 180);
+    dbg(chunks.length + ' chunks');
+    var idx = 0;
     speaking = true;
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
     function next(){
-      if(i >= chunks.length || !speaking){
-        dbg('speakLong: all chunks done');
+      if(idx >= chunks.length || !speaking){
+        dbg('all chunks done');
         clearState();
         return;
       }
-      var chunk = chunks[i].trim();
-      dbg('speakLong chunk #' + (i+1) + '/' + chunks.length + ': "' + chunk.slice(0,40) + '..."');
-      i++;
+      var chunk = chunks[idx].trim();
+      dbg('chunk ' + (idx+1) + '/' + chunks.length + ': "' + chunk.slice(0,35) + '..."');
+      idx++;
 
       if(isMobile || !synth){
-        // Mobile: use audio element
         var audio = getAudio();
         audio.pause();
         audio.currentTime = 0;
-        audio.src = youdaoUrl(chunk);
-        audio.onloadeddata = function(){
-          dbg('chunk loaded, dur=' + audio.duration);
-        };
-        audio.onended = function(){
-          dbg('chunk ended OK, next...');
-          next();
-        };
-        audio.onerror = function(){
-          var code = audio.error ? audio.error.code : '?';
-          dbg('chunk error: code=' + code);
-          clearState();
-        };
-        audio.play().then(function(){
-          dbg('chunk playing!');
-        }).catch(function(e){
-          dbg('chunk play BLOCKED: ' + e.message);
-          clearState();
+        var spd = rate <= 0.6 ? 2 : rate <= 0.8 ? 3 : rate <= 1 ? 4 : 5;
+        playWithUrl(baiduUrl(chunk, spd), audio, next, function(){
+          // Baidu failed → try Youdao for this chunk
+          dbg('chunk Baidu fail, try Youdao');
+          audio.pause();
+          audio.currentTime = 0;
+          playWithUrl(youdaoUrl(chunk), audio, next, function(){
+            dbg('chunk both failed, stopping');
+            clearState();
+          });
         });
       } else {
-        // Desktop: Web Speech chain
         var utter = new SpeechSynthesisUtterance(chunk);
         if(enVoice) utter.voice = enVoice;
         utter.lang = 'en-US';
