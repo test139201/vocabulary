@@ -175,6 +175,16 @@ a.unit-card{text-decoration:none;color:inherit;display:block}
 .progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:3px;transition:width .5s ease}
 .progress-text{font-size:.72rem;color:var(--text3);margin-top:.3rem;text-align:right}
 
+/* ===== Story Section ===== */
+.story-hint{font-size:.82rem;color:var(--text3);margin-bottom:1rem}
+.story-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem 2.5rem;margin-bottom:2rem;line-height:2}
+.story-chapter{margin-bottom:1.5rem}
+.story-chapter:last-child{margin-bottom:0}
+.story-chapter-title{font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:2px dashed var(--border)}
+.story-card p{font-size:.95rem;color:var(--text);margin-bottom:.8rem;text-indent:2em}
+.story-word{display:inline-block;color:#2563eb;font-weight:700;text-decoration:none;padding:0 3px;border-radius:3px;background:rgba(37,99,235,.06);border-bottom:2px solid rgba(37,99,235,.3);transition:all .15s;cursor:pointer}
+.story-word:hover{background:rgba(37,99,235,.12);border-bottom-color:#2563eb;transform:translateY(-1px)}
+
 /* ===== Footer ===== */
 .footer{text-align:center;color:var(--text3);font-size:.8rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border)}
 

@@ -365,9 +365,140 @@ const WordRenderer = (function(){
     });
     rootSection += '</div>';
 
-    const footer = `<div class="footer">\u5317\u4EAC\u4EBA\u6559\u7248\u4E03\u5E74\u7EA7\u82F1\u8BED\u8BCD\u6C47\u591A\u7EF4\u5EA6\u5206\u6790 &mdash; \u8BA9\u6BCF\u4E2A\u5355\u8BCD\u90FD\u6709\u6545\u4E8B</div>`;
+    /* ── Fun Story with all words ── */
+    // Build word→unit lookup
+    const wordMap = {};
+    units.forEach(u=>{
+      u.words.forEach(w=>{ wordMap[w.word.toLowerCase()] = u.id; });
+    });
 
-    rootEl.innerHTML = cover + stats + search + unitGrid + rootSection + footer;
+    // Build a lowercase→original-word map for correct anchor IDs
+    const wordOriginal = {};
+    units.forEach(u=>{
+      u.words.forEach(w=>{ wordOriginal[w.word.toLowerCase()] = w.word; });
+    });
+
+    function wl(word, display){
+      // word link helper: returns an <a> pointing to the unit page + anchor
+      const key = word.toLowerCase();
+      const uid = wordMap[key];
+      if(!uid) return `<b>${display||word}</b>`;
+      const anchor = wordOriginal[key] || key;
+      return `<a class="story-word" href="unit${uid}.html#word-${anchor}" title="点击查看 ${word} 的详细分析">${display||word}</a>`;
+    }
+
+    const storyHtml = `
+      <h2>📖 一个包含所有单词的奇妙故事</h2>
+      <div class="story-hint">💡 点击高亮单词可以跳转到对应的详细分析页面</div>
+      <div class="story-card">
+        <div class="story-chapter">
+          <div class="story-chapter-title">Chapter 1 · 新学期的早晨</div>
+          <p>
+            ${wl('hello','Hello')}! 我叫李明，是一个来自 ${wl('china','China')} 的 ${wl('friend','friend')}ly 男孩。
+            今天是开学 ${wl('first','first')} 天，我特别 ${wl('happy','happy')}！
+            一大早，${wl('family','family')} 里的每个人都在忙碌：${wl('grandmother','grandmother')} 在厨房准备
+            ${wl('breakfast','breakfast')}——有 ${wl('chicken','chicken')}、${wl('rice','rice')} 和
+            ${wl('vegetable','vegetable')}s；${wl('grandfather','grandfather')} 坐在 ${wl('sofa','sofa')} 上看报纸。
+            ${wl('parent','parent')}s 叮嘱我："要吃 ${wl('healthy','healthy')} 的 ${wl('fruit','fruit')}，
+            别老想着 ${wl('hamburger','hamburger')} 和 ${wl('banana','banana')}！"
+          </p>
+          <p>
+            我匆匆吃完 ${wl('lunch','lunch')} 盒里准备好的食物——哦不，是早餐才对——然后跑进自己的 ${wl('room','room')}。
+            我的房间很 ${wl('tidy','tidy')}，${wl('bed','bed')} 铺得整整齐齐，${wl('table','table')} 上放着
+            ${wl('book','book')}s 和 ${wl('pencil','pencil')}。但是——${wl('where','Where')} is my schoolbag?!
+            我 ${wl('think','think')} 了一下，看看 ${wl('chair','chair')} ${wl('under','under')} 面……找到了！
+          </p>
+        </div>
+
+        <div class="story-chapter">
+          <div class="story-chapter-title">Chapter 2 · 校园初相识</div>
+          <p>
+            走进 ${wl('school','school')} 的 ${wl('classroom','classroom')}，我看到一个陌生的女孩。
+            "${wl('excuse','Excuse')} me, what's your ${wl('name','name')}?" 我问道。
+            "My name is Gina. ${wl('nice','Nice')} to ${wl('meet','meet')} you!" 她笑着回答。
+            "${wl('nice','Nice')} to meet you too! I'm Li Ming."
+          </p>
+          <p>
+            Gina 指着身边的人向我介绍：
+            "This is my ${wl('brother','brother')} Tom, and ${wl('those','those')} are my ${wl('sister','sister')}
+            and ${wl('cousin','cousin')}." ${wl('here','Here')} 是她的 ${wl('family','family')}
+            ${wl('photo','photo')}——一个 ${wl('big','big')} family！
+            她的 ${wl('daughter','daughter')}……不对，她才初一，她指着照片说那是她的妈妈和
+            ${wl('son','son')}——她的弟弟。"${wl('dear','Dear')} Tom 才 5 岁，" 她笑着说。
+          </p>
+          <p>
+            ${wl('teacher','teacher')} 走进来，让我们交换 ${wl('telephone','telephone')} ${wl('number','number')}。
+            "你也可以发 ${wl('email','email')} 给我，" Gina 说。
+            "我们的 ${wl('last','last')} name 不一样，但可以做 ${wl('friend','friend')}s！"
+          </p>
+        </div>
+
+        <div class="story-chapter">
+          <div class="story-chapter-title">Chapter 3 · 课堂风云</div>
+          <p>
+            上午的 ${wl('favorite','favorite')} ${wl('subject','subject')} 来了——${wl('science','science')}！
+            ${wl('teacher','Teacher')} 说今天的课会很 ${wl('interesting','interesting')}。
+            她让我们打开 ${wl('dictionary','dictionary')} 查几个词，然后去 ${wl('library','library')} 做实验报告。
+            ${wl('math','Math')} 课就没那么 ${wl('fun','fun')} 了——那些 ${wl('number','number')}s 好
+            ${wl('difficult','difficult')}！不过 ${wl('music','music')} 课让大家重新开心起来。
+          </p>
+          <p>
+            ${wl('chinese','Chinese')} 课上，老师问我们 ${wl('because','because')} 什么喜欢语文。
+            我说："${wl('because','Because')} 语文很 ${wl('useful','useful')}，学好它才能读懂世界！"
+            老师点头说："说得好！现在请大家 ${wl('finish','finish')} 这篇阅读。"
+          </p>
+          <p>
+            下课后我发现自己 ${wl('lost','lost')} 了 ${wl('eraser','eraser')}。
+            到处 ${wl('find','find')} 不到，最后在 ${wl('classroom','classroom')} 的
+            讲台 ${wl('under','under')} 面 ${wl('find','find')} 到了它。${wl('thank','Thank')} goodness!
+          </p>
+        </div>
+
+        <div class="story-chapter">
+          <div class="story-chapter-title">Chapter 4 · 运动时光</div>
+          <p>
+            放学后，${wl('come','Come')} on! 大家去操场做 ${wl('sport','sport')}s！
+            Tom 问："Do you have a ${wl('soccer','soccer')} ball?"
+            "Let's play ${wl('basketball','basketball')}!" Gina 更想打篮球。
+            ${wl('volleyball','volleyball')} 也不错，${wl('tennis','tennis')} 也很 ${wl('easy','easy')} 上手。
+            我觉得坐着不动才是最 ${wl('boring','boring')} 的事——运动总是很 ${wl('fun','fun')}！
+          </p>
+          <p>
+            我 ${wl('know','know')} 一个秘密：操场边的 ${wl('store','store')} 今天在 ${wl('sell','sell')}
+            运动装备，${wl('price','price')} 特别便宜！
+            "How ${wl('much','much')} are ${wl('those','those')} shoes?" 我问店员。
+            "很 ${wl('small','small')} 的价格！" 他笑着说。
+            我决定 ${wl('buy','buy')} 一双新球鞋和一套 ${wl('clothes','clothes')}。
+            运动 ${wl('star','star')} 的梦想，从装备开始！
+          </p>
+        </div>
+
+        <div class="story-chapter">
+          <div class="story-chapter-title">Chapter 5 · 生日惊喜</div>
+          <p>
+            ${wl('when','When')} is your birthday? ${wl('January','January')} 还是 ${wl('february','February')}？
+            这个 ${wl('month','month')} 竟然是 Gina 的生日！
+            我们决定办一个 ${wl('party','party')}。
+            大家都很 ${wl('happy','happy')}——除了要准备明天的 ${wl('test','test')} 让人有点紧张。
+          </p>
+          <p>
+            "${wl('happy','Happy')} birthday, ${wl('dear','dear')} Gina!" 我们齐声喊道。
+            Gina 许了个愿望：希望这学期能 ${wl('finish','finish')} 所有功课，然后来一次 ${wl('trip','trip')}。
+            "How ${wl('old','old')} are you now?" Tom 问。
+            "十三岁！" Gina 说，"我已经不 ${wl('small','small')} 了！"
+          </p>
+          <p>
+            这就是我 ${wl('first','first')} 个学期的故事。新的 ${wl('friend','friend')}s、新的
+            ${wl('school','school')}、新的 ${wl('subject','subject')}s——一切都那么 ${wl('nice','nice')}。
+            我 ${wl('know','know')}，这只是开始。
+            ${wl('because','Because')} the best is yet to ${wl('come','come')}!
+          </p>
+        </div>
+      </div>`;
+
+    const footer = `<div class="footer">北京人教版七年级英语词汇多维度分析 &mdash; 让每个单词都有故事</div>`;
+
+    rootEl.innerHTML = cover + stats + search + storyHtml + unitGrid + rootSection + footer;
 
     /* ── Global search ── */
     const allWords = [];
