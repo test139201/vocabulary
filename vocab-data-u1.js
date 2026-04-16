@@ -1,267 +1,520 @@
-// Unit 1: My name's Gina. (Starter + Unit 1)
+// Module 1: Lost and found (外研版七年级下册)
 const UNIT1 = {
   id: 1,
-  title: "My name's Gina",
-  theme: "打招呼与自我介绍",
+  title: "Lost and found",
+  theme: "丢失和找到",
   color: "#3b82f6",
   words: [
     {
-      word: "name",
-      phonetic: "/neɪm/",
+      word: "crayon",
+      phonetic: "/ˈkreɪən/",
       pos: "n.",
       posClass: "n",
-      meaning: "名字",
+      meaning: "蜡笔",
       root: {
         parts: [],
-        explain: "来自古英语 nama，与德语 Name、拉丁语 nomen 同源。想想'no men without names'——没有名字就不是人！"
+        explain: "来自法语 craie（粉笔）+ -on（小后缀）。法语 craie 又来自拉丁语 creta（白垩土），就是那种画画用的白色石头。蜡笔就是'小粉笔'进化版！"
       },
-      memory: "name 和 'fame'（名声）押韵——有了名字(name)才能有名声(fame)！",
-      family: ["名词 name → 动词 name（命名）→ 形容词 nameless（无名的）→ namely（即，也就是说）"],
-      synonyms: ["title（头衔）", "label（标签）"],
+      memory: "crayon 谐音'克雷永'——一个叫克雷的人永远在画画，用的就是蜡笔！",
+      family: ["crayon drawing（蜡笔画）"],
+      synonyms: ["wax pencil（蜡笔）"],
       antonyms: [],
       sentences: [
-        { en: "My name is Gina.", zh: "我的名字叫吉娜。" },
-        { en: "What's your name?", zh: "你叫什么名字？" }
+        { en: "Is this your crayon?", zh: "这是你的蜡笔吗？" },
+        { en: "I have a box of crayons in many colours.", zh: "我有一盒好多颜色的蜡笔。" }
       ],
-      fun: "在古代文化中，名字被认为有魔力。在《千与千寻》中，忘记自己的名字就会永远被困在神灵世界！",
-      usage: "first name = 名，last name / family name = 姓。中国人姓在前名在后，英语恰好相反。"
+      fun: "世界上最大的蜡笔品牌 Crayola 在美国，他们的工厂每天生产1200万支蜡笔！如果把一年生产的蜡笔排成一排，能绕地球好几圈。",
+      usage: "crayon 通常指蜡笔，和 colored pencil（彩色铅笔）不同。a box of crayons = 一盒蜡笔。"
     },
     {
-      word: "nice",
-      phonetic: "/naɪs/",
-      pos: "adj.",
-      posClass: "adj",
-      meaning: "令人愉快的；好的",
-      root: {
-        parts: [],
-        explain: "这个词的身世超反转！来自拉丁语 nescius = 'not knowing'（无知的）。中世纪时从'愚蠢的'→'挑剔的'→'精致的'→ 最后变成了'好的'。一个词用了800年从贬义变成褒义！"
-      },
-      memory: "nice 里藏着 'ice'（冰）——好人给你冰淇淋吃，所以是 nice！",
-      family: ["nicely（副词：很好地）", "niceness（名词：友好）"],
-      synonyms: ["pleasant（令人愉快的）", "kind（善良的）", "lovely（可爱的）"],
-      antonyms: ["mean（刻薄的）", "nasty（讨厌的）"],
-      sentences: [
-        { en: "Nice to meet you!", zh: "很高兴认识你！" },
-        { en: "She is a nice girl.", zh: "她是个好女孩。" }
-      ],
-      fun: "nice 是英语中最'偷懒'的形容词——当你想不到更好的词时就说 nice。英语老师们常说：'Stop using nice, find a better word!'",
-      usage: "Nice to meet you! 是初次见面必说句。回答可以说 Nice to meet you, too!"
-    },
-    {
-      word: "meet",
-      phonetic: "/miːt/",
-      pos: "v.",
-      posClass: "v",
-      meaning: "遇见；相识",
-      root: {
-        parts: [],
-        explain: "古英语 metan，原义是'碰到、找到'。与 meeting（会议）同根——会议就是一群人'碰'在一起。"
-      },
-      memory: "meet 的两个 e 像两个人面对面站着，马上就要 meet（见面）了！",
-      family: ["meeting（会议）", "met（过去式）"],
-      synonyms: ["encounter（偶遇）", "greet（问候）"],
-      antonyms: ["part（分离）", "leave（离开）"],
-      sentences: [
-        { en: "Nice to meet you!", zh: "很高兴认识你！" },
-        { en: "Let's meet at three o'clock.", zh: "我们三点见面吧。" }
-      ],
-      fun: "英语里 meet 和 meat（肉）发音一模一样！所以有个冷笑话：Where do cows meet? At the meat market!",
-      usage: "meet 初次见面用；see 是已经认识后的'见面'。"
-    },
-    {
-      word: "hello",
-      phonetic: "/həˈləʊ/",
-      pos: "interj.",
-      posClass: "interj",
-      meaning: "你好",
-      root: {
-        parts: [],
-        explain: "19世纪才出现的词！来自古法语 holà（'停！'的意思）。爱迪生发明电话后推广了 hello 作为接电话用语——在此之前人们说的是 'ahoy'！"
-      },
-      memory: "hello = hell + o，想象你从地狱(hell)里爬出来第一句话就是 'O! Hello!'",
-      family: ["hi（更随意的你好）", "hey（嘿）"],
-      synonyms: ["hi（嗨）", "hey（嘿）", "greetings（问候）"],
-      antonyms: ["goodbye（再见）", "bye（拜拜）"],
-      sentences: [
-        { en: "Hello! How are you?", zh: "你好！你怎么样？" },
-        { en: "Hello, I'm Bob.", zh: "你好，我是鲍勃。" }
-      ],
-      fun: "电话发明者贝尔其实想让大家用 'Ahoy!' 接电话，但爱迪生觉得 'Hello' 更好——爱迪生赢了这场'接电话第一句'之战。",
-      usage: "正式场合用 Hello，朋友之间用 Hi 或 Hey。打电话必说 Hello。"
-    },
-    {
-      word: "first",
-      phonetic: "/fɜːst/",
-      pos: "adj./adv.",
-      posClass: "adj",
-      meaning: "第一的；首先",
-      root: {
-        parts: [],
-        explain: "来自古英语 fyrst，与 'fore'（前面）同源。First = 最前面的那个。"
-      },
-      memory: "first 里有 'fist'（拳头）——比赛中举起拳头的是第一名！",
-      family: ["firstly（首先）", "first-class（一流的）", "first-hand（第一手的）"],
-      synonyms: ["initial（最初的）", "primary（主要的）"],
-      antonyms: ["last（最后的）", "final（最终的）"],
-      sentences: [
-        { en: "What's your first name?", zh: "你的名字叫什么？" },
-        { en: "She was first in the race.", zh: "她在比赛中得了第一。" }
-      ],
-      fun: "first lady（第一夫人）指的是总统的妻子。first floor 在英国是二楼，在美国才是一楼——同一个词两个国家理解不同！",
-      usage: "first name = 名字，last name = 姓氏。at first = 起初。"
-    },
-    {
-      word: "last",
-      phonetic: "/lɑːst/",
-      pos: "adj.",
-      posClass: "adj",
-      meaning: "最后的；上一个的",
-      root: {
-        parts: [],
-        explain: "古英语 latost，是 late（晚的）的最高级。最晚到达的 = 最后的。"
-      },
-      memory: "last 倒过来读接近 'tsal'——最后(last)一个到的人总是最紧张(tense)的！",
-      family: ["lastly（最后）", "lasting（持久的）", "everlasting（永恒的）"],
-      synonyms: ["final（最终的）", "ultimate（终极的）"],
-      antonyms: ["first（第一的）", "initial（最初的）"],
-      sentences: [
-        { en: "What's your last name?", zh: "你姓什么？" },
-        { en: "This is the last bus.", zh: "这是最后一班公交车。" }
-      ],
-      fun: "last 有'持续'的意思：The movie lasted 2 hours. 也有'最后'的意思。一词多义是英语的魅力所在。",
-      usage: "last name = 姓氏。last night = 昨晚。at last = 终于。"
-    },
-    {
-      word: "friend",
-      phonetic: "/frend/",
+      word: "eraser",
+      phonetic: "/ɪˈreɪzə(r)/",
       pos: "n.",
       posClass: "n",
-      meaning: "朋友",
+      meaning: "橡皮擦",
       root: {
-        parts: [],
-        explain: "古英语 frēond，原义是'爱的人'，来自动词 frēon（去爱）。朋友的本意就是'你爱的人'。"
+        parts: [
+          { text: "e-", type: "prefix", label: "出、去掉" },
+          { text: "ras", type: "root", label: "拉丁语 radere = 刮、擦" },
+          { text: "-er", type: "suffix", label: "表示工具/做...的东西" }
+        ],
+        explain: "erase（擦掉）+ -r = 擦掉东西的工具。拉丁语 radere 是'刮'的意思，还衍生出了 razor（剃刀）——都是'刮掉'！"
       },
-      memory: "friend 的拼写陷阱！记住：fri-END——一个真正的朋友会陪你到 END（最后）！",
-      family: ["friendly（友好的）", "friendship（友谊）", "friendless（没有朋友的）", "unfriendly（不友好的）"],
-      synonyms: ["pal（伙伴）", "buddy（哥们）", "mate（伙伴）"],
-      antonyms: ["enemy（敌人）", "foe（敌人）", "stranger（陌生人）"],
+      memory: "eraser 里有 erase（擦除），加上 -r 变成了'擦除器'，就是橡皮擦！想象用橡皮擦把错误 erase（擦除）掉。",
+      family: ["erase（动词：擦掉）", "erasable（形容词：可擦除的）"],
+      synonyms: ["rubber（橡皮，英式用法）"],
+      antonyms: [],
       sentences: [
-        { en: "She is my friend.", zh: "她是我的朋友。" },
-        { en: "We are good friends.", zh: "我们是好朋友。" }
+        { en: "Can I borrow your eraser?", zh: "我能借你的橡皮擦吗？" },
+        { en: "There is an eraser on the desk.", zh: "桌子上有一块橡皮擦。" }
       ],
-      fun: "friend 这个词拼写非常容易出错！有个经典记忆法：I will be your friEND till the END. 注意 i 在 e 前面！",
-      usage: "make friends with sb. = 和某人交朋友。best friend = 最好的朋友（BFF = Best Friends Forever）。"
+      fun: "在英国，橡皮擦叫 rubber，但在美国 rubber 指橡胶或雨鞋。所以在美国千万别说'Can I have your rubber?'，会引起误会的！",
+      usage: "美式英语用 eraser，英式英语用 rubber。考试中建议写 eraser，更通用。"
     },
     {
-      word: "China",
-      phonetic: "/ˈtʃaɪnə/",
+      word: "glove",
+      phonetic: "/ɡlʌv/",
       pos: "n.",
       posClass: "n",
-      meaning: "中国",
+      meaning: "手套",
       root: {
         parts: [],
-        explain: "来自秦朝的'秦'(Qin)！经过波斯语和梵语的传播，Qin → Chin → China。china（小写）= 瓷器，因为中国是瓷器的故乡。"
+        explain: "来自古英语 glōf，可能与 lōf（手掌）有关。维京人戴手套是为了防寒，英国人戴手套是为了礼仪——同一个东西，不同的风格！"
       },
-      memory: "China = CHI + NA，'吃哪'——中国人见面爱问'吃了吗'！",
-      family: ["Chinese（中国人/中文/中国的）"],
+      memory: "glove 谐音'格拉芙'——网球明星格拉芙(Graf)打球要戴手套(glove)！或者把 glove 拆成 g + love，爱(love)的人给你戴上手套(glove)。",
+      family: ["gloves（复数：一副手套）", "glovebox（手套箱，汽车里的储物格）"],
+      synonyms: ["mitten（连指手套）"],
+      antonyms: [],
+      sentences: [
+        { en: "Whose gloves are these?", zh: "这些是谁的手套？" },
+        { en: "It's cold outside. Don't forget your gloves.", zh: "外面很冷，别忘了你的手套。" }
+      ],
+      fun: "棒球手套叫 baseball glove，拳击手套叫 boxing glove。英语有个说法'fit like a glove'（像手套一样合适），意思是非常合适。",
+      usage: "手套通常成对出现，所以常用复数 gloves。a pair of gloves = 一副手套。"
+    },
+    {
+      word: "wallet",
+      phonetic: "/ˈwɒlɪt/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "钱包",
+      root: {
+        parts: [],
+        explain: "来自古法语 walet，原义是'旅行包、背包'。中世纪时钱包还是个大袋子挂在腰上，后来才缩小成现在放口袋里的样子。"
+      },
+      memory: "wallet 谐音'我来它'——'我来'掏'它'付钱！wallet 就是你掏出来付钱的钱包。",
+      family: ["e-wallet（电子钱包）"],
+      synonyms: ["purse（女式钱包/手提包）"],
+      antonyms: [],
+      sentences: [
+        { en: "I lost my wallet on the bus.", zh: "我把钱包丢在公交车上了。" },
+        { en: "Is this wallet yours?", zh: "这个钱包是你的吗？" }
+      ],
+      fun: "现在很多人用手机支付，wallet 越来越薄了。但 Apple Wallet、Google Wallet 这些电子钱包又让 wallet 这个词火了起来！",
+      usage: "wallet 一般指男式折叠钱包；purse 在美式英语中指女式手提包，在英式英语中指小钱包。"
+    },
+    {
+      word: "watch",
+      phonetic: "/wɒtʃ/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "手表",
+      root: {
+        parts: [],
+        explain: "来自古英语 wæcce（守夜、看守）。最早的手表是给守夜人用来看时间的工具，所以叫 watch（看守用的东西）。从'看守'变成'看时间的工具'，很有趣吧！"
+      },
+      memory: "watch 既是'看'也是'手表'——你'看(watch)'手腕上的'手表(watch)'来知道时间！一个词两个意思，完美关联。",
+      family: ["watchmaker（钟表匠）", "wristwatch（腕表）", "stopwatch（秒表）"],
+      synonyms: ["timepiece（钟表）", "clock（时钟，指大的挂钟/台钟）"],
+      antonyms: [],
+      sentences: [
+        { en: "Whose watch is this?", zh: "这是谁的手表？" },
+        { en: "My watch says it's three o'clock.", zh: "我的手表显示三点了。" }
+      ],
+      fun: "世界上最贵的手表是百达翡丽 Grandmaster Chime，拍卖价超过3100万美元！而现在最流行的 watch 是 Apple Watch 智能手表。",
+      usage: "watch 做名词是'手表'，做动词是'观看'。watch TV = 看电视，watch a film = 看电影。注意区分 watch（小的、戴在手上的）和 clock（大的、挂墙上或放桌上的）。"
+    },
+    {
+      word: "whose",
+      phonetic: "/huːz/",
+      pos: "pron.",
+      posClass: "pron",
+      meaning: "谁的",
+      root: {
+        parts: [],
+        explain: "来自古英语 hwæs，是 who（谁）的所有格形式。就像 I → my，he → his 一样，who → whose。"
+      },
+      memory: "whose = who + se，'谁(who)的？'——就是问东西属于哪个人。注意别和 who's（who is 的缩写）搞混！",
+      family: ["who（谁）", "whom（谁，宾格）", "whoever（无论谁）"],
       synonyms: [],
       antonyms: [],
       sentences: [
-        { en: "I'm from China.", zh: "我来自中国。" },
-        { en: "China is a great country.", zh: "中国是一个伟大的国家。" }
+        { en: "Whose bag is this?", zh: "这是谁的书包？" },
+        { en: "Whose crayons are those on the desk?", zh: "桌上那些蜡笔是谁的？" }
       ],
-      fun: "英语 china（小写c）意思是'瓷器'。所以 a china shop 是瓷器店，'a bull in a china shop' 形容莽撞的人——公牛进了瓷器店！",
-      usage: "国家名首字母大写 China；瓷器小写 china。in China = 在中国。"
+      fun: "whose 和 who's 发音一模一样，但意思完全不同！whose = 谁的，who's = who is（谁是）。这是英语考试最爱考的易混点之一。",
+      usage: "Whose + 名词 + is this/are these? 是失物招领的经典句型。比如：Whose pen is this? 这支笔是谁的？"
     },
     {
-      word: "school",
-      phonetic: "/skuːl/",
-      pos: "n.",
-      posClass: "n",
-      meaning: "学校",
+      word: "first of all",
+      phonetic: "/ˌfɜːst əv ˈɔːl/",
+      pos: "adv.",
+      posClass: "adv",
+      meaning: "首先",
       root: {
         parts: [],
-        explain: "来自希腊语 scholē，原义竟然是'闲暇、休闲'！古希腊人认为只有有闲暇的人才能学习。从'休闲'变成'学校'——讽刺满满。"
+        explain: "first（第一）+ of all（在所有之中）= 在所有事情中第一个 = 首先。是一个非常常用的表达顺序的短语。"
       },
-      memory: "school 里藏着 'cool'——酷酷的学校！",
-      family: ["schoolmate（同学）", "schoolwork（功课）", "preschool（学前班）", "high school（高中）"],
-      synonyms: ["academy（学院）", "institute（学院）"],
-      antonyms: [],
+      memory: "first of all = 第一(first) + 所有(all)——在所有事情里排第一的，当然就是'首先'！",
+      family: ["first（首先）", "secondly（其次）", "finally（最后）", "above all（最重要的是）"],
+      synonyms: ["firstly（首先）", "to begin with（首先）"],
+      antonyms: ["lastly（最后）", "finally（最终）"],
       sentences: [
-        { en: "I go to school every day.", zh: "我每天去上学。" },
-        { en: "Our school is very big.", zh: "我们的学校很大。" }
+        { en: "First of all, write your name on the paper.", zh: "首先，在纸上写下你的名字。" },
+        { en: "First of all, let me welcome everyone.", zh: "首先，让我欢迎大家。" }
       ],
-      fun: "a school of fish 指'一群鱼'——和学校没有任何关系！这是因为来自另一个古荷兰语词 schole（群体）。",
-      usage: "go to school = 去上学（不加 the）；go to the school = 去学校那个地方（不一定是上学）。冠词的有无很关键！"
+      fun: "英语演讲和作文中最爱用的开头词之一。用了 first of all，听众就知道你接下来还有 second、third 要说——这是一种很好的逻辑信号词！",
+      usage: "first of all 用在句首，后面用逗号隔开。通常和 then（然后）、finally（最后）搭配使用，让表达更有条理。"
     },
     {
-      word: "number",
-      phonetic: "/ˈnʌmbə(r)/",
+      word: "lost and found",
+      phonetic: "/ˌlɒst ənd ˈfaʊnd/",
       pos: "n.",
       posClass: "n",
-      meaning: "号码；数字",
-      root: {
-        parts: [
-          { text: "numer-", type: "root", label: "拉丁语 numerus = 数" }
-        ],
-        explain: "来自拉丁语 numerus（数目）。numb = 麻木的——手指冻麻了就数不了数(number)了！"
-      },
-      memory: "number 里有 numb（麻木）——做太多数学题手都麻了！",
-      family: ["numerous（许多的）", "numeral（数字的）", "outnumber（数量超过）"],
-      synonyms: ["figure（数字）", "digit（位数）"],
-      antonyms: [],
-      sentences: [
-        { en: "What's your phone number?", zh: "你的电话号码是多少？" },
-        { en: "Number five is my lucky number.", zh: "5号是我的幸运数字。" }
-      ],
-      fun: "number 缩写是 No. 或 #。为什么用 No.？因为来自拉丁语 numero 的缩写！",
-      usage: "phone number = 电话号码。a number of = 许多（后接复数名词）。"
-    },
-    {
-      word: "telephone",
-      phonetic: "/ˈtelɪfəʊn/",
-      pos: "n.",
-      posClass: "n",
-      meaning: "电话",
-      root: {
-        parts: [
-          { text: "tele-", type: "prefix", label: "远的" },
-          { text: "phone", type: "root", label: "声音" }
-        ],
-        explain: "tele（远）+ phone（声音）= 远距离的声音 = 电话！认识了这两个词根，很多词就秒懂了。"
-      },
-      memory: "tele + phone：把声音传到远方的工具！television = tele + vision（远方的画面）。",
-      family: ["phone（电话，简写）", "telephone call（电话通话）"],
-      synonyms: ["phone（电话）", "cellphone（手机）"],
-      antonyms: [],
-      sentences: [
-        { en: "What's your telephone number?", zh: "你的电话号码是多少？" }
-      ],
-      fun: "tele- 家族超庞大：television（电视=远+看）、telegram（电报=远+写）、telescope（望远镜=远+看）。掌握 tele- 就等于认识了一大堆词！",
-      usage: "口语中一般直接说 phone。on the phone = 在打电话。"
-    },
-    {
-      word: "family",
-      phonetic: "/ˈfæməli/",
-      pos: "n.",
-      posClass: "n",
-      meaning: "家庭；家人",
+      meaning: "失物招领",
       root: {
         parts: [],
-        explain: "来自拉丁语 familia，原义是'一家的仆人们'，后来才变成'家庭'的意思。"
+        explain: "lost（丢失的）+ and + found（找到的）= 丢了又找到的 = 失物招领。这个词组本身就讲了一个完整的故事：先丢(lost)后找(found)！"
       },
-      memory: "网上流传的解释：Family = Father And Mother I Love You（爸爸妈妈我爱你们）。虽然是后人编的，但很好记！",
-      family: ["familiar（熟悉的）", "family tree（家谱）"],
-      synonyms: ["household（家庭）", "relatives（亲戚）"],
+      memory: "lost and found 直译就是'丢了和找到了'——丢了东西去那里找(found)就对了！",
+      family: ["lost（丢失的）", "found（找到的）", "lost and found box（失物招领箱）"],
+      synonyms: ["lost property（失物招领处，英式用法）"],
       antonyms: [],
       sentences: [
-        { en: "This is my family.", zh: "这是我的家人。" },
-        { en: "My family is big.", zh: "我家人很多。" }
+        { en: "Please go to the lost and found office.", zh: "请去失物招领处。" },
+        { en: "There are many things in the lost and found box.", zh: "失物招领箱里有很多东西。" }
       ],
-      fun: "family 做主语时，当整体看用单数动词（My family is happy），当成员看用复数动词（My family are all teachers）。",
-      usage: "family name = 姓氏（= last name）。family photo = 全家福。"
+      fun: "世界上最大的失物招领中心在日本东京！日本人丢了东西，找回的概率非常高，因为日本人拾金不昧的传统非常强。",
+      usage: "lost and found 可以做名词短语用，指失物招领处或失物招领箱。the lost and found office = 失物招领处。"
+    },
+    {
+      word: "mine",
+      phonetic: "/maɪn/",
+      pos: "pron.",
+      posClass: "pron",
+      meaning: "我的（名词性物主代词）",
+      root: {
+        parts: [],
+        explain: "来自古英语 mīn，和 my 同源。my 后面要跟名词（my book），mine 单独使用代替'my + 名词'。"
+      },
+      memory: "mine 和 my 只差一个字母——my 是跟班（后面必须跟名词），mine 是独行侠（自己就能用）！mine 还有'矿'的意思——这个矿是'我的(mine)'！",
+      family: ["my（形容词性物主代词：我的）", "myself（反身代词：我自己）"],
+      synonyms: [],
+      antonyms: ["yours（你的）", "theirs（他们的）"],
+      sentences: [
+        { en: "This crayon is mine.", zh: "这支蜡笔是我的。" },
+        { en: "Is this wallet yours or mine?", zh: "这个钱包是你的还是我的？" }
+      ],
+      fun: "mine 除了'我的'，还有'矿山、地雷'的意思！Minecraft（我的世界）这个游戏名就是 mine（挖矿）+ craft（技艺）。",
+      usage: "mine = my + 名词。比如 This is my book. = This book is mine. 不能说 This is mine book.（错误）"
+    },
+    {
+      word: "yours",
+      phonetic: "/jɔːz/",
+      pos: "pron.",
+      posClass: "pron",
+      meaning: "你的；你们的（名词性物主代词）",
+      root: {
+        parts: [],
+        explain: "your（你的）+ -s = yours。英语的名词性物主代词大多在形容词性物主代词后加 -s：her → hers, our → ours, their → theirs。"
+      },
+      memory: "yours = your + s，your 加了个's'尾巴就能独立使用了！就像小动物长大了不用妈妈带着。",
+      family: ["your（你的/你们的）", "yourself（你自己）", "yourselves（你们自己）"],
+      synonyms: [],
+      antonyms: ["mine（我的）"],
+      sentences: [
+        { en: "Is this eraser yours?", zh: "这块橡皮擦是你的吗？" },
+        { en: "My bag is blue. Yours is red.", zh: "我的书包是蓝色的。你的是红色的。" }
+      ],
+      fun: "英语书信结尾常写 Yours sincerely（您真诚的）或 Yours faithfully（您忠实的），这里的 yours 是一种礼貌用法。",
+      usage: "yours = your + 名词。例如：Is this your pen? → Is this pen yours? 写信时 Yours, ... 是固定结尾格式。"
+    },
+    {
+      word: "hers",
+      phonetic: "/hɜːz/",
+      pos: "pron.",
+      posClass: "pron",
+      meaning: "她的（名词性物主代词）",
+      root: {
+        parts: [],
+        explain: "her（她的）+ -s = hers。和 yours 一样的规律，加 -s 就从'跟班'变成'独行侠'。注意 his 比较特殊，形容词性和名词性一样都是 his。"
+      },
+      memory: "hers = her + s，但注意不是 her's（没有撇号）！这是很多同学容易写错的地方。",
+      family: ["her（她的/她）", "herself（她自己）"],
+      synonyms: [],
+      antonyms: ["his（他的）"],
+      sentences: [
+        { en: "This purple bag is hers.", zh: "这个紫色的书包是她的。" },
+        { en: "My camera is old, but hers is new.", zh: "我的相机旧了，但她的是新的。" }
+      ],
+      fun: "英语所有名词性物主代词：mine, yours, his, hers, its, ours, theirs。注意 his 不变化，its 也不加 s（因为它本身就是 it + s）。",
+      usage: "hers 绝对不能写成 her's！名词性物主代词都没有撇号：mine, yours, his, hers, ours, theirs。"
+    },
+    {
+      word: "tape",
+      phonetic: "/teɪp/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "磁带；胶带",
+      root: {
+        parts: [],
+        explain: "来自古英语 tæppa（带子、条状物）。最早指布条或纸条，后来随着科技发展，先有了录音磁带(tape)，又有了胶带(tape)。"
+      },
+      memory: "tape 谐音'忒跑'——磁带在录音机里忒能跑(转圈)了！或者想象用胶带(tape)把东西粘住不让它'跑'。",
+      family: ["tape recorder（录音机）", "tape measure（卷尺）", "videotape（录像带）", "scotch tape（透明胶带）"],
+      synonyms: ["ribbon（丝带）", "adhesive tape（胶带）"],
+      antonyms: [],
+      sentences: [
+        { en: "Is this tape yours?", zh: "这卷磁带是你的吗？" },
+        { en: "I need some tape to wrap the gift.", zh: "我需要一些胶带来包礼物。" }
+      ],
+      fun: "磁带虽然几乎被淘汰了，但tape这个词在科技圈依然很常用——backup tape（备份磁带）在数据中心里仍然在工作！有些音乐爱好者也在收藏磁带。",
+      usage: "tape 做名词有两个常见意思：磁带（cassette tape）和胶带（sticky tape/adhesive tape）。做动词时表示'录音'或'用胶带粘'。"
+    },
+    {
+      word: "purple",
+      phonetic: "/ˈpɜːpl/",
+      pos: "adj.",
+      posClass: "adj",
+      meaning: "紫色的",
+      root: {
+        parts: [],
+        explain: "来自拉丁语 purpura，最初指一种从海螺中提取的紫色染料。在古罗马，只有皇帝才能穿紫色衣服，因为紫色染料太贵了！"
+      },
+      memory: "purple 谐音'噗噗'——想象一个紫色的泡泡'噗噗'地冒出来！或者 purple 里有'pur'像'漂亮'的谐音，紫色确实很漂亮。",
+      family: ["purplish（略带紫色的）"],
+      synonyms: ["violet（紫罗兰色的）", "lavender（薰衣草色的，浅紫）"],
+      antonyms: [],
+      sentences: [
+        { en: "She has a purple schoolbag.", zh: "她有一个紫色的书包。" },
+        { en: "My favourite colour is purple.", zh: "我最喜欢的颜色是紫色。" }
+      ],
+      fun: "古罗马时期，制作1克紫色染料需要大约1万只海螺！所以紫色成了皇权的象征。直到今天，英国女王的加冕礼还要穿紫色长袍。",
+      usage: "purple 既是形容词（紫色的）也是名词（紫色）。in purple = 穿着紫色衣服。"
+    },
+    {
+      word: "camera",
+      phonetic: "/ˈkæmərə/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "照相机",
+      root: {
+        parts: [],
+        explain: "来自拉丁语 camera obscura（暗室）。最早的相机原理就是一个黑暗的房间(camera)，光线从小孔进入，在墙上投出倒影。camera 的本义竟然是'房间'！"
+      },
+      memory: "camera 谐音'卡美拉'——怪兽卡美拉（Gamera）被照相机(camera)拍下来了！",
+      family: ["cameraman（摄影师）", "camera lens（相机镜头）", "camera phone（拍照手机）"],
+      synonyms: [],
+      antonyms: [],
+      sentences: [
+        { en: "Don't forget to bring your camera.", zh: "别忘了带你的照相机。" },
+        { en: "There is a camera in the lost and found box.", zh: "失物招领箱里有一部照相机。" }
+      ],
+      fun: "世界上第一张照片拍摄于1826年，曝光时间长达8个小时！现在手机一秒就能拍无数张。从 camera obscura（暗箱）到手机摄影，人类用了将近200年。",
+      usage: "digital camera = 数码相机。take a photo/picture with a camera = 用照相机拍照。注意是 take a photo，不是 make a photo。"
+    },
+    {
+      word: "mobile phone",
+      phonetic: "/ˌməʊbaɪl ˈfəʊn/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "移动电话；手机",
+      root: {
+        parts: [
+          { text: "mobile", type: "root", label: "拉丁语 mobilis = 可移动的" },
+          { text: "phone", type: "root", label: "希腊语 phonē = 声音" }
+        ],
+        explain: "mobile（可移动的）+ phone（电话）= 可以移动的电话 = 手机。phone 来自希腊语'声音'，还衍生出 microphone（麦克风）、telephone（电话）等词。"
+      },
+      memory: "mobile phone = 移动(mobile)的电话(phone)——可以拿着到处走的电话就是手机！",
+      family: ["mobile（可移动的）", "phone（电话）", "smartphone（智能手机）", "cellphone（手机，美式）"],
+      synonyms: ["cellphone（手机，美式）", "cell（口语：手机）"],
+      antonyms: ["landline（座机）"],
+      sentences: [
+        { en: "Is this your mobile phone?", zh: "这是你的手机吗？" },
+        { en: "Students shouldn't use mobile phones in class.", zh: "学生不应该在课堂上使用手机。" }
+      ],
+      fun: "世界上第一部手机是1983年的 Motorola DynaTAC 8000X，重达1公斤，像一块砖头。现在的智能手机功能比当年送人上月球的计算机还强大！",
+      usage: "英式英语说 mobile phone 或简称 mobile，美式英语说 cellphone 或 cell。在学校通常要求 turn off your mobile phone（关掉手机）。"
+    },
+    {
+      word: "lost",
+      phonetic: "/lɒst/",
+      pos: "adj.",
+      posClass: "adj",
+      meaning: "丢失的",
+      root: {
+        parts: [],
+        explain: "是 lose（丢失）的过去分词形式，也用作形容词。来自古英语 losian（毁灭、丢失）。"
+      },
+      memory: "lost 谐音'老死他'——东西老找不到（lost），要'老死'了也找不着！或者想到迷路了(lost)的感觉。",
+      family: ["lose（动词：丢失）", "loser（名词：失败者）", "loss（名词：损失）"],
+      synonyms: ["missing（丢失的）", "misplaced（放错地方的）"],
+      antonyms: ["found（找到的）"],
+      sentences: [
+        { en: "I'm looking for my lost watch.", zh: "我在找我丢失的手表。" },
+        { en: "The lost boy was crying in the street.", zh: "那个走失的男孩在街上哭。" }
+      ],
+      fun: "美剧《迷失》(Lost)讲的就是一群人在荒岛上迷路的故事，红遍全球！get lost 除了'迷路'还有'滚开'的粗鲁意思，千万别随便对人说。",
+      usage: "get lost = 迷路。I'm lost. = 我迷路了。lost 也可以表示'困惑的'，比如 I'm lost.（我听不懂/我搞不清了）。"
+    },
+    {
+      word: "found",
+      phonetic: "/faʊnd/",
+      pos: "v.",
+      posClass: "v",
+      meaning: "找到（find的过去式）",
+      root: {
+        parts: [],
+        explain: "是 find（找到）的过去式和过去分词。find 来自古英语 findan。注意：found 还有另一个意思——'建立、创立'，比如 found a school（创办学校），和 find 的过去式是两个不同的词！"
+      },
+      memory: "found 谐音'放的'——找到(found)了！原来是放(found)在这里的！",
+      family: ["find（动词原形：找到）", "finder（发现者）", "finding（发现/调查结果）"],
+      synonyms: ["discovered（发现了）", "located（找到位置了）"],
+      antonyms: ["lost（丢失了）"],
+      sentences: [
+        { en: "I found a wallet on the playground.", zh: "我在操场上捡到了一个钱包。" },
+        { en: "Have you found your eraser?", zh: "你找到你的橡皮擦了吗？" }
+      ],
+      fun: "found 有两个完全不同的来源：① find 的过去式（找到）；② 来自拉丁语 fundare（建立），如 foundation（基金会/地基）。考试时要根据上下文判断是哪个意思！",
+      usage: "find-found-found 是不规则动词变化。found 做'建立'讲时是规则动词：found-founded-founded。"
+    },
+    {
+      word: "hundred",
+      phonetic: "/ˈhʌndrəd/",
+      pos: "num.",
+      posClass: "num",
+      meaning: "百",
+      root: {
+        parts: [],
+        explain: "来自古英语 hundred，与拉丁语 centum（百）和希腊语 hekaton（百）有远亲关系。cent（分）、century（世纪=100年）、percent（百分之）都来自拉丁语的'百'。"
+      },
+      memory: "hundred 谐音'杭拽的'——杭州有好几百(hundred)个景点，真拽的！",
+      family: ["hundreds of（数百个）", "hundredth（第一百）"],
+      synonyms: [],
+      antonyms: [],
+      sentences: [
+        { en: "There are about two hundred students in our school.", zh: "我们学校大约有两百名学生。" },
+        { en: "Hundreds of people come to the lost and found office every day.", zh: "每天有数百人来失物招领处。" }
+      ],
+      fun: "在英语中，100分不说 one hundred points，考试满分一般说 full marks 或 a perfect score。a hundred percent（百分之百）表示完全同意。",
+      usage: "具体数字时 hundred 不加 s：two hundred（两百）。表示'数百'时加 s 加 of：hundreds of（数以百计的）。"
+    },
+    {
+      word: "thousand",
+      phonetic: "/ˈθaʊznd/",
+      pos: "num.",
+      posClass: "num",
+      meaning: "千",
+      root: {
+        parts: [],
+        explain: "来自古英语 þūsend，可能和'膨胀、大量'有关。在古代人们很少数到千，所以 thousand 也常用来表示'非常多'的意思。"
+      },
+      memory: "thousand 谐音'扫人的'——一千(thousand)人的大扫除，扫人的场面！注意 th 的发音要咬舌头。",
+      family: ["thousands of（数千个）", "thousandth（第一千）"],
+      synonyms: [],
+      antonyms: [],
+      sentences: [
+        { en: "There are over a thousand books in our library.", zh: "我们图书馆里有一千多本书。" },
+        { en: "Thousands of things are lost on buses every year.", zh: "每年有数千件物品在公交车上遗失。" }
+      ],
+      fun: "英语写大数时用逗号分隔：1,000（一千），1,000,000（一百万）。而中文用万来分：1万=10,000。这个差异经常让中国学生头疼！",
+      usage: "和 hundred 一样：three thousand（三千），但 thousands of（成千上万的）。th 的发音 /θ/ 要把舌尖放在上下牙之间。"
+    },
+    {
+      word: "strange",
+      phonetic: "/streɪndʒ/",
+      pos: "adj.",
+      posClass: "adj",
+      meaning: "奇怪的",
+      root: {
+        parts: [],
+        explain: "来自古法语 estrange，原义是'外来的、陌生的'。和 stranger（陌生人）同根——陌生的东西总让人觉得'奇怪'！"
+      },
+      memory: "strange 里有 'range'（范围）——超出正常范围(range)的事情就是奇怪的(strange)！",
+      family: ["stranger（陌生人）", "strangely（奇怪地）", "strangeness（奇怪）"],
+      synonyms: ["odd（古怪的）", "weird（怪异的）", "unusual（不寻常的）"],
+      antonyms: ["normal（正常的）", "ordinary（普通的）"],
+      sentences: [
+        { en: "There are some strange things in the lost and found office.", zh: "失物招领处有一些奇怪的东西。" },
+        { en: "That's strange! My pen was here a moment ago.", zh: "真奇怪！我的笔刚才还在这里。" }
+      ],
+      fun: "Doctor Strange（奇异博士）是漫威超级英雄，他的名字就来自 strange（奇异的）。他本来是个外科医生，后来成了掌握神秘魔法的至尊法师！",
+      usage: "strange 强调'出乎意料的奇怪'；weird 更强调'怪异、让人不舒服'。It's strange that...（奇怪的是...）是常用句型。"
+    },
+    {
+      word: "boat",
+      phonetic: "/bəʊt/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "船",
+      root: {
+        parts: [],
+        explain: "来自古英语 bāt，和古挪威语 bátr 同源。维京人是航海民族，这个词传遍了整个北欧。boat 一般指小船，大船用 ship。"
+      },
+      memory: "boat 里有个'oat'（燕麦）——在小船(boat)上吃燕麦(oat)！或者 b + oat = boat。",
+      family: ["boating（划船）", "motorboat（摩托艇）", "sailboat（帆船）", "rowboat（划艇）"],
+      synonyms: ["vessel（船只）", "craft（船）"],
+      antonyms: [],
+      sentences: [
+        { en: "There is a boat on the river.", zh: "河上有一条船。" },
+        { en: "Someone left a toy boat at the lost and found office.", zh: "有人在失物招领处留下了一条玩具船。" }
+      ],
+      fun: "英语有个说法'We're all in the same boat'（我们都在同一条船上），意思是大家处境相同，要同舟共济。和中文的'同舟共济'意思很像！",
+      usage: "boat 指小船，ship 指大船（如轮船、货船）。by boat = 乘船。go boating = 去划船。"
+    },
+    {
+      word: "duck",
+      phonetic: "/dʌk/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "鸭",
+      root: {
+        parts: [],
+        explain: "来自古英语 dūce（潜水者），因为鸭子喜欢把头扎进水里觅食。duck 做动词也有'低头、躲避'的意思，和鸭子低头钻水的动作一模一样！"
+      },
+      memory: "duck 谐音'大颗'——鸭子(duck)下了一个大颗(duck)的蛋！",
+      family: ["duckling（小鸭子）", "ducky（可爱的，口语）"],
+      synonyms: [],
+      antonyms: [],
+      sentences: [
+        { en: "There are some ducks on the lake.", zh: "湖上有一些鸭子。" },
+        { en: "A rubber duck was found in the lost and found box.", zh: "失物招领箱里发现了一只橡皮鸭。" }
+      ],
+      fun: "《丑小鸭》(The Ugly Duckling)是安徒生最著名的童话之一。英语中 duck 做动词是'低头躲避'——想象鸭子把头低下去钻进水里的样子！在板球中，得零分叫 a duck（鸭蛋）。",
+      usage: "duck 做动词时是'低头、躲避'。Donald Duck = 唐老鸭。rubber duck = 橡皮鸭（泡澡玩具）。"
+    },
+    {
+      word: "pig",
+      phonetic: "/pɪɡ/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "猪",
+      root: {
+        parts: [],
+        explain: "来自古英语 picga，词源不太确定。有趣的是，活着的动物叫 pig（日耳曼语），做成肉后叫 pork（来自法语 porc）。这是因为1066年诺曼征服后，说法语的贵族吃肉，说英语的农民养猪！"
+      },
+      memory: "pig 谐音'屁哥'——猪就是那个爱放屁的哥们儿！小猪佩奇(Peppa Pig)大家都认识吧。",
+      family: ["piggy（小猪）", "pigsty（猪圈）", "piglet（猪崽）", "pigtail（辫子）"],
+      synonyms: ["hog（肥猪）", "swine（猪，正式用法）"],
+      antonyms: [],
+      sentences: [
+        { en: "The pig is very cute.", zh: "这只猪非常可爱。" },
+        { en: "There is a toy pig in the lost and found box.", zh: "失物招领箱里有一只玩具猪。" }
+      ],
+      fun: "英语中 pig 常有贬义，说人 pig 是说他脏或贪吃。但在中文里猪还有'可爱、幸福'的含义。Peppa Pig（小猪佩奇）让全世界孩子都爱上了猪！piggy bank = 猪形储蓄罐。",
+      usage: "pig 在英语中常有负面含义：eat like a pig（吃相难看）。pigtail（猪尾巴）在英语中指辫子。guinea pig = 豚鼠（也指实验对象）。"
+    },
+    {
+      word: "sausage",
+      phonetic: "/ˈsɒsɪdʒ/",
+      pos: "n.",
+      posClass: "n",
+      meaning: "香肠",
+      root: {
+        parts: [],
+        explain: "来自拉丁语 salsus（加了盐的），通过古法语 saussiche 传入英语。香肠就是'加了盐腌制的肉'，这完美描述了香肠的制作过程！同源词 sauce（酱汁）和 salad（沙拉）也和'盐'有关。"
+      },
+      memory: "sausage 谐音'烧死它'——把香肠(sausage)放在火上'烧'，烤香肠太好吃了！",
+      family: ["sausage roll（香肠卷）", "sausage dog（腊肠犬，口语）"],
+      synonyms: ["frankfurter（法兰克福香肠）", "hot dog（热狗）"],
+      antonyms: [],
+      sentences: [
+        { en: "Would you like a sausage for breakfast?", zh: "你早餐想来一根香肠吗？" },
+        { en: "There are fifteen kilos of sausages at the New York lost and found office!", zh: "纽约失物招领处有十五公斤香肠！" }
+      ],
+      fun: "德国是世界香肠之国，有超过1500种香肠！英式早餐(English breakfast)里必须有香肠。sausage dog（腊肠犬）就是因为身体长得像香肠而得名。",
+      usage: "sausage 可数名词：a sausage, two sausages。hot dog 其实就是夹了香肠的面包。silly sausage（傻香肠）是英国人对小孩的亲切称呼。"
     }
   ]
 };
-
-if(typeof window!=='undefined'){window.UNIT1=UNIT1;}

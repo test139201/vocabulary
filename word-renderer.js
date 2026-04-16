@@ -127,16 +127,16 @@ const WordRenderer = (function(){
     if(!unit||!rootEl) return;
 
     /* Nav */
-    const nav = `<div class="nav"><a href="index.html">\u{1F3E0} \u9996\u9875</a><span class="sep">/</span><span>Unit ${unit.id}</span></div>`;
+    const nav = `<div class="nav"><a href="index.html">\u{1F3E0} \u9996\u9875</a><span class="sep">/</span><span>Module ${unit.id}</span></div>`;
 
     /* Cover */
     const cover = `
       <div class="cover" style="--accent-c:${unit.color}">
-        <h1>Unit ${unit.id}: ${unit.title}</h1>
+        <h1>Module ${unit.id}: ${unit.title}</h1>
         <div class="cover-sub">${unit.theme}</div>
         <div class="cover-meta">
           <span>\u{1F4DA} ${unit.words.length} \u4E2A\u5355\u8BCD</span>
-          <span>\u{1F3AF} \u4EBA\u6559\u7248\u4E03\u5E74\u7EA7\u4E0A\u518C</span>
+          <span>\u{1F3AF} \u5916\u7814\u7248\u4E03\u5E74\u7EA7\u4E0B\u518C</span>
         </div>
       </div>`;
 
@@ -192,7 +192,7 @@ const WordRenderer = (function(){
       </div>`;
 
     /* Footer */
-    const footer = `<div class="footer">\u5317\u4EAC\u4EBA\u6559\u7248\u4E03\u5E74\u7EA7\u82F1\u8BED\u8BCD\u6C47\u591A\u7EF4\u5EA6\u5206\u6790 &mdash; Unit ${unit.id}</div>`;
+    const footer = `<div class="footer">\u5916\u7814\u7248\u4E03\u5E74\u7EA7\u4E0B\u518C\u82F1\u8BED\u8BCD\u6C47\u591A\u7EF4\u5EA6\u5206\u6790 &mdash; Module ${unit.id}</div>`;
 
     rootEl.innerHTML = nav + cover + statsHtml + filterHtml + searchHtml + wordsHtml + quizHtml + footer;
 
@@ -351,11 +351,11 @@ const WordRenderer = (function(){
     /* Cover */
     const cover = `
       <div class="cover">
-        <h1>\u{1F4D6} \u5317\u4EAC\u4EBA\u6559\u7248\u4E03\u5E74\u7EA7\u82F1\u8BED\u8BCD\u6C47\u591A\u7EF4\u5EA6\u5206\u6790</h1>
+        <h1>\u{1F4D6} \u5916\u7814\u7248\u4E03\u5E74\u7EA7\u4E0B\u518C\u82F1\u8BED\u8BCD\u6C47\u591A\u7EF4\u5EA6\u5206\u6790</h1>
         <div class="cover-sub">词源探秘 · 记忆妙招 · 近反义词 · 趣味知识 · 用法提示</div>
         <div class="cover-meta">
           <span>\u{1F3AF} ${units.reduce((s,u)=>s+u.words.length,0)} \u4E2A\u6838\u5FC3\u8BCD\u6C47</span>
-          <span>\u{1F4DA} ${units.length} \u4E2A\u5355\u5143</span>
+          <span>\u{1F4DA} ${units.length} \u4E2A\u6A21\u5757</span>
           <span>\u{1F9E0} \u591A\u7EF4\u5EA6\u8BB0\u5FC6\u6CD5</span>
         </div>
       </div>`;
@@ -388,7 +388,7 @@ const WordRenderer = (function(){
 
     /* Unit grid */
     const ucColors = ['uc-1','uc-2','uc-3','uc-4','uc-5','uc-6','uc-7','uc-8','uc-9','uc-10','uc-11','uc-12'];
-    let unitGrid = '<h2>\u{1F4DA} \u5355\u5143\u5BFC\u822A</h2><div class="unit-grid">';
+    let unitGrid = '<h2>\u{1F4DA} \u6A21\u5757\u5BFC\u822A</h2><div class="unit-grid">';
     units.forEach((u,i)=>{
       const posMap = {};
       u.words.forEach(w=>{ const k=w.posClass||'n'; posMap[k]=(posMap[k]||0)+1; });
@@ -399,7 +399,7 @@ const WordRenderer = (function(){
 
       unitGrid += `
         <a class="unit-card ${ucColors[i%12]}" href="unit${u.id}.html">
-          <span class="unit-num">UNIT ${u.id}</span>
+          <span class="unit-num">MODULE ${u.id}</span>
           <span class="unit-count">${u.words.length} \u8BCD</span>
           <div class="unit-title">${u.title}</div>
           <div class="unit-desc">${u.theme}</div>
@@ -410,14 +410,14 @@ const WordRenderer = (function(){
 
     /* Word root highlight section */
     const roots = [
-      { root:'tele-', meaning:'\u8FDC\u7684', examples:'telephone, television, telescope' },
-      { root:'photo-', meaning:'\u5149', examples:'photo, photograph, photosynthesis' },
-      { root:'-ject', meaning:'\u6254/\u629B', examples:'subject, project, reject, inject' },
-      { root:'dict-', meaning:'\u8BF4', examples:'dictionary, dictate, predict' },
-      { root:'fin-', meaning:'\u7ED3\u675F/\u8FB9\u754C', examples:'finish, final, define, infinite' },
-      { root:'sci-', meaning:'\u77E5\u9053', examples:'science, conscience, conscious' },
-      { root:'-ful/-less', meaning:'\u5145\u6EE1/\u6CA1\u6709', examples:'useful↔useless, hopeful↔hopeless' },
-      { root:'under-', meaning:'\u5728\u4E0B\u9762/\u4E0D\u8DB3', examples:'under, understand, underground' },
+      { root:'inter-', meaning:'\u5728\u2026\u4E4B\u95F4/\u4E92\u76F8', examples:'internet, international, interview' },
+      { root:'e-/ex-', meaning:'\u51FA/\u5411\u5916/\u7535\u5B50', examples:'email, eraser, exchange, exciting' },
+      { root:'re-', meaning:'\u518D\u6B21/\u56DE', examples:'return, receive, relax, restart' },
+      { root:'-er/-or', meaning:'\u505A\u2026\u7684\u4EBA/\u7269', examples:'eraser, visitor, musician, monitor' },
+      { root:'cycl-', meaning:'\u5706/\u8F6E', examples:'cycling, bicycle, recycle' },
+      { root:'-ward', meaning:'\u671D\u5411', examples:'forward, backward, toward(s)' },
+      { root:'-able', meaning:'\u53EF\u4EE5\u2026\u7684', examples:'able, comfortable, fashionable' },
+      { root:'-ful/-less', meaning:'\u5145\u6EE1/\u6CA1\u6709', examples:'successful↔naughty, wonderful↔noisy, beautiful↔common' },
     ];
     let rootSection = '<h2>\u{1F333} \u6838\u5FC3\u8BCD\u6839\u901F\u67E5</h2><div class="unit-grid">';
     roots.forEach(r=>{
@@ -473,227 +473,227 @@ const WordRenderer = (function(){
       <div class="story-card">
 
         <div class="story-chapter">
-          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 1 \xB7 A Busy Morning</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="\u6717\u8BFB\u672C\u7AE0">\u{1F50A}</button> Chapter 1 \xB7 Lost and Found</div>
           ${ln(
-            `${wl('hello','Hello')}! My ${wl('name','name')} is Li Ming. I am a ${wl('nice','nice')} boy from ${wl('china','China')}.`,
-            `\u4F60\u597D\uFF01\u6211\u7684\u540D\u5B57\u53EB\u674E\u660E\u3002\u6211\u662F\u4E00\u4E2A\u6765\u81EA\u4E2D\u56FD\u7684\u53CB\u5584\u7537\u5B69\u3002`
+            `${wl('whose','Whose')} ${wl('crayon','crayon')} is this? And ${wl('whose','whose')} ${wl('glove','glove')}s are ${wl('those','those')}? It is Monday morning, and there are ${wl('strange','strange')} things at the ${wl('lost and found','lost and found')} office.`,
+            `\u8FD9\u652F\u8721\u7B14\u662F\u8C01\u7684\uFF1F\u90A3\u4E9B\u624B\u5957\u662F\u8C01\u7684\uFF1F\u661F\u671F\u4E00\u65E9\u4E0A\uFF0C\u5931\u7269\u62DB\u9886\u5904\u6709\u4E00\u4E9B\u5947\u602A\u7684\u4E1C\u897F\u3002`
           )}
           ${ln(
-            `Today is the ${wl('first','first')} day of ${wl('school','school')}, and I am very ${wl('happy','happy')}!`,
-            `\u4ECA\u5929\u662F\u5F00\u5B66\u7B2C\u4E00\u5929\uFF0C\u6211\u975E\u5E38\u5F00\u5FC3\uFF01`
+            `${wl('first of all','First of all')}, there is a ${wl('purple','purple')} ${wl('wallet','wallet')} with a ${wl('hundred','hundred')} pounds inside. A ${wl('watch','watch')}, a ${wl('camera','camera')}, and a ${wl('mobile phone','mobile phone')} are on the table too.`,
+            `\u9996\u5148\uFF0C\u6709\u4E00\u4E2A\u7D2B\u8272\u7684\u94B1\u5305\uFF0C\u91CC\u9762\u6709\u4E00\u767E\u82F1\u955C\u3002\u684C\u5B50\u4E0A\u8FD8\u6709\u4E00\u5757\u624B\u8868\u3001\u4E00\u90E8\u76F8\u673A\u548C\u4E00\u90E8\u624B\u673A\u3002`
           )}
           ${ln(
-            `Early in the morning, everyone in my ${wl('family','family')} is busy.`,
-            `\u4E00\u5927\u65E9\uFF0C\u5BB6\u91CC\u6BCF\u4E2A\u4EBA\u90FD\u5F88\u5FD9\u788C\u3002`
+            `"Is this ${wl('eraser','eraser')} ${wl('yours','yours')}?" asks the teacher. "No, it is not ${wl('mine','mine')}. Maybe it is ${wl('hers','hers')}," I say.`,
+            `\u201C\u8FD9\u5757\u6A61\u76AE\u662F\u4F60\u7684\u5417\uFF1F\u201D\u8001\u5E08\u95EE\u3002\u201C\u4E0D\uFF0C\u4E0D\u662F\u6211\u7684\u3002\u4E5F\u8BB8\u662F\u5979\u7684\uFF0C\u201D\u6211\u8BF4\u3002`
           )}
           ${ln(
-            `My ${wl('grandmother','grandmother')} is making ${wl('breakfast','breakfast')} \u2014 ${wl('chicken','chicken')}, ${wl('rice','rice')}, and ${wl('vegetable','vegetable')}s.`,
-            `\u5976\u5976\u5728\u505A\u65E9\u9910\u2014\u2014\u6709\u9E21\u8089\u3001\u7C73\u996D\u548C\u852C\u83DC\u3002`
-          )}
-          ${ln(
-            `My ${wl('grandfather','grandfather')} is sitting on the ${wl('sofa','sofa')} reading a newspaper.`,
-            `\u7237\u7237\u5750\u5728\u6C99\u53D1\u4E0A\u770B\u62A5\u7EB8\u3002`
-          )}
-          ${ln(
-            `My ${wl('parent','parent')}s say: "Eat ${wl('healthy','healthy')} ${wl('fruit','fruit')}, not ${wl('hamburger','hamburger')}s and ${wl('banana','banana')}s all day!"`,
-            `\u7236\u6BCD\u8BF4\uFF1A\u201C\u8981\u5403\u5065\u5EB7\u7684\u6C34\u679C\uFF0C\u522B\u6574\u5929\u60F3\u7740\u6C49\u5821\u548C\u9999\u8549\uFF01\u201D`
-          )}
-          ${ln(
-            `I also pack my ${wl('lunch','lunch')} box. Then I run to my ${wl('room','room')}.`,
-            `\u6211\u8FD8\u6253\u5305\u597D\u4E86\u5348\u9910\u76D2\u3002\u7136\u540E\u6211\u8DD1\u8FDB\u81EA\u5DF1\u7684\u623F\u95F4\u3002`
-          )}
-          ${ln(
-            `My room is very ${wl('tidy','tidy')}. The ${wl('bed','bed')} is neat. On the ${wl('table','table')} there are ${wl('book','book')}s and a ${wl('pencil','pencil')}.`,
-            `\u6211\u7684\u623F\u95F4\u5F88\u6574\u6D01\u3002\u5E8A\u94FA\u5F97\u5F88\u6574\u9F50\u3002\u684C\u5B50\u4E0A\u6709\u4E66\u548C\u94C5\u7B14\u3002`
-          )}
-          ${ln(
-            `But \u2014 ${wl('where','where')} is my schoolbag?! I ${wl('think','think')} for a moment.`,
-            `\u4F46\u662F\u2014\u2014\u6211\u7684\u4E66\u5305\u5728\u54EA\u91CC\uFF1F\uFF01\u6211\u60F3\u4E86\u60F3\u3002`
-          )}
-          ${ln(
-            `I look ${wl('under','under')} the ${wl('chair','chair')}... Found it!`,
-            `\u6211\u770B\u4E86\u770B\u6905\u5B50\u4E0B\u9762\u2026\u2026\u627E\u5230\u4E86\uFF01`
+            `Someone ${wl('lost','lost')} a ${wl('tape','tape')} and a toy ${wl('duck','duck')}. Someone even ${wl('found','found')} a ${wl('pig','pig')} and a ${wl('sausage','sausage')} \u2014 a ${wl('thousand','thousand')} ${wl('strange','strange')} things come here every year! What a ${wl('boat','boat')}load of stuff!`,
+            `\u6709\u4EBA\u4E22\u4E86\u4E00\u5377\u78C1\u5E26\u548C\u4E00\u53EA\u73A9\u5177\u9E2D\u3002\u6709\u4EBA\u751A\u81F3\u627E\u5230\u4E86\u4E00\u53EA\u732A\u548C\u4E00\u6839\u9999\u80A0\u2014\u2014\u6BCF\u5E74\u6709\u4E00\u5343\u4EF6\u5947\u602A\u7684\u4E1C\u897F\u88AB\u9001\u5230\u8FD9\u91CC\uFF01\u771F\u662F\u6EE1\u6EE1\u4E00\u8239\u7684\u4E1C\u897F\uFF01`
           )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 2 \xB7 New Friends at School</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="\u6717\u8BFB\u672C\u7AE0">\u{1F50A}</button> Chapter 2 \xB7 School Life and Plans</div>
           ${ln(
-            `I walk into the ${wl('school','school')} ${wl('classroom','classroom')} and see a new girl.`,
-            `\u6211\u8D70\u8FDB\u5B66\u6821\u7684\u6559\u5BA4\uFF0C\u770B\u5230\u4E00\u4E2A\u65B0\u6765\u7684\u5973\u5B69\u3002`
+            `This ${wl('term','term')}, I ${wl('would like','would like')} to ${wl('join','join')} the ${wl('music','music')} ${wl('club','club')}. I can ${wl('play','play')} the ${wl('piano','piano')} and ${wl('ride','ride')} a bike ${wl('well','well')}.`,
+            `\u8FD9\u4E2A\u5B66\u671F\uFF0C\u6211\u60F3\u52A0\u5165\u97F3\u4E50\u4FF1\u4E50\u90E8\u3002\u6211\u4F1A\u5F39\u94A2\u7434\uFF0C\u4E5F\u80FD\u9A91\u81EA\u884C\u8F66\u3002`
           )}
           ${ln(
-            `"${wl('excuse','Excuse')} me, what's your ${wl('name','name')}?" I ask.`,
-            `\u201C\u6253\u6270\u4E00\u4E0B\uFF0C\u4F60\u53EB\u4EC0\u4E48\u540D\u5B57\uFF1F\u201D\u6211\u95EE\u9053\u3002`
+            `The ${wl('monitor','monitor')} says we should ${wl('start','start')} to ${wl('get on well with','get on well with')} everyone and be ${wl('ready','ready')} for the new ${wl('term','term')}.`,
+            `\u73ED\u957F\u8BF4\u6211\u4EEC\u5E94\u8BE5\u5F00\u59CB\u548C\u6BCF\u4E2A\u4EBA\u76F8\u5904\u878D\u6D3D\uFF0C\u4E3A\u65B0\u5B66\u671F\u505A\u597D\u51C6\u5907\u3002`
           )}
           ${ln(
-            `"My name is Gina. ${wl('nice','Nice')} to ${wl('meet','meet')} you!" she says with a smile.`,
-            `\u201C\u6211\u53EB Gina\u3002\u5F88\u9AD8\u5174\u8BA4\u8BC6\u4F60\uFF01\u201D\u5979\u7B11\u7740\u8BF4\u3002`
+            `"Don't ${wl('worry','worry')}!" says our ${wl('teach','teach')}er. "I can ${wl('teach','teach')} you. ${wl('then','Then')} you ${wl('will','will')} do ${wl('well','well')}. ${wl("that's all","That's all")} for today."`,
+            `\u201C\u522B\u62C5\u5FC3\uFF01\u201D\u8001\u5E08\u8BF4\u3002\u201C\u6211\u53EF\u4EE5\u6559\u4F60\u4EEC\u3002\u90A3\u4F60\u4EEC\u5C31\u4F1A\u505A\u5F97\u5F88\u597D\u3002\u4ECA\u5929\u5C31\u5230\u8FD9\u91CC\u3002\u201D`
           )}
           ${ln(
-            `"${wl('here','Here')} is my ${wl('family','family')} ${wl('photo','photo')}," she shows me.`,
-            `\u201C\u8FD9\u662F\u6211\u7684\u5168\u5BB6\u798F\uFF0C\u201D\u5979\u7ED9\u6211\u770B\u3002`
+            `I ${wl('worry about','worry about')} the ${wl('board','board')} exam, but I also look ${wl('forward','forward')} to the ${wl('holiday','holiday')}. We ${wl('plan','plan')} to ${wl('travel','travel')} and go ${wl('sightseeing','sightseeing')}.`,
+            `\u6211\u62C5\u5FC3\u5E03\u544A\u680F\u4E0A\u7684\u8003\u8BD5\uFF0C\u4F46\u6211\u4E5F\u671F\u76FC\u5047\u671F\u3002\u6211\u4EEC\u8BA1\u5212\u53BB\u65C5\u884C\u548C\u89C2\u5149\u3002`
           )}
           ${ln(
-            `"This is my ${wl('brother','brother')} Tom, and ${wl('those','those')} are my ${wl('sister','sister')} and ${wl('cousin','cousin')}."`,
-            `\u201C\u8FD9\u662F\u6211\u5F1F\u5F1F Tom\uFF0C\u90A3\u4E9B\u662F\u6211\u59D0\u59D0\u548C\u8868\u59B9\u3002\u201D`
+            `${wl('look forward to','Looking forward to')} the break, we ${wl('check','check')} our ${wl('email','email')} for trip details. We might ${wl('go camping','go camping')}, ${wl('take a walk','take a walk')}, or ${wl('go fishing','go fishing')}.`,
+            `\u671F\u76FC\u7740\u5047\u671F\uFF0C\u6211\u4EEC\u67E5\u770B\u90AE\u4EF6\u4E86\u89E3\u65C5\u884C\u8BE6\u60C5\u3002\u6211\u4EEC\u53EF\u80FD\u53BB\u9732\u8425\u3001\u6563\u6B65\u6216\u8005\u53BB\u9493\u9C7C\u3002`
           )}
           ${ln(
-            `She points to the photo: "That is my ${wl('parent','parent')}s' ${wl('daughter','daughter')} \u2014 me! And that ${wl('small','small')} ${wl('son','son')} is ${wl('dear','dear')} Tom. He is only five years ${wl('old','old')}."`,
-            `\u5979\u6307\u7740\u7167\u7247\u8BF4\uFF1A\u201C\u90A3\u662F\u6211\u7236\u6BCD\u7684\u5973\u513F\u2014\u2014\u5C31\u662F\u6211\uFF01\u90A3\u4E2A\u5C0F\u7684\u662F\u4EB2\u7231\u7684 Tom\u3002\u4ED6\u624D\u4E94\u5C81\u3002\u201D`
+            `We will ${wl('do some sightseeing','do some sightseeing')} and have a ${wl('picnic','picnic')} too. ${wl('walk','Walk')}ing in the fresh air and ${wl('cycling','cycling')} by the lake sounds great!`,
+            `\u6211\u4EEC\u8FD8\u4F1A\u53BB\u89C2\u5149\uFF0C\u4E5F\u4F1A\u53BB\u91CE\u9910\u3002\u5728\u65B0\u9C9C\u7A7A\u6C14\u4E2D\u6563\u6B65\u3001\u5728\u6E56\u8FB9\u9A91\u8F66\u542C\u8D77\u6765\u68D2\u6781\u4E86\uFF01`
           )}
           ${ln(
-            `The ${wl('teacher','teacher')} ${wl('come','come')}s in. "Please share your ${wl('telephone','telephone')} ${wl('number','number')}s."`,
-            `\u8001\u5E08\u8D70\u8FDB\u6765\u3002\u201C\u8BF7\u4EA4\u6362\u4F60\u4EEC\u7684\u7535\u8BDD\u53F7\u7801\u3002\u201D`
-          )}
-          ${ln(
-            `"You can also send me an ${wl('email','email')}!" says Gina. "Our ${wl('last','last')} ${wl('name','name')}s are different, but we can be ${wl('friend','friend')}s!"`,
-            `\u201C\u4F60\u4E5F\u53EF\u4EE5\u53D1\u90AE\u4EF6\u7ED9\u6211\uFF01\u201DGina \u8BF4\u3002\u201C\u6211\u4EEC\u59D3\u4E0D\u4E00\u6837\uFF0C\u4F46\u53EF\u4EE5\u505A\u670B\u53CB\uFF01\u201D`
+            `Some friends want to go ${wl('abroad','abroad')} and learn about different ${wl('culture','culture')}s at a summer ${wl('camp','camp')}. We will ${wl('go over','go over')} our lessons and enjoy the ${wl('fishing','fishing')} too.`,
+            `\u6709\u4E9B\u670B\u53CB\u60F3\u51FA\u56FD\uFF0C\u5728\u590F\u4EE4\u8425\u4E2D\u4E86\u89E3\u4E0D\u540C\u7684\u6587\u5316\u3002\u6211\u4EEC\u4F1A\u590D\u4E60\u529F\u8BFE\uFF0C\u4E5F\u4EAB\u53D7\u9493\u9C7C\u7684\u4E50\u8DA3\u3002`
           )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 3 \xB7 A Day of Lessons</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="\u6717\u8BFB\u672C\u7AE0">\u{1F50A}</button> Chapter 3 \xB7 The Future and the City</div>
           ${ln(
-            `My ${wl('favorite','favorite')} ${wl('subject','subject')} is ${wl('science','science')}. The teacher says today's class will be very ${wl('interesting','interesting')}.`,
-            `\u6211\u6700\u559C\u6B22\u7684\u79D1\u76EE\u662F\u79D1\u5B66\u3002\u8001\u5E08\u8BF4\u4ECA\u5929\u7684\u8BFE\u4F1A\u5F88\u6709\u8DA3\u3002`
+            `In the ${wl('future','future')}, ${wl('everything','everything')} ${wl('will','will')} ${wl('change','change')}. ${wl('maybe','Maybe')} we won't ${wl('need','need')} ${wl('chalk','chalk')} or a ${wl('ruler','ruler')} in class.`,
+            `\u5728\u5C06\u6765\uFF0C\u4E00\u5207\u90FD\u4F1A\u6539\u53D8\u3002\u4E5F\u8BB8\u6211\u4EEC\u4E0A\u8BFE\u4E0D\u518D\u9700\u8981\u7C89\u7B14\u548C\u5C3A\u5B50\u3002`
           )}
           ${ln(
-            `She asks us to open the ${wl('dictionary','dictionary')} and look up some words, then go to the ${wl('library','library')}.`,
-            `\u5979\u8BA9\u6211\u4EEC\u6253\u5F00\u8BCD\u5178\u67E5\u51E0\u4E2A\u8BCD\uFF0C\u7136\u540E\u53BB\u56FE\u4E66\u9986\u3002`
+            `${wl('in the future','In the future')}, ${wl('robot','robot')}s and ${wl('machine','machine')}s will do ${wl('more','more')} ${wl('job','job')}s. Books will be ${wl('light','light')}, not ${wl('heavy','heavy')}.`,
+            `\u5728\u5C06\u6765\uFF0C\u673A\u5668\u4EBA\u548C\u673A\u5668\u4F1A\u505A\u66F4\u591A\u7684\u5DE5\u4F5C\u3002\u4E66\u672C\u4F1A\u53D8\u8F7B\uFF0C\u4E0D\u518D\u6C89\u91CD\u3002`
           )}
           ${ln(
-            `${wl('math','Math')} class is not so ${wl('fun','fun')} \u2014 ${wl('those','those')} ${wl('number','number')}s are really ${wl('difficult','difficult')}!`,
-            `\u6570\u5B66\u8BFE\u5C31\u6CA1\u90A3\u4E48\u6709\u8DA3\u4E86\u2014\u2014\u90A3\u4E9B\u6570\u5B57\u771F\u7684\u597D\u96BE\uFF01`
+            `We will ${wl('be able to','be able to')} ${wl('ask','ask')} ${wl('question','question')}s at any ${wl('level','level')}. ${wl('able','Able')} students will study ${wl('free','free')}ly on the ${wl('internet','internet')}.`,
+            `\u6211\u4EEC\u5C06\u80FD\u591F\u63D0\u51FA\u4EFB\u4F55\u7EA7\u522B\u7684\u95EE\u9898\u3002\u6709\u80FD\u529B\u7684\u5B66\u751F\u5C06\u5728\u4E92\u8054\u7F51\u4E0A\u81EA\u7531\u5B66\u4E60\u3002`
           )}
           ${ln(
-            `But ${wl('music','music')} class makes everyone ${wl('happy','happy')} again.`,
-            `\u4F46\u97F3\u4E50\u8BFE\u8BA9\u5927\u5BB6\u53C8\u5F00\u5FC3\u8D77\u6765\u3002`
+            `The ${wl('weather','weather')} may bring ${wl('rain','rain')} and ${wl('wind','wind')}, but the ${wl('traffic','traffic')} will be ${wl('short','short')} \u2014 only an ${wl('hour','hour')} for a ${wl('long','long')} trip! Dreams will ${wl('come true','come true')} if we believe they are ${wl('true','true')}.`,
+            `\u5929\u6C14\u53EF\u80FD\u4F1A\u5E26\u6765\u96E8\u548C\u98CE\uFF0C\u4F46\u4EA4\u901A\u5C06\u53D8\u5F97\u5F88\u77ED\u2014\u2014\u5F88\u957F\u7684\u8DEF\u7A0B\u53EA\u9700\u4E00\u5C0F\u65F6\uFF01\u5982\u679C\u6211\u4EEC\u76F8\u4FE1\u68A6\u60F3\u662F\u771F\u7684\uFF0C\u5B83\u4EEC\u5C31\u4F1A\u5B9E\u73B0\u3002`
           )}
           ${ln(
-            `In ${wl('chinese','Chinese')} class, the teacher asks why we like it.`,
-            `\u8BED\u6587\u8BFE\u4E0A\uFF0C\u8001\u5E08\u95EE\u6211\u4EEC\u4E3A\u4EC0\u4E48\u559C\u6B22\u8BED\u6587\u3002`
+            `Now let me tell you about the city. The ${wl('bank','bank')} is ${wl('opposite','opposite')} the ${wl('restaurant','restaurant')}. ${wl('walk','Walk')} ${wl('along','along')} the ${wl('street','street')}, ${wl('turn','turn')} ${wl('right','right')}, and go ${wl('straight','straight')} ${wl('past','past')} the ${wl('square','square')}.`,
+            `\u73B0\u5728\u8BA9\u6211\u7ED9\u4F60\u8BB2\u8BB2\u8FD9\u5EA7\u57CE\u5E02\u3002\u94F6\u884C\u5728\u9910\u9986\u5BF9\u9762\u3002\u6CBF\u7740\u8857\u9053\u8D70\uFF0C\u5411\u53F3\u62D0\uFF0C\u7B14\u76F4\u8D70\u8FC7\u5E7F\u573A\u3002`
           )}
           ${ln(
-            `I say: "${wl('because','Because')} ${wl('chinese','Chinese')} is very ${wl('useful','useful')}!" The teacher nods: "Good! Now please ${wl('finish','finish')} the reading."`,
-            `\u6211\u8BF4\uFF1A\u201C\u56E0\u4E3A\u8BED\u6587\u975E\u5E38\u6709\u7528\uFF01\u201D\u8001\u5E08\u70B9\u5934\uFF1A\u201C\u5F88\u597D\uFF01\u73B0\u5728\u8BF7\u5B8C\u6210\u9605\u8BFB\u3002\u201D`
+            `The ${wl('tour','tour')} guide points ${wl('left','left')}: "${wl('across','Across')} the ${wl('bridge','bridge')}, you can see a ${wl('clear','clear')} ${wl('ground','ground')}." We ${wl('cross','cross')} the road ${wl('towards','towards')} a ${wl('famous','famous')} ${wl('painting','painting')} ${wl('above','above')} the ${wl('middle','middle')} gate.`,
+            `\u5BFC\u6E38\u6307\u5411\u5DE6\u8FB9\uFF1A\u201C\u8D70\u8FC7\u6865\uFF0C\u4F60\u53EF\u4EE5\u770B\u5230\u4E00\u5757\u5E72\u51C0\u7684\u7A7A\u5730\u3002\u201D\u6211\u4EEC\u7A7F\u8FC7\u9A6C\u8DEF\uFF0C\u671D\u7740\u4E2D\u95E8\u4E0A\u65B9\u4E00\u5E45\u8457\u540D\u7684\u753B\u4F5C\u8D70\u53BB\u3002`
           )}
           ${ln(
-            `After class, I ${wl('find','find')} that I ${wl('lost','lost')} my ${wl('eraser','eraser')}. ${wl('where','Where')} is it?`,
-            `\u4E0B\u8BFE\u540E\uFF0C\u6211\u53D1\u73B0\u6211\u7684\u6A61\u76AE\u4E22\u4E86\u3002\u5B83\u5728\u54EA\u91CC\uFF1F`
+            `${wl('later','Later')}, we go to the ${wl('market','market')} and the ${wl('supermarket','supermarket')}. ${wl('strawberry','Strawberry')} ${wl('price','price')}s look good. I ${wl('try on','try on')} a shirt \u2014 the ${wl('size','size')} is just right!`,
+            `\u540E\u6765\uFF0C\u6211\u4EEC\u53BB\u4E86\u5E02\u573A\u548C\u8D85\u5E02\u3002\u8349\u8393\u7684\u4EF7\u683C\u770B\u8D77\u6765\u4E0D\u9519\u3002\u6211\u8BD5\u7A7F\u4E86\u4E00\u4EF6\u886C\u886B\u2014\u2014\u5C3A\u7801\u521A\u521A\u597D\uFF01`
           )}
           ${ln(
-            `I ${wl('find','find')} it ${wl('under','under')} the ${wl('teacher','teacher')}'s desk in the ${wl('classroom','classroom')}. ${wl('thank','Thank')} goodness!`,
-            `\u6211\u5728\u6559\u5BA4\u8BB2\u53F0\u4E0B\u9762\u627E\u5230\u4E86\u5B83\u3002\u8C22\u5929\u8C22\u5730\uFF01`
-          )}
-        </div>
-
-        <div class="story-chapter">
-          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 4 \xB7 Sports and Shopping</div>
-          ${ln(
-            `After ${wl('school','school')}, ${wl('come','come')} on! Let's play ${wl('sport','sport')}s!`,
-            `\u653E\u5B66\u540E\uFF0C\u52A0\u6CB9\uFF01\u6211\u4EEC\u53BB\u8FD0\u52A8\u5427\uFF01`
+            `"Can I ${wl('take','take')} this?" I ask. "${wl('certainly','Certainly')}! Please ${wl('wait','wait')} ${wl('a moment','a moment')}, it is on ${wl('sale','sale')} \u2014 ${wl('on sale','on sale')} at ${wl('half','half')} ${wl('half price','price')}!" the shopkeeper says.`,
+            `\u201C\u6211\u53EF\u4EE5\u62FF\u8FD9\u4EF6\u5417\uFF1F\u201D\u6211\u95EE\u3002\u201C\u5F53\u7136\uFF01\u8BF7\u7B49\u4E00\u4E0B\uFF0C\u5B83\u6B63\u5728\u6253\u6298\u2014\u2014\u534A\u4EF7\u4F18\u60E0\uFF01\u201D\u5E97\u5458\u8BF4\u3002`
           )}
           ${ln(
-            `"Do you have a ${wl('soccer','soccer')} ball?" asks Tom.`,
-            `\u201C\u4F60\u6709\u8DB3\u7403\u5417\uFF1F\u201DTom \u95EE\u3002`
+            `I ${wl('pay','pay')} ${wl('by','by')} card and ${wl('receive','receive')} a ${wl('fresh','fresh')} ${wl('strawberry','strawberry')} as a gift. "${wl("what's the matter","What's the matter")}?" asks my friend. "Nothing \u2014 the ${wl('matter','matter')} is this ${wl('product','product')} is great!"`,
+            `\u6211\u7528\u5361\u4ED8\u6B3E\uFF0C\u8FD8\u6536\u5230\u4E86\u4E00\u9897\u65B0\u9C9C\u8349\u8393\u4F5C\u4E3A\u793C\u7269\u3002\u201C\u600E\u4E48\u4E86\uFF1F\u201D\u670B\u53CB\u95EE\u3002\u201C\u6CA1\u4E8B\u2014\u2014\u5173\u952E\u662F\u8FD9\u4E2A\u4EA7\u54C1\u592A\u68D2\u4E86\uFF01\u201D`
           )}
           ${ln(
-            `"Let's play ${wl('basketball','basketball')}!" Gina says. ${wl('volleyball','volleyball')} and ${wl('tennis','tennis')} are also ${wl('easy','easy')} and ${wl('fun','fun')}.`,
-            `\u201C\u6211\u4EEC\u6253\u7BEE\u7403\u5427\uFF01\u201DGina \u8BF4\u3002\u6392\u7403\u548C\u7F51\u7403\u4E5F\u5F88\u7B80\u5355\u6709\u8DA3\u3002`
-          )}
-          ${ln(
-            `I ${wl('think','think')} sitting all day is ${wl('boring','boring')}. Playing is much more ${wl('interesting','interesting')}!`,
-            `\u6211\u89C9\u5F97\u6574\u5929\u5750\u7740\u5F88\u65E0\u804A\u3002\u8FD0\u52A8\u6709\u8DA3\u591A\u4E86\uFF01`
-          )}
-          ${ln(
-            `I ${wl('know','know')} a secret: the ${wl('store','store')} near the playground is ${wl('sell','sell')}ing ${wl('sport','sport')}s gear at a great ${wl('price','price')}!`,
-            `\u6211\u77E5\u9053\u4E00\u4E2A\u79D8\u5BC6\uFF1A\u64CD\u573A\u65C1\u7684\u5546\u5E97\u6B63\u5728\u4EE5\u5F88\u597D\u7684\u4EF7\u683C\u5356\u8FD0\u52A8\u88C5\u5907\uFF01`
-          )}
-          ${ln(
-            `"How ${wl('much','much')} are those shoes?" I ask.`,
-            `\u201C\u90A3\u53CC\u978B\u5B50\u591A\u5C11\u94B1\uFF1F\u201D\u6211\u95EE\u3002`
-          )}
-          ${ln(
-            `I decide to ${wl('buy','buy')} a new pair and some ${wl('clothes','clothes')}. They are not ${wl('big','big')}, not ${wl('small','small')} \u2014 just right!`,
-            `\u6211\u51B3\u5B9A\u4E70\u4E00\u53CC\u65B0\u978B\u548C\u4E00\u4E9B\u8863\u670D\u3002\u4E0D\u5927\u4E0D\u5C0F\u2014\u2014\u521A\u521A\u597D\uFF01`
-          )}
-          ${ln(
-            `A ${wl('sport','sport')}s ${wl('star','star')}'s dream starts with good gear!`,
-            `\u8FD0\u52A8\u660E\u661F\u7684\u68A6\u60F3\u4ECE\u597D\u88C5\u5907\u5F00\u59CB\uFF01`
+            `The ${wl('advantage','advantage')} of shopping here is you can ${wl('compare','compare')} ${wl('product','product')}s ${wl('anywhere','anywhere')}. I will ${wl('post','post')} a review. ${wl('almost','Almost')} ${wl('over','over')} with shopping, we head home happily.`,
+            `\u5728\u8FD9\u91CC\u8D2D\u7269\u7684\u4F18\u52BF\u662F\u4F60\u53EF\u4EE5\u5728\u4EFB\u4F55\u5730\u65B9\u6BD4\u8F83\u4EA7\u54C1\u3002\u6211\u4F1A\u53D1\u5E03\u4E00\u6761\u8BC4\u4EF7\u3002\u8D2D\u7269\u5DEE\u4E0D\u591A\u7ED3\u675F\u4E86\uFF0C\u6211\u4EEC\u5F00\u5FC3\u5730\u56DE\u5BB6\u3002`
           )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 5 \xB7 The Birthday Surprise</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="\u6717\u8BFB\u672C\u7AE0">\u{1F50A}</button> Chapter 4 \xB7 Past and Stories</div>
           ${ln(
-            `${wl('when','When')} is your birthday? Is it in ${wl('January','January')} or ${wl('february','February')}?`,
-            `\u4F60\u7684\u751F\u65E5\u662F\u4EC0\u4E48\u65F6\u5019\uFF1F\u662F\u4E00\u6708\u8FD8\u662F\u4E8C\u6708\uFF1F`
+            `I ${wl('was','was')} ${wl('born','born')} in a small ${wl('town','town')} with a ${wl('nice','nice')} ${wl('village','village')} nearby. My ${wl('primary school','primary school')} ${wl('was','was')} ${wl('strict','strict')} but ${wl('friendly','friendly')}.`,
+            `\u6211\u51FA\u751F\u5728\u4E00\u4E2A\u5C0F\u9547\uFF0C\u9644\u8FD1\u6709\u4E00\u4E2A\u6F02\u4EAE\u7684\u6751\u5E84\u3002\u6211\u7684\u5C0F\u5B66\u5F88\u4E25\u683C\u4F46\u53CB\u597D\u3002`
           )}
           ${ln(
-            `This ${wl('month','month')} is Gina's birthday! We plan a ${wl('party','party')} for her.`,
-            `\u8FD9\u4E2A\u6708\u662F Gina \u7684\u751F\u65E5\uFF01\u6211\u4EEC\u7ED9\u5979\u7B56\u5212\u4E86\u4E00\u4E2A\u6D3E\u5BF9\u3002`
+            `${wl('hey','Hey')}! In the ${wl('US','US')}, my pen pal had a different ${wl('character','character')}. ${wl('were','Were')} you ${wl('naughty','naughty')} or ${wl('bored','bored')} ${wl('ago','ago')}?`,
+            `\u563F\uFF01\u5728\u7F8E\u56FD\uFF0C\u6211\u7684\u7B14\u53CB\u6027\u683C\u4E0D\u540C\u3002\u4F60\u4EE5\u524D\u662F\u8C03\u76AE\u7684\u8FD8\u662F\u65E0\u804A\u7684\uFF1F`
           )}
           ${ln(
-            `Everyone is ${wl('happy','happy')}, but the ${wl('test','test')} tomorrow makes us a little nervous.`,
-            `\u5927\u5BB6\u90FD\u5F88\u5F00\u5FC3\uFF0C\u4F46\u660E\u5929\u7684\u8003\u8BD5\u8BA9\u6211\u4EEC\u6709\u70B9\u7D27\u5F20\u3002`
+            `Our old house had a ${wl('bedroom','bedroom')}, a ${wl('bathroom','bathroom')}, a ${wl('kitchen','kitchen')}, and a ${wl('living room','living room')}. There ${wl('was','was')} a lovely ${wl('garden','garden')} with a ${wl('pond','pond')} in the ${wl('back','back')}.`,
+            `\u6211\u4EEC\u7684\u8001\u623F\u5B50\u6709\u4E00\u95F4\u5367\u5BA4\u3001\u4E00\u4E2A\u6D74\u5BA4\u3001\u4E00\u95F4\u53A8\u623F\u548C\u4E00\u95F4\u5BA2\u5385\u3002\u540E\u9762\u6709\u4E00\u4E2A\u53EF\u7231\u7684\u82B1\u56ED\uFF0C\u82B1\u56ED\u91CC\u6709\u4E00\u4E2A\u6C60\u5858\u3002`
           )}
           ${ln(
-            `"${wl('happy','Happy')} birthday, ${wl('dear','dear')} Gina!" we all shout together.`,
-            `\u201C\u751F\u65E5\u5FEB\u4E50\uFF0C\u4EB2\u7231\u7684 Gina\uFF01\u201D\u6211\u4EEC\u9F50\u58F0\u558A\u9053\u3002`
+            `There ${wl('was','was')} also a ${wl('store','store')} and a ${wl('movie theater','movie theater')} in town. Now let me tell you a ${wl('once upon a time','once upon a time')} story.`,
+            `\u9547\u4E0A\u8FD8\u6709\u4E00\u5BB6\u5546\u5E97\u548C\u4E00\u5BB6\u7535\u5F71\u9662\u3002\u73B0\u5728\u8BA9\u6211\u7ED9\u4F60\u8BB2\u4E00\u4E2A\u5F88\u4E45\u5F88\u4E45\u4EE5\u524D\u7684\u6545\u4E8B\u3002`
           )}
           ${ln(
-            `Gina makes a wish: she wants to ${wl('finish','finish')} all her homework and go on a ${wl('trip','trip')}.`,
-            `Gina \u8BB8\u4E86\u4E2A\u613F\uFF1A\u5979\u60F3\u5B8C\u6210\u6240\u6709\u529F\u8BFE\uFF0C\u7136\u540E\u53BB\u65C5\u884C\u3002`
+            `${wl('once','Once')} ${wl('upon','upon')} a time, a girl ${wl('begin','begin')}s to ${wl('walk','walk')} into a ${wl('dark','dark')} forest. She ${wl('notice','notice')}s a small house, ${wl('all alone','all alone')}.`,
+            `\u4ECE\u524D\uFF0C\u4E00\u4E2A\u5973\u5B69\u5F00\u59CB\u8D70\u8FDB\u4E00\u7247\u9ED1\u6697\u7684\u68EE\u6797\u3002\u5979\u6CE8\u610F\u5230\u4E00\u95F4\u5C0F\u5C4B\uFF0C\u5B64\u96F6\u96F6\u5730\u7ACB\u5728\u90A3\u91CC\u3002`
           )}
           ${ln(
-            `"How ${wl('old','old')} are you now?" asks Tom. "Thirteen! I'm not ${wl('small','small')} anymore!" Gina laughs.`,
-            `\u201C\u4F60\u73B0\u5728\u591A\u5927\u4E86\uFF1F\u201DTom \u95EE\u3002\u201C\u5341\u4E09\u5C81\uFF01\u6211\u4E0D\u5C0F\u4E86\uFF01\u201DGina \u7B11\u7740\u8BF4\u3002`
+            `She ${wl('pick','pick')}s up a ${wl('basket','basket')} and ${wl('hurry','hurry')}s to the ${wl('door','door')}. ${wl('without','Without')} a ${wl('knock','knock')}, she ${wl('enter','enter')}s.`,
+            `\u5979\u6361\u8D77\u4E00\u4E2A\u7BEE\u5B50\uFF0C\u6025\u5FD9\u8D70\u5411\u95E8\u53E3\u3002\u6CA1\u6709\u6572\u95E8\uFF0C\u5979\u5C31\u8D70\u4E86\u8FDB\u53BB\u3002`
           )}
           ${ln(
-            `This is the story of my ${wl('first','first')} semester. New ${wl('friend','friend')}s, a new ${wl('school','school')}, new ${wl('subject','subject')}s \u2014 everything is so ${wl('nice','nice')}.`,
-            `\u8FD9\u5C31\u662F\u6211\u7B2C\u4E00\u4E2A\u5B66\u671F\u7684\u6545\u4E8B\u3002\u65B0\u670B\u53CB\u3001\u65B0\u5B66\u6821\u3001\u65B0\u79D1\u76EE\u2014\u2014\u4E00\u5207\u90FD\u90A3\u4E48\u7F8E\u597D\u3002`
+            `She ${wl('decide','decide')}s to look around. There is a ${wl('bowl','bowl')} of soup. She is ${wl('hungry','hungry')}, so she eats and ${wl('finish','finish')}es it. "${wl('either','Either')} this ${wl('piece','piece')} of bread or nothing," she thinks.`,
+            `\u5979\u51B3\u5B9A\u56DB\u5904\u770B\u770B\u3002\u90A3\u91CC\u6709\u4E00\u7897\u6C64\u3002\u5979\u5F88\u997F\uFF0C\u4E8E\u662F\u5403\u5B8C\u4E86\u3002\u201C\u8981\u4E48\u5403\u8FD9\u5757\u9762\u5305\uFF0C\u8981\u4E48\u4EC0\u4E48\u90FD\u6CA1\u6709\uFF0C\u201D\u5979\u60F3\u3002`
           )}
           ${ln(
-            `I ${wl('know','know')} this is just the beginning, ${wl('because','because')} the best is yet to ${wl('come','come')}!`,
-            `\u6211\u77E5\u9053\u8FD9\u53EA\u662F\u5F00\u59CB\uFF0C\u56E0\u4E3A\u6700\u597D\u7684\u8FD8\u5728\u540E\u9762\uFF01`
+            `Suddenly, a big ${wl('bear','bear')} ${wl('rush','rush')}es in! She ${wl('cry','cry')}s out. The bear ${wl('try','try')}s to ${wl('destroy','destroy')} the table! She is ${wl('asleep','asleep')} \u2014 no, she wakes up!`,
+            `\u7A81\u7136\uFF0C\u4E00\u53EA\u5927\u718A\u51B2\u4E86\u8FDB\u6765\uFF01\u5979\u5927\u53EB\u3002\u718A\u8BD5\u56FE\u7834\u574F\u684C\u5B50\uFF01\u5979\u7761\u7740\u4E86\u2014\u2014\u4E0D\uFF0C\u5979\u9192\u4E86\uFF01`
+          )}
+          ${ln(
+            `She ${wl('return','return')}s to the ${wl('door','door')}, ${wl('point','point')}s at the bear, ${wl('shout','shout')}s, ${wl('jump','jump')}s out the window, and ${wl('escape','escape')}s! ${wl('pick up','Picking up')} her basket, she runs home.`,
+            `\u5979\u56DE\u5230\u95E8\u53E3\uFF0C\u6307\u7740\u718A\uFF0C\u5927\u53EB\u4E00\u58F0\uFF0C\u4ECE\u7A97\u6237\u8DF3\u51FA\u53BB\uFF0C\u9003\u8DD1\u4E86\uFF01\u5979\u6361\u8D77\u7BEE\u5B50\uFF0C\u8DD1\u56DE\u4E86\u5BB6\u3002`
           )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 6 \xB7 A Letter to My Future Self</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="\u6717\u8BFB\u672C\u7AE0">\u{1F50A}</button> Chapter 5 \xB7 Life, Travel and Music</div>
+          ${ln(
+            `My grandmother's life is a ${wl('successful','successful')} story. At the ${wl('age','age')} of 16, she read the ${wl('newspaper','newspaper')} every day and wrote ${wl('poem','poem')}s.`,
+            `\u6211\u5976\u5976\u7684\u4E00\u751F\u662F\u4E00\u4E2A\u6210\u529F\u7684\u6545\u4E8B\u3002\u5341\u516D\u5C81\u65F6\uFF0C\u5979\u6BCF\u5929\u770B\u62A5\u7EB8\u5E76\u5199\u8BD7\u3002`
+          )}
+          ${ln(
+            `She ${wl('marry','marry')}ed my grandfather and they ${wl('become','become')} a happy couple. They ${wl('move','move')}d to the city and ${wl('join','join')}ed the ${wl('national','national')} team. On ${wl("Women's Day","Women's Day")}, she gave a ${wl('performance','performance')} at the ${wl('exact','exact')} moment everyone ${wl('finish','finish')}ed dinner.`,
+            `\u5979\u5AC1\u7ED9\u4E86\u6211\u7237\u7237\uFF0C\u4ED6\u4EEC\u6210\u4E3A\u5E78\u798F\u7684\u4F34\u4FA3\u3002\u4ED6\u4EEC\u642C\u5230\u4E86\u57CE\u5E02\uFF0C\u52A0\u5165\u4E86\u56FD\u5BB6\u961F\u3002\u5987\u5973\u8282\u90A3\u5929\uFF0C\u5979\u5728\u5927\u5BB6\u521A\u5403\u5B8C\u665A\u996D\u7684\u65F6\u5019\u8868\u6F14\u4E86\u8282\u76EE\u3002`
+          )}
+          ${ln(
+            `Last summer, we took a ${wl('holiday','holiday')} to the ${wl('Pacific','Pacific')}. We ${wl('arrive','arrive')}d and ${wl('relax','relax')}ed on the beach. It was ${wl('exciting','exciting')}!`,
+            `\u53BB\u5E74\u590F\u5929\uFF0C\u6211\u4EEC\u53BB\u592A\u5E73\u6D0B\u5EA6\u5047\u3002\u6211\u4EEC\u5230\u8FBE\u540E\u5728\u6D77\u6EE9\u4E0A\u653E\u677E\u3002\u592A\u5174\u594B\u4E86\uFF01`
+          )}
+          ${ln(
+            `I ${wl('already','already')} ${wl('hope','hope')} to go back. We ate ${wl('Italian','Italian')} food \u2014 ${wl('delicious','delicious')} ${wl('pizza','pizza')} and ${wl('sandwich','sandwich')}es. The ${wl('special','special')} dish was ${wl('cheap','cheap')} and ${wl('lovely','lovely')}.`,
+            `\u6211\u5DF2\u7ECF\u5E0C\u671B\u518D\u56DE\u53BB\u3002\u6211\u4EEC\u5403\u4E86\u610F\u5927\u5229\u98DF\u7269\u2014\u2014\u7F8E\u5473\u7684\u62AB\u8428\u548C\u4E09\u660E\u6CBB\u3002\u7279\u8272\u83DC\u4FBF\u5B9C\u53C8\u53EF\u7231\u3002`
+          )}
+          ${ln(
+            `A ${wl('musician','musician')} on the ${wl('street','street')} played ${wl('all kinds of','all kinds of')} ${wl('kind','kind')} ${wl('song','song')}s. The ${wl('sell','sell')}er nearby ${wl('try','tried')} to sell ${wl('expensive','expensive')} souvenirs, but we just listened.`,
+            `\u8857\u4E0A\u4E00\u4E2A\u97F3\u4E50\u5BB6\u6F14\u594F\u5404\u79CD\u5584\u826F\u7684\u6B4C\u66F2\u3002\u65C1\u8FB9\u7684\u5356\u5BB6\u8BD5\u56FE\u5356\u6602\u8D35\u7684\u7EAA\u5FF5\u54C1\uFF0C\u4F46\u6211\u4EEC\u53EA\u662F\u5728\u542C\u3002`
+          )}
+          ${ln(
+            `Now, ${wl('body language','body language')} is important everywhere. A ${wl('polite','polite')} ${wl('visitor','visitor')} from a ${wl('foreign','foreign')} country may ${wl('bow','bow')}, while a friend may ${wl('kiss','kiss')} or ${wl('shake hands','shake hands')}.`,
+            `\u73B0\u5728\uFF0C\u8EAB\u4F53\u8BED\u8A00\u5728\u4EFB\u4F55\u5730\u65B9\u90FD\u5F88\u91CD\u8981\u3002\u4E00\u4E2A\u793C\u8C8C\u7684\u5916\u56FD\u6E38\u5BA2\u53EF\u80FD\u4F1A\u9F1E\u8EAC\uFF0C\u800C\u670B\u53CB\u53EF\u80FD\u4F1A\u4EB2\u543B\u6216\u63E1\u624B\u3002`
+          )}
+          ${ln(
+            `A ${wl('nod','nod')} means yes, a ${wl('shake','shake')} of the ${wl('head','head')} means no. A ${wl('smile','smile')} is understood everywhere. You can ${wl('touch','touch')} a friend's ${wl('arm','arm')} or ${wl('hold','hold')} their hand.`,
+            `\u70B9\u5934\u8868\u793A\u540C\u610F\uFF0C\u6447\u5934\u8868\u793A\u4E0D\u540C\u610F\u3002\u5FAE\u7B11\u5728\u4EFB\u4F55\u5730\u65B9\u90FD\u80FD\u88AB\u7406\u89E3\u3002\u4F60\u53EF\u4EE5\u78B0\u78B0\u670B\u53CB\u7684\u80F3\u818A\u6216\u62C9\u4F4F\u4ED6\u4EEC\u7684\u624B\u3002`
+          )}
+          ${ln(
+            `It is ${wl('personal','personal')}, but in a ${wl('film','film')} I saw ${wl('somewhere','somewhere')}, people ${wl('wave','wave')} with their ${wl('finger','finger')}s. That is ${wl('not...at all','not strange at all')}! In ${wl('fact','fact')}, ${wl('in fact','in fact')}, it happens in ${wl('move','move')}ing moments.`,
+            `\u8FD9\u662F\u79C1\u4EBA\u7684\uFF0C\u4F46\u6211\u5728\u67D0\u90E8\u7535\u5F71\u91CC\u770B\u5230\u4EBA\u4EEC\u7528\u624B\u6307\u6325\u624B\u3002\u8FD9\u4E00\u70B9\u4E5F\u4E0D\u5947\u602A\uFF01\u4E8B\u5B9E\u4E0A\uFF0C\u8FD9\u53D1\u751F\u5728\u611F\u4EBA\u7684\u65F6\u523B\u3002`
+          )}
+          ${ln(
+            `Speaking of ${wl('music','music')}, ${wl('Western','Western')} ${wl('instrument','instrument')}s like the ${wl('drum','drum')}, ${wl('guitar','guitar')}, ${wl('organ','organ')}, and ${wl('violin','violin')} are popular with ${wl('elder','elder')} and young alike.`,
+            `\u8BF4\u5230\u97F3\u4E50\uFF0C\u897F\u65B9\u4E50\u5668\u5982\u9F13\u3001\u5409\u4ED6\u3001\u7BA1\u98CE\u7434\u548C\u5C0F\u63D0\u7434\u6DF1\u53D7\u8001\u5E7C\u559C\u7231\u3002`
+          )}
+          ${ln(
+            `From ${wl('blues','blues')} to ${wl('pop music','pop music')}, from ${wl('rock music','rock music')} to ${wl('classical music','classical music')} \u2014 over the ${wl('century','century')}, ${wl('European','European')} ${wl('type','type')}s of ${wl('loud','loud')}, ${wl('exciting','exciting')} ${wl('voice','voice')}s have spread.`,
+            `\u4ECE\u84DD\u8C03\u5230\u6D41\u884C\u97F3\u4E50\uFF0C\u4ECE\u6447\u6EDA\u5230\u53E4\u5178\u97F3\u4E50\u2014\u2014\u8FD9\u4E2A\u4E16\u7EAA\u4EE5\u6765\uFF0C\u6B27\u6D32\u98CE\u683C\u7684\u54CD\u4EAE\u3001\u6FC0\u52A8\u7684\u58F0\u97F3\u5DF2\u7ECF\u4F20\u904D\u4E16\u754C\u3002`
+          )}
+          ${ln(
+            `The ${wl('rest','rest')} of us are just ${wl('fan','fan')}s. The ${wl('wonderful','wonderful')} beats ${wl('make','make')} us dance ${wl('fast','fast')}! ${wl('add','Add')} some ${wl('beautiful','beautiful')} lyrics, and the ${wl('song','song')} becomes ${wl('common','common')} but not ${wl('noisy','noisy')}.`,
+            `\u6211\u4EEC\u5176\u4F59\u7684\u4EBA\u53EA\u662F\u7C89\u4E1D\u3002\u7F8E\u5999\u7684\u8282\u62CD\u8BA9\u6211\u4EEC\u5FEB\u901F\u8DF3\u821E\uFF01\u52A0\u4E0A\u4E00\u4E9B\u4F18\u7F8E\u7684\u6B4C\u8BCD\uFF0C\u6B4C\u66F2\u53D8\u5F97\u6D41\u884C\u4F46\u4E0D\u5435\u95F9\u3002`
+          )}
+        </div>
+
+        <div class="story-chapter">
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="\u6717\u8BFB\u672C\u7AE0">\u{1F50A}</button> Chapter 6 \xB7 A Letter to My Future Self</div>
           <div class="story-block-en">
-            <p>${wl('dear','Dear')} Future Me,</p>
-            <p>${wl('hello','Hello')}! My ${wl('name','name')} is Li Ming. I am writing this letter at ${wl('school','school')} in ${wl('china','China')}, sitting on a ${wl('chair','chair')} in the ${wl('classroom','classroom')}. It is ${wl('january','January')} now, the ${wl('first','first')} ${wl('month','month')} of the new year, and I am very ${wl('happy','happy')}.</p>
-            <p>Let me tell you about my ${wl('family','family')}. My ${wl('grandfather','grandfather')} and ${wl('grandmother','grandmother')} are ${wl('old','old')} but ${wl('healthy','healthy')}. My ${wl('parent','parent')}s work hard every day. I have a ${wl('brother','brother')} and a ${wl('sister','sister')}. My brother is the ${wl('son','son')} my ${wl('parent','parent')}s are most proud of, and my sister is their ${wl('dear','dear')}est ${wl('daughter','daughter')}. My ${wl('cousin','cousin')} often visits us too. ${wl('here','Here')} is a ${wl('family','family')} ${wl('photo','photo')} \u2014 look at ${wl('those','those')} ${wl('nice','nice')} faces!</p>
-            <p>Every morning I eat ${wl('breakfast','breakfast')} \u2014 usually ${wl('rice','rice')}, ${wl('chicken','chicken')}, and ${wl('vegetable','vegetable')}s. My grandmother says ${wl('fruit','fruit')} is better than ${wl('banana','banana')}s and ${wl('hamburger','hamburger')}s. I also pack my ${wl('lunch','lunch')} box. My ${wl('room','room')} is very ${wl('tidy','tidy')}: ${wl('book','book')}s on the ${wl('table','table')}, a ${wl('pencil','pencil')} next to my ${wl('dictionary','dictionary')}, and my ${wl('eraser','eraser')} ${wl('under','under')} the ${wl('bed','bed')}. My ${wl('grandfather','grandfather')} reads on the ${wl('sofa','sofa')}.</p>
-            <p>At school, I ${wl('meet','meet')} my ${wl('friend','friend')}s. "${wl('excuse','Excuse')} me, ${wl('where','where')} is the ${wl('library','library')}?" a new student asks. I say, "${wl('come','Come')} with me!" The ${wl('teacher','teacher')} asks us to share our ${wl('telephone','telephone')} ${wl('number','number')}s and ${wl('email','email')} addresses. Our ${wl('last','last')} names are all different, but we ${wl('know','know')} we are ${wl('friend','friend')}s.</p>
-            <p>My ${wl('favorite','favorite')} ${wl('subject','subject')} is ${wl('science','science')} ${wl('because','because')} it is so ${wl('interesting','interesting')}! ${wl('math','Math')} is ${wl('difficult','difficult')}, and ${wl('those','those')} ${wl('number','number')}s make me ${wl('think','think')} hard. But ${wl('music','music')} class is pure ${wl('fun','fun')}. ${wl('chinese','Chinese')} class is very ${wl('useful','useful')}. I try to ${wl('finish','finish')} all my homework ${wl('because','because')} I want to be a ${wl('star','star')} student.</p>
-            <p>After school, we play ${wl('sport','sport')}s. ${wl('soccer','soccer')}, ${wl('basketball','basketball')}, ${wl('volleyball','volleyball')}, ${wl('tennis','tennis')} \u2014 none of them are ${wl('boring','boring')}! They are all ${wl('easy','easy')} to learn and ${wl('fun','fun')} to play. I ${wl('find','find')} that I ${wl('lost','lost')} my ${wl('eraser','eraser')} again \u2014 ${wl('thank','thank')} goodness I always ${wl('find','find')} it!</p>
-            <p>On the weekend, I go to the ${wl('store','store')} to ${wl('buy','buy')} new ${wl('clothes','clothes')}. "How ${wl('much','much')} are these?" I ask. The ${wl('price','price')} is not ${wl('big','big')} at all \u2014 a ${wl('small','small')} amount! I ${wl('sell','sell')} my old ${wl('book','book')}s to a second-hand shop.</p>
-            <p>${wl('when','When')} is the best day of this ${wl('month','month')}? The ${wl('party','party')}! ${wl('february','February')} brings my ${wl('friend','friend')}'s birthday. We shout "${wl('happy','Happy')} birthday!" and eat cake. Before the ${wl('test','test')} next week, we plan a ${wl('trip','trip')} together.</p>
-            <p>Future me, I hope you still ${wl('know','know')} how ${wl('nice','nice')} this ${wl('first','first')} year was. ${wl('because','Because')} the best is yet to ${wl('come','come')}!</p>
-            <p>Your ${wl('friend','friend')},<br>Li Ming</p>
+            <p>Dear Future Me,</p>
+            <p>${wl('whose','Whose')} story is this? It is ${wl('mine','mine')}. I am writing from a small ${wl('town','town')} where I ${wl('was','was')} ${wl('born','born')}. My ${wl('primary school','primary school')} days ${wl('were','were')} ${wl('strict','strict')} but ${wl('friendly','friendly')}. I was sometimes ${wl('naughty','naughty')} and often ${wl('bored','bored')}, but ${wl('hey','hey')}, that was my ${wl('character','character')}. Our house had a ${wl('bedroom','bedroom')}, a ${wl('bathroom','bathroom')}, a ${wl('kitchen','kitchen')}, a ${wl('living room','living room')}, and a ${wl('garden','garden')} with a ${wl('pond','pond')} in the ${wl('back','back')}. There was a ${wl('movie theater','movie theater')} in the ${wl('village','village')} and a ${wl('store','store')} not far ${wl('ago','ago')}. Even in the ${wl('US','US')}, my pen pal told ${wl('nice','nice')} stories.</p>
+            <p>This ${wl('term','term')}, I ${wl('would like','would like')} to ${wl('play','play')} the ${wl('piano','piano')} and ${wl('ride','ride')} bikes with the ${wl('club','club')}. The ${wl('monitor','monitor')} says ${wl('start','start')} the new ${wl('term','term')} ${wl('ready','ready')} and ${wl('get on well with','get on well with')} everyone. Our ${wl('teach','teach')}er says don't ${wl('worry','worry')} and don't ${wl('worry about','worry about')} mistakes \u2014 ${wl('then','then')} you will do ${wl('well','well')}. ${wl("that's all","That's all")} the advice we ${wl('need','need')}. I write it on the ${wl('board','board')}.</p>
+            <p>For the ${wl('holiday','holiday')}, we ${wl('plan','plan')} to ${wl('travel','travel')} and ${wl('look forward to','look forward to')} seeing new places. We will ${wl('check','check')} ${wl('email','email')}s, ${wl('go camping','go camping')}, ${wl('take a walk','take a walk')}, and ${wl('go fishing','go fishing')} by the lake. ${wl('cycling','Cycling')} through the countryside, we ${wl('do some sightseeing','do some sightseeing')} and have a ${wl('picnic','picnic')}. Some friends want to go ${wl('abroad','abroad')} to explore new ${wl('culture','culture')}s at a summer ${wl('camp','camp')}. We ${wl('go over','go over')} our notes and enjoy the ${wl('walk','walk')} ${wl('forward','forward')}.</p>
+            <p>${wl('in the future','In the future')}, ${wl('everything','everything')} ${wl('will','will')} ${wl('change','change')}. ${wl('maybe','Maybe')} ${wl('chalk','chalk')} and ${wl('ruler','ruler')}s will disappear. ${wl('robot','Robot')}s and ${wl('machine','machine')}s will do ${wl('more','more')} ${wl('job','job')}s. Books will be ${wl('light','light')}, not ${wl('heavy','heavy')}. We will ${wl('be able to','be able to')} ${wl('ask','ask')} any ${wl('question','question')} at any ${wl('level','level')}. ${wl('free','Free')} classes on the ${wl('internet','internet')} will help ${wl('able','able')} students. The ${wl('weather','weather')} may bring ${wl('rain','rain')} and ${wl('wind','wind')}, but ${wl('traffic','traffic')} will be ${wl('short','short')} \u2014 a ${wl('long','long')} trip in just an ${wl('hour','hour')}. Dreams ${wl('come true','come true')} when they are ${wl('true','true')}.</p>
+            <p>The ${wl('bank','bank')} stands ${wl('opposite','opposite')} the ${wl('restaurant','restaurant')}. ${wl('walk','Walk')} ${wl('along','along')} the ${wl('street','street')}, ${wl('turn','turn')} ${wl('right','right')}, go ${wl('straight','straight')} ${wl('past','past')} the ${wl('square','square')}. A ${wl('tour','tour')} guide points ${wl('left','left')}: ${wl('across','across')} the ${wl('bridge','bridge')} is a ${wl('clear','clear')} ${wl('ground','ground')}. ${wl('cross','Cross')} ${wl('towards','towards')} the ${wl('famous','famous')} ${wl('painting','painting')} ${wl('above','above')} the ${wl('middle','middle')} gate. ${wl('later','Later')}, at the ${wl('market','market')} and ${wl('supermarket','supermarket')}, ${wl('strawberry','strawberry')} ${wl('price','price')}s are good. ${wl('try on','Try on')} a shirt \u2014 the ${wl('size','size')} fits! "${wl('certainly','Certainly')}!" says the shopkeeper. "${wl('wait','Wait')} ${wl('a moment','a moment')} \u2014 ${wl('on sale','on sale')} at ${wl('half price','half price')}!" I ${wl('pay','pay')} ${wl('by','by')} card and ${wl('receive','receive')} a ${wl('fresh','fresh')} gift. The ${wl('advantage','advantage')} is you can ${wl('compare','compare')} ${wl('product','product')}s ${wl('anywhere','anywhere')}. I ${wl('post','post')} a review \u2014 ${wl('almost','almost')} ${wl('over','over')} now!</p>
+            <p>I remember the fairy tale. ${wl('once upon a time','Once upon a time')}, a girl ${wl('begin','begin')}s to ${wl('walk','walk')} in the ${wl('dark','dark')}. She ${wl('notice','notice')}s a house, ${wl('all alone','all alone')}. She ${wl('pick','pick')}s up a ${wl('basket','basket')} and ${wl('hurry','hurry')}s ${wl('without','without')} a ${wl('knock','knock')} through the ${wl('door','door')}. She ${wl('enter','enter')}s, finds a ${wl('bowl','bowl')}, and eats \u2014 she is ${wl('hungry','hungry')}. ${wl('either','Either')} a ${wl('piece','piece')} of bread or nothing! A ${wl('bear','bear')} ${wl('rush','rush')}es in \u2014 she ${wl('cry','cry')}s, it ${wl('try','try')}s to ${wl('destroy','destroy')} the room. But she is not ${wl('asleep','asleep')}! She ${wl('return','return')}s to the door, ${wl('point','point')}s, ${wl('shout','shout')}s, ${wl('jump','jump')}s, and ${wl('escape','escape')}s.</p>
+            <p>Grandma's ${wl('exact','exact')} story: she read the ${wl('newspaper','newspaper')}, ${wl('marry','married')} Grandpa, and ${wl('become','became')} a star. They ${wl('move','move')}d to the city, ${wl('join','join')}ed the ${wl('national','national')} team, and on ${wl("Women's Day","Women's Day")} she gave a ${wl('performance','performance')}. ${wl('at the age of','At the age of')} 20 she wrote ${wl('poem','poem')}s. Her life was ${wl('successful','successful')}.</p>
+            <p>Last summer by the ${wl('Pacific','Pacific')} we ${wl('arrive','arrive')}d, ${wl('relax','relax')}ed, and felt ${wl('exciting','excited')}. I ${wl('already','already')} ${wl('hope','hope')} to return. We ate ${wl('Italian','Italian')} ${wl('pizza','pizza')} and ${wl('sandwich','sandwich')}es \u2014 ${wl('delicious','delicious')}! The ${wl('special','special')} dish was ${wl('cheap','cheap')} and ${wl('lovely','lovely')}. A ${wl('musician','musician')} played ${wl('all kinds of','all kinds of')} ${wl('song','song')}s. The ${wl('sell','sell')}er ${wl('try','tried')} to sell ${wl('expensive','expensive')} gifts, but we just ${wl('smile','smile')}d.</p>
+            <p>${wl('body language','Body language')} matters. A ${wl('polite','polite')} ${wl('foreign','foreign')} ${wl('visitor','visitor')} may ${wl('bow','bow')}; friends ${wl('kiss','kiss')} or ${wl('shake hands','shake hands')}. A ${wl('nod','nod')} says yes, a ${wl('shake','shake')} of the ${wl('head','head')} says no. A ${wl('smile','smile')} needs no words. ${wl('touch','Touch')} an ${wl('arm','arm')}, ${wl('hold','hold')} a hand, ${wl('wave','wave')} a ${wl('finger','finger')} \u2014 it is ${wl('personal','personal')} but ${wl('not...at all','not strange at all')}. I saw it in a ${wl('film','film')} ${wl('somewhere','somewhere')}. ${wl('in fact','In fact')}, ${wl('body','body')} signals ${wl('move','move')} hearts.</p>
+            <p>${wl('Western','Western')} ${wl('music','music')} fills my ears. ${wl('instrument','Instrument')}s like the ${wl('drum','drum')}, ${wl('guitar','guitar')}, ${wl('organ','organ')}, and ${wl('violin','violin')} bring joy. My ${wl('elder','elder')} sister loves ${wl('blues','blues')} and ${wl('classical music','classical music')}. I prefer ${wl('pop music','pop music')} and ${wl('rock music','rock music')}. Over the ${wl('century','century')}, ${wl('European','European')} ${wl('type','type')}s of ${wl('loud','loud')} ${wl('voice','voice')}s have spread. The ${wl('rest','rest')} of us are ${wl('fan','fan')}s who dance ${wl('fast','fast')} to ${wl('wonderful','wonderful')} beats. ${wl('add','Add')} ${wl('beautiful','beautiful')} lyrics and a ${wl('common','common')} ${wl('song','song')} becomes magic \u2014 never ${wl('noisy','noisy')}, always ${wl('exciting','exciting')}.</p>
+            <p>Future me, ${wl('in the future','in the future')} remember: every ${wl('crayon','crayon')}, every ${wl('glove','glove')}, every ${wl('lost and found','lost and found')} ${wl('wallet','wallet')} holds a story. Life is a ${wl('boat','boat')} on a wide sea \u2014 ${wl('make','make')} it ${wl('wonderful','wonderful')}, and let your dreams ${wl('come true','come true')}!</p>
+            <p>Yours,<br>Li Ming</p>
           </div>
           <div class="story-block-divider">\u2014\u2014 \u4EE5\u4E0B\u662F\u5168\u6587\u7FFB\u8BD1 \u2014\u2014</div>
           <div class="story-block-zh">
             <p>\u4EB2\u7231\u7684\u672A\u6765\u7684\u6211\uFF1A</p>
-            <p>\u4F60\u597D\uFF01\u6211\u53EB\u674E\u660E\u3002\u6211\u6B63\u5728\u4E2D\u56FD\u7684\u5B66\u6821\u91CC\u5199\u8FD9\u5C01\u4FE1\uFF0C\u5750\u5728\u6559\u5BA4\u7684\u4E00\u628A\u6905\u5B50\u4E0A\u3002\u73B0\u5728\u662F\u4E00\u6708\uFF0C\u65B0\u5E74\u7684\u7B2C\u4E00\u4E2A\u6708\uFF0C\u6211\u975E\u5E38\u5F00\u5FC3\u3002</p>
-            <p>\u8BA9\u6211\u7ED9\u4F60\u8BB2\u8BB2\u6211\u7684\u5BB6\u4EBA\u3002\u7237\u7237\u548C\u5976\u5976\u5E74\u7EAA\u5927\u4E86\uFF0C\u4F46\u5F88\u5065\u5EB7\u3002\u7236\u6BCD\u6BCF\u5929\u90FD\u5F88\u52AA\u529B\u5DE5\u4F5C\u3002\u6211\u6709\u4E00\u4E2A\u54E5\u54E5\u548C\u4E00\u4E2A\u59D0\u59D0\u3002\u54E5\u54E5\u662F\u7236\u6BCD\u6700\u9A84\u50B2\u7684\u513F\u5B50\uFF0C\u59D0\u59D0\u662F\u4ED6\u4EEC\u6700\u4EB2\u7231\u7684\u5973\u513F\u3002\u6211\u7684\u8868\u54E5\u4E5F\u7ECF\u5E38\u6765\u770B\u6211\u4EEC\u3002\u8FD9\u662F\u4E00\u5F20\u5168\u5BB6\u798F\u2014\u2014\u770B\u770B\u90A3\u4E9B\u7F8E\u597D\u7684\u9762\u5B54\uFF01</p>
-            <p>\u6BCF\u5929\u65E9\u4E0A\u6211\u5403\u65E9\u9910\u2014\u2014\u901A\u5E38\u662F\u7C73\u996D\u3001\u9E21\u8089\u548C\u852C\u83DC\u3002\u5976\u5976\u8BF4\u6C34\u679C\u6BD4\u9999\u8549\u548C\u6C49\u5821\u5305\u597D\u3002\u6211\u8FD8\u4F1A\u6253\u5305\u5348\u9910\u76D2\u3002\u6211\u7684\u623F\u95F4\u5F88\u6574\u6D01\uFF1A\u4E66\u5728\u684C\u5B50\u4E0A\uFF0C\u94C5\u7B14\u5728\u8BCD\u5178\u65C1\u8FB9\uFF0C\u6A61\u76AE\u5728\u5E8A\u4E0B\u9762\u3002\u7237\u7237\u5750\u5728\u6C99\u53D1\u4E0A\u770B\u4E66\u3002</p>
-            <p>\u5728\u5B66\u6821\uFF0C\u6211\u89C1\u5230\u6211\u7684\u670B\u53CB\u4EEC\u3002\u201C\u6253\u6270\u4E00\u4E0B\uFF0C\u56FE\u4E66\u9986\u5728\u54EA\u91CC\uFF1F\u201D\u4E00\u4E2A\u65B0\u540C\u5B66\u95EE\u3002\u6211\u8BF4\uFF1A\u201C\u8DDF\u6211\u6765\uFF01\u201D\u8001\u5E08\u8BA9\u6211\u4EEC\u4EA4\u6362\u7535\u8BDD\u53F7\u7801\u548C\u90AE\u7BB1\u5730\u5740\u3002\u6211\u4EEC\u7684\u59D3\u90FD\u4E0D\u4E00\u6837\uFF0C\u4F46\u6211\u4EEC\u77E5\u9053\u5F7C\u6B64\u662F\u670B\u53CB\u3002</p>
-            <p>\u6211\u6700\u559C\u6B22\u7684\u79D1\u76EE\u662F\u79D1\u5B66\uFF0C\u56E0\u4E3A\u5B83\u592A\u6709\u8DA3\u4E86\uFF01\u6570\u5B66\u5F88\u96BE\uFF0C\u90A3\u4E9B\u6570\u5B57\u8BA9\u6211\u60F3\u5F97\u5F88\u8F9B\u82E6\u3002\u4F46\u97F3\u4E50\u8BFE\u7EAF\u7CB9\u662F\u4EAB\u53D7\u3002\u8BED\u6587\u8BFE\u975E\u5E38\u6709\u7528\u3002\u6211\u52AA\u529B\u5B8C\u6210\u6240\u6709\u4F5C\u4E1A\uFF0C\u56E0\u4E3A\u6211\u60F3\u6210\u4E3A\u660E\u661F\u5B66\u751F\u3002</p>
-            <p>\u653E\u5B66\u540E\u6211\u4EEC\u505A\u8FD0\u52A8\u3002\u8DB3\u7403\u3001\u7BEE\u7403\u3001\u6392\u7403\u3001\u7F51\u7403\u2014\u2014\u6CA1\u6709\u4E00\u4E2A\u662F\u65E0\u804A\u7684\uFF01\u5B83\u4EEC\u90FD\u5F88\u5BB9\u6613\u5B66\uFF0C\u73A9\u8D77\u6765\u5F88\u6709\u8DA3\u3002\u6211\u53D1\u73B0\u6211\u53C8\u628A\u6A61\u76AE\u5F04\u4E22\u4E86\u2014\u2014\u8C22\u5929\u8C22\u5730\u6211\u603B\u80FD\u627E\u5230\u5B83\uFF01</p>
-            <p>\u5468\u672B\u6211\u53BB\u5546\u5E97\u4E70\u65B0\u8863\u670D\u3002\u201C\u8FD9\u4E9B\u591A\u5C11\u94B1\uFF1F\u201D\u6211\u95EE\u3002\u4EF7\u683C\u4E00\u70B9\u90FD\u4E0D\u8D35\u2014\u2014\u5C0F\u5C0F\u7684\u4E00\u7B14\uFF01\u6211\u8FD8\u628A\u65E7\u4E66\u5356\u7ED9\u4E86\u4E8C\u624B\u5E97\u3002</p>
-            <p>\u8FD9\u4E2A\u6708\u6700\u597D\u7684\u65E5\u5B50\u662F\u4EC0\u4E48\u65F6\u5019\uFF1F\u6D3E\u5BF9\uFF01\u4E8C\u6708\u8FE8\u6765\u4E86\u670B\u53CB\u7684\u751F\u65E5\u3002\u6211\u4EEC\u9F50\u58F0\u558A\u201C\u751F\u65E5\u5FEB\u4E50\uFF01\u201D\u7136\u540E\u5403\u86CB\u7CD5\u3002\u4E0B\u5468\u8003\u8BD5\u524D\uFF0C\u6211\u4EEC\u8BA1\u5212\u4E86\u4E00\u6B21\u65C5\u884C\u3002</p>
-            <p>\u672A\u6765\u7684\u6211\uFF0C\u5E0C\u671B\u4F60\u8FD8\u8BB0\u5F97\u7B2C\u4E00\u5E74\u6709\u591A\u7F8E\u597D\u3002\u56E0\u4E3A\u6700\u597D\u7684\u8FD8\u5728\u540E\u9762\uFF01</p>
-            <p>\u4F60\u7684\u670B\u53CB\uFF0C<br>\u674E\u660E</p>
+            <p>\u8FD9\u662F\u8C01\u7684\u6545\u4E8B\uFF1F\u662F\u6211\u7684\u3002\u6211\u5728\u6211\u51FA\u751F\u7684\u5C0F\u9547\u4E0A\u7ED9\u4F60\u5199\u4FE1\u3002\u6211\u7684\u5C0F\u5B66\u65F6\u5149\u5F88\u4E25\u683C\u4F46\u53CB\u597D\u3002\u6211\u6709\u65F6\u6DD8\u6C14\uFF0C\u7ECF\u5E38\u89C9\u5F97\u65E0\u804A\uFF0C\u4F46\u561F\uFF0C\u90A3\u5C31\u662F\u6211\u7684\u6027\u683C\u3002\u6211\u4EEC\u7684\u8001\u623F\u5B50\u6709\u5367\u5BA4\u3001\u6D74\u5BA4\u3001\u53A8\u623F\u3001\u5BA2\u5385\uFF0C\u540E\u9762\u8FD8\u6709\u4E2A\u5E26\u6C60\u5858\u7684\u82B1\u56ED\u3002\u6751\u91CC\u6709\u4E2A\u7535\u5F71\u9662\u548C\u4E00\u5BB6\u5546\u5E97\u3002\u751A\u81F3\u5728\u7F8E\u56FD\uFF0C\u6211\u7684\u7B14\u53CB\u4E5F\u8BB2\u4E86\u5F88\u597D\u7684\u6545\u4E8B\u3002</p>
+            <p>\u8FD9\u4E2A\u5B66\u671F\uFF0C\u6211\u60F3\u5F39\u94A2\u7434\u3001\u548C\u4FF1\u4E50\u90E8\u7684\u540C\u5B66\u4E00\u8D77\u9A91\u8F66\u3002\u73ED\u957F\u8BF4\u8981\u505A\u597D\u51C6\u5907\u8FCE\u63A5\u65B0\u5B66\u671F\uFF0C\u548C\u6BCF\u4E2A\u4EBA\u76F8\u5904\u878D\u6D3D\u3002\u8001\u5E08\u8BF4\u522B\u62C5\u5FC3\uFF0C\u4E0D\u8981\u62C5\u5FC3\u72AF\u9519\u2014\u2014\u90A3\u4F60\u5C31\u4F1A\u505A\u5F97\u5F88\u597D\u3002\u8FD9\u5C31\u662F\u6211\u4EEC\u9700\u8981\u7684\u5168\u90E8\u5EFA\u8BAE\u3002\u6211\u628A\u5B83\u5199\u5728\u5E03\u544A\u677F\u4E0A\u3002</p>
+            <p>\u5047\u671F\u91CC\uFF0C\u6211\u4EEC\u8BA1\u5212\u53BB\u65C5\u884C\uFF0C\u671F\u76FC\u770B\u5230\u65B0\u7684\u5730\u65B9\u3002\u6211\u4EEC\u4F1A\u67E5\u90AE\u4EF6\uFF0C\u53BB\u9732\u8425\uFF0C\u53BB\u6563\u6B65\uFF0C\u53BB\u6E56\u8FB9\u9493\u9C7C\u3002\u9A91\u8F66\u7A7F\u8FC7\u4E61\u6751\uFF0C\u6211\u4EEC\u89C2\u5149\u3001\u91CE\u9910\u3002\u6709\u4E9B\u670B\u53CB\u60F3\u51FA\u56FD\u53BB\u590F\u4EE4\u8425\u63A2\u7D22\u65B0\u7684\u6587\u5316\u3002\u6211\u4EEC\u590D\u4E60\u7B14\u8BB0\uFF0C\u4EAB\u53D7\u5411\u524D\u8D70\u7684\u611F\u89C9\u3002</p>
+            <p>\u5728\u5C06\u6765\uFF0C\u4E00\u5207\u90FD\u4F1A\u6539\u53D8\u3002\u4E5F\u8BB8\u7C89\u7B14\u548C\u5C3A\u5B50\u4F1A\u6D88\u5931\u3002\u673A\u5668\u4EBA\u548C\u673A\u5668\u4F1A\u505A\u66F4\u591A\u7684\u5DE5\u4F5C\u3002\u4E66\u672C\u4F1A\u53D8\u8F7B\uFF0C\u4E0D\u518D\u6C89\u91CD\u3002\u6211\u4EEC\u5C06\u80FD\u63D0\u51FA\u4EFB\u4F55\u7EA7\u522B\u7684\u95EE\u9898\u3002\u4E92\u8054\u7F51\u4E0A\u7684\u514D\u8D39\u8BFE\u7A0B\u4F1A\u5E2E\u52A9\u6709\u80FD\u529B\u7684\u5B66\u751F\u3002\u5929\u6C14\u53EF\u80FD\u6709\u96E8\u6709\u98CE\uFF0C\u4F46\u4EA4\u901A\u4F1A\u53D8\u5F97\u5F88\u77ED\u2014\u2014\u5F88\u8FDC\u7684\u8DEF\u7A0B\u53EA\u8981\u4E00\u5C0F\u65F6\u3002\u68A6\u60F3\u662F\u771F\u7684\uFF0C\u5B83\u4EEC\u5C31\u4F1A\u5B9E\u73B0\u3002</p>
+            <p>\u94F6\u884C\u5728\u9910\u9986\u5BF9\u9762\u3002\u6CBF\u7740\u8857\u9053\u8D70\uFF0C\u5411\u53F3\u62D0\uFF0C\u7B14\u76F4\u8D70\u8FC7\u5E7F\u573A\u3002\u5BFC\u6E38\u6307\u5411\u5DE6\u8FB9\uFF1A\u8FC7\u6865\u5C31\u662F\u4E00\u5757\u5E72\u51C0\u7684\u7A7A\u5730\u3002\u7A7F\u8FC7\u9A6C\u8DEF\uFF0C\u671D\u7740\u4E2D\u95E8\u4E0A\u65B9\u90A3\u5E45\u8457\u540D\u7684\u753B\u8D70\u53BB\u3002\u540E\u6765\u5728\u5E02\u573A\u548C\u8D85\u5E02\uFF0C\u8349\u8393\u4EF7\u683C\u5F88\u597D\u3002\u8BD5\u7A7F\u4E00\u4EF6\u886C\u886B\u2014\u2014\u5C3A\u7801\u5408\u9002\uFF01\u201C\u5F53\u7136\uFF01\u201D\u5E97\u5458\u8BF4\u3002\u201C\u8BF7\u7B49\u4E00\u4E0B\u2014\u2014\u6253\u6298\u534A\u4EF7\uFF01\u201D\u6211\u5237\u5361\u4ED8\u6B3E\uFF0C\u6536\u5230\u4E86\u4E00\u4EFD\u65B0\u9C9C\u793C\u7269\u3002\u4F18\u52BF\u662F\u4F60\u53EF\u4EE5\u5728\u4EFB\u4F55\u5730\u65B9\u6BD4\u8F83\u4EA7\u54C1\u3002\u6211\u53D1\u5E03\u4E86\u8BC4\u4EF7\u2014\u2014\u5DEE\u4E0D\u591A\u7ED3\u675F\u4E86\uFF01</p>
+            <p>\u6211\u8BB0\u5F97\u90A3\u4E2A\u7AE5\u8BDD\u6545\u4E8B\u3002\u4ECE\u524D\uFF0C\u4E00\u4E2A\u5973\u5B69\u5F00\u59CB\u5728\u9ED1\u6697\u4E2D\u884C\u8D70\u3002\u5979\u6CE8\u610F\u5230\u4E00\u5EA7\u5B64\u96F6\u96F6\u7684\u5C0F\u5C4B\u3002\u5979\u6361\u8D77\u7BEE\u5B50\uFF0C\u6CA1\u6709\u6572\u95E8\u5C31\u6025\u5FD9\u8FDB\u4E86\u95E8\u3002\u5979\u8D70\u8FDB\u53BB\uFF0C\u53D1\u73B0\u4E00\u4E2A\u7897\uFF0C\u5403\u4E86\u8D77\u6765\u2014\u2014\u5979\u5F88\u997F\u3002\u8981\u4E48\u4E00\u5757\u9762\u5305\uFF0C\u8981\u4E48\u4EC0\u4E48\u90FD\u6CA1\u6709\uFF01\u4E00\u53EA\u718A\u51B2\u4E86\u8FDB\u6765\u2014\u2014\u5979\u5927\u53EB\uFF0C\u718A\u8BD5\u56FE\u7834\u574F\u623F\u95F4\u3002\u4F46\u5979\u6CA1\u6709\u7761\u7740\uFF01\u5979\u56DE\u5230\u95E8\u53E3\uFF0C\u624B\u6307\u4E00\u6307\uFF0C\u5927\u558A\u4E00\u58F0\uFF0C\u7EB5\u8EAB\u4E00\u8DF3\uFF0C\u9003\u8DD1\u4E86\u3002</p>
+            <p>\u5976\u5976\u7684\u771F\u5B9E\u6545\u4E8B\uFF1A\u5979\u770B\u62A5\u7EB8\uFF0C\u5AC1\u7ED9\u7237\u7237\uFF0C\u6210\u4E3A\u660E\u661F\u3002\u4ED6\u4EEC\u642C\u5230\u57CE\u5E02\uFF0C\u52A0\u5165\u56FD\u5BB6\u961F\uFF0C\u5987\u5973\u8282\u90A3\u5929\u5979\u8868\u6F14\u4E86\u8282\u76EE\u3002\u4E8C\u5341\u5C81\u65F6\u5979\u5199\u8BD7\u3002\u5979\u7684\u4E00\u751F\u5F88\u6210\u529F\u3002</p>
+            <p>\u53BB\u5E74\u590F\u5929\u5728\u592A\u5E73\u6D0B\u8FB9\uFF0C\u6211\u4EEC\u5230\u8FBE\u540E\u653E\u677E\uFF0C\u5F88\u5174\u594B\u3002\u6211\u5DF2\u7ECF\u5E0C\u671B\u518D\u56DE\u53BB\u3002\u6211\u4EEC\u5403\u4E86\u610F\u5927\u5229\u62AB\u8428\u548C\u4E09\u660E\u6CBB\u2014\u2014\u7F8E\u5473\uFF01\u7279\u8272\u83DC\u4FBF\u5B9C\u53C8\u53EF\u7231\u3002\u4E00\u4E2A\u97F3\u4E50\u5BB6\u6F14\u594F\u5404\u79CD\u6B4C\u66F2\u3002\u5356\u5BB6\u8BD5\u56FE\u5356\u6602\u8D35\u7684\u793C\u7269\uFF0C\u4F46\u6211\u4EEC\u53EA\u662F\u5FAE\u7B11\u3002</p>
+            <p>\u8EAB\u4F53\u8BED\u8A00\u5F88\u91CD\u8981\u3002\u793C\u8C8C\u7684\u5916\u56FD\u6E38\u5BA2\u53EF\u80FD\u9F1E\u8EAC\uFF1B\u670B\u53CB\u4EB2\u543B\u6216\u63E1\u624B\u3002\u70B9\u5934\u8868\u793A\u662F\uFF0C\u6447\u5934\u8868\u793A\u4E0D\u3002\u5FAE\u7B11\u4E0D\u9700\u8981\u8BED\u8A00\u3002\u78B0\u78B0\u80F3\u818A\uFF0C\u62C9\u62C9\u624B\uFF0C\u6325\u6325\u624B\u6307\u2014\u2014\u8FD9\u5F88\u79C1\u4EBA\u4F46\u4E00\u70B9\u4E5F\u4E0D\u5947\u602A\u3002\u6211\u5728\u67D0\u90E8\u7535\u5F71\u91CC\u770B\u8FC7\u3002\u4E8B\u5B9E\u4E0A\uFF0C\u8EAB\u4F53\u4FE1\u53F7\u80FD\u6253\u52A8\u4EBA\u5FC3\u3002</p>
+            <p>\u897F\u65B9\u97F3\u4E50\u5145\u76C8\u6211\u7684\u8033\u6735\u3002\u9F13\u3001\u5409\u4ED6\u3001\u7BA1\u98CE\u7434\u3001\u5C0F\u63D0\u7434\u8FD9\u4E9B\u4E50\u5668\u5E26\u6765\u5FEB\u4E50\u3002\u59D0\u59D0\u559C\u6B22\u84DD\u8C03\u548C\u53E4\u5178\u97F3\u4E50\u3002\u6211\u66F4\u559C\u6B22\u6D41\u884C\u97F3\u4E50\u548C\u6447\u6EDA\u3002\u8FD9\u4E2A\u4E16\u7EAA\u4EE5\u6765\uFF0C\u6B27\u6D32\u98CE\u683C\u7684\u54CD\u4EAE\u58F0\u97F3\u5DF2\u7ECF\u4F20\u904D\u4E16\u754C\u3002\u6211\u4EEC\u5176\u4F59\u7684\u4EBA\u90FD\u662F\u7C89\u4E1D\uFF0C\u968F\u7740\u7F8E\u5999\u7684\u8282\u62CD\u5FEB\u901F\u8DF3\u821E\u3002\u52A0\u4E0A\u4F18\u7F8E\u7684\u6B4C\u8BCD\uFF0C\u4E00\u9996\u666E\u901A\u7684\u6B4C\u5C31\u53D8\u6210\u4E86\u9B54\u6CD5\u2014\u2014\u6C38\u8FDC\u4E0D\u5435\u95F9\uFF0C\u6C38\u8FDC\u6FC0\u52A8\u4EBA\u5FC3\u3002</p>
+            <p>\u672A\u6765\u7684\u6211\uFF0C\u8BB0\u4F4F\uFF1A\u6BCF\u4E00\u652F\u8721\u7B14\u3001\u6BCF\u4E00\u53EA\u624B\u5957\u3001\u6BCF\u4E00\u4E2A\u5931\u7269\u62DB\u9886\u7684\u94B1\u5305\u90FD\u85CF\u7740\u4E00\u4E2A\u6545\u4E8B\u3002\u4EBA\u751F\u5C31\u50CF\u4E00\u6761\u5728\u5BBD\u9614\u5927\u6D77\u4E0A\u7684\u5C0F\u8239\u2014\u2014\u8BA9\u5B83\u7CBE\u5F69\uFF0C\u8BA9\u68A6\u60F3\u6210\u771F\uFF01</p>
+            <p>\u4F60\u7684\uFF0C<br>\u674E\u660E</p>
           </div>
         </div>
 
       </div>`;
 
-    const footer = `<div class="footer">北京人教版七年级英语词汇多维度分析 &mdash; 让每个单词都有故事</div>`;
+    const footer = `<div class="footer">外研版七年级下册英语词汇多维度分析 &mdash; 让每个单词都有故事</div>`;
 
     rootEl.innerHTML = cover + stats + search + storyHtml + unitGrid + rootSection + footer;
 
@@ -726,7 +726,7 @@ const WordRenderer = (function(){
             <span class="si-word">${m.word}</span>
             <span class="si-phonetic">${m.phonetic}</span>
             <span class="si-meaning">${m.meaning}</span>
-            <span class="si-unit">Unit ${m.unitId}</span>
+            <span class="si-unit">Module ${m.unitId}</span>
           </a>`).join('');
       }
       resultsEl.classList.add('active');
