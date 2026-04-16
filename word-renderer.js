@@ -387,113 +387,204 @@ const WordRenderer = (function(){
       return `<a class="story-word" href="unit${uid}.html#word-${anchor}" title="点击查看 ${word} 的详细分析">${display||word}</a>`;
     }
 
+    // Helper: one bilingual line = English on top, Chinese below
+    function ln(en, zh){
+      return `<div class="story-line"><div class="story-en">${en}</div><div class="story-zh">${zh}</div></div>`;
+    }
+
     const storyHtml = `
-      <h2>📖 一个包含所有单词的奇妙故事</h2>
-      <div class="story-hint">💡 点击高亮单词可以跳转到对应的详细分析页面</div>
+      <h2>\u{1F4D6} A Story With All the Words</h2>
+      <div class="story-hint">\u{1F4A1} Click any highlighted word to jump to its detailed analysis page / \u70B9\u51FB\u9AD8\u4EAE\u5355\u8BCD\u53EF\u8DF3\u8F6C\u5230\u8BE6\u7EC6\u5206\u6790\u9875</div>
       <div class="story-card">
+
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 1 · 新学期的早晨</div>
-          <p>
-            ${wl('hello','Hello')}! 我叫李明，是一个来自 ${wl('china','China')} 的 ${wl('friend','friend')}ly 男孩。
-            今天是开学 ${wl('first','first')} 天，我特别 ${wl('happy','happy')}！
-            一大早，${wl('family','family')} 里的每个人都在忙碌：${wl('grandmother','grandmother')} 在厨房准备
-            ${wl('breakfast','breakfast')}——有 ${wl('chicken','chicken')}、${wl('rice','rice')} 和
-            ${wl('vegetable','vegetable')}s；${wl('grandfather','grandfather')} 坐在 ${wl('sofa','sofa')} 上看报纸。
-            ${wl('parent','parent')}s 叮嘱我："要吃 ${wl('healthy','healthy')} 的 ${wl('fruit','fruit')}，
-            别老想着 ${wl('hamburger','hamburger')} 和 ${wl('banana','banana')}！"
-          </p>
-          <p>
-            我匆匆吃完 ${wl('lunch','lunch')} 盒里准备好的食物——哦不，是早餐才对——然后跑进自己的 ${wl('room','room')}。
-            我的房间很 ${wl('tidy','tidy')}，${wl('bed','bed')} 铺得整整齐齐，${wl('table','table')} 上放着
-            ${wl('book','book')}s 和 ${wl('pencil','pencil')}。但是——${wl('where','Where')} is my schoolbag?!
-            我 ${wl('think','think')} 了一下，看看 ${wl('chair','chair')} ${wl('under','under')} 面……找到了！
-          </p>
+          <div class="story-chapter-title">Chapter 1 \xB7 A Busy Morning</div>
+          ${ln(
+            `${wl('hello','Hello')}! My ${wl('name','name')} is Li Ming. I am a ${wl('nice','nice')} boy from ${wl('china','China')}.`,
+            `\u4F60\u597D\uFF01\u6211\u7684\u540D\u5B57\u53EB\u674E\u660E\u3002\u6211\u662F\u4E00\u4E2A\u6765\u81EA\u4E2D\u56FD\u7684\u53CB\u5584\u7537\u5B69\u3002`
+          )}
+          ${ln(
+            `Today is the ${wl('first','first')} day of ${wl('school','school')}, and I am very ${wl('happy','happy')}!`,
+            `\u4ECA\u5929\u662F\u5F00\u5B66\u7B2C\u4E00\u5929\uFF0C\u6211\u975E\u5E38\u5F00\u5FC3\uFF01`
+          )}
+          ${ln(
+            `Early in the morning, everyone in my ${wl('family','family')} is busy.`,
+            `\u4E00\u5927\u65E9\uFF0C\u5BB6\u91CC\u6BCF\u4E2A\u4EBA\u90FD\u5F88\u5FD9\u788C\u3002`
+          )}
+          ${ln(
+            `My ${wl('grandmother','grandmother')} is making ${wl('breakfast','breakfast')} \u2014 ${wl('chicken','chicken')}, ${wl('rice','rice')}, and ${wl('vegetable','vegetable')}s.`,
+            `\u5976\u5976\u5728\u505A\u65E9\u9910\u2014\u2014\u6709\u9E21\u8089\u3001\u7C73\u996D\u548C\u852C\u83DC\u3002`
+          )}
+          ${ln(
+            `My ${wl('grandfather','grandfather')} is sitting on the ${wl('sofa','sofa')} reading a newspaper.`,
+            `\u7237\u7237\u5750\u5728\u6C99\u53D1\u4E0A\u770B\u62A5\u7EB8\u3002`
+          )}
+          ${ln(
+            `My ${wl('parent','parent')}s say: "Eat ${wl('healthy','healthy')} ${wl('fruit','fruit')}, not ${wl('hamburger','hamburger')}s and ${wl('banana','banana')}s all day!"`,
+            `\u7236\u6BCD\u8BF4\uFF1A\u201C\u8981\u5403\u5065\u5EB7\u7684\u6C34\u679C\uFF0C\u522B\u6574\u5929\u60F3\u7740\u6C49\u5821\u548C\u9999\u8549\uFF01\u201D`
+          )}
+          ${ln(
+            `I also pack my ${wl('lunch','lunch')} box. Then I run to my ${wl('room','room')}.`,
+            `\u6211\u8FD8\u6253\u5305\u597D\u4E86\u5348\u9910\u76D2\u3002\u7136\u540E\u6211\u8DD1\u8FDB\u81EA\u5DF1\u7684\u623F\u95F4\u3002`
+          )}
+          ${ln(
+            `My room is very ${wl('tidy','tidy')}. The ${wl('bed','bed')} is neat. On the ${wl('table','table')} there are ${wl('book','book')}s and a ${wl('pencil','pencil')}.`,
+            `\u6211\u7684\u623F\u95F4\u5F88\u6574\u6D01\u3002\u5E8A\u94FA\u5F97\u5F88\u6574\u9F50\u3002\u684C\u5B50\u4E0A\u6709\u4E66\u548C\u94C5\u7B14\u3002`
+          )}
+          ${ln(
+            `But \u2014 ${wl('where','where')} is my schoolbag?! I ${wl('think','think')} for a moment.`,
+            `\u4F46\u662F\u2014\u2014\u6211\u7684\u4E66\u5305\u5728\u54EA\u91CC\uFF1F\uFF01\u6211\u60F3\u4E86\u60F3\u3002`
+          )}
+          ${ln(
+            `I look ${wl('under','under')} the ${wl('chair','chair')}... Found it!`,
+            `\u6211\u770B\u4E86\u770B\u6905\u5B50\u4E0B\u9762\u2026\u2026\u627E\u5230\u4E86\uFF01`
+          )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 2 · 校园初相识</div>
-          <p>
-            走进 ${wl('school','school')} 的 ${wl('classroom','classroom')}，我看到一个陌生的女孩。
-            "${wl('excuse','Excuse')} me, what's your ${wl('name','name')}?" 我问道。
-            "My name is Gina. ${wl('nice','Nice')} to ${wl('meet','meet')} you!" 她笑着回答。
-            "${wl('nice','Nice')} to meet you too! I'm Li Ming."
-          </p>
-          <p>
-            Gina 指着身边的人向我介绍：
-            "This is my ${wl('brother','brother')} Tom, and ${wl('those','those')} are my ${wl('sister','sister')}
-            and ${wl('cousin','cousin')}." ${wl('here','Here')} 是她的 ${wl('family','family')}
-            ${wl('photo','photo')}——一个 ${wl('big','big')} family！
-            她的 ${wl('daughter','daughter')}……不对，她才初一，她指着照片说那是她的妈妈和
-            ${wl('son','son')}——她的弟弟。"${wl('dear','Dear')} Tom 才 5 岁，" 她笑着说。
-          </p>
-          <p>
-            ${wl('teacher','teacher')} 走进来，让我们交换 ${wl('telephone','telephone')} ${wl('number','number')}。
-            "你也可以发 ${wl('email','email')} 给我，" Gina 说。
-            "我们的 ${wl('last','last')} name 不一样，但可以做 ${wl('friend','friend')}s！"
-          </p>
+          <div class="story-chapter-title">Chapter 2 \xB7 New Friends at School</div>
+          ${ln(
+            `I walk into the ${wl('school','school')} ${wl('classroom','classroom')} and see a new girl.`,
+            `\u6211\u8D70\u8FDB\u5B66\u6821\u7684\u6559\u5BA4\uFF0C\u770B\u5230\u4E00\u4E2A\u65B0\u6765\u7684\u5973\u5B69\u3002`
+          )}
+          ${ln(
+            `"${wl('excuse','Excuse')} me, what's your ${wl('name','name')}?" I ask.`,
+            `\u201C\u6253\u6270\u4E00\u4E0B\uFF0C\u4F60\u53EB\u4EC0\u4E48\u540D\u5B57\uFF1F\u201D\u6211\u95EE\u9053\u3002`
+          )}
+          ${ln(
+            `"My name is Gina. ${wl('nice','Nice')} to ${wl('meet','meet')} you!" she says with a smile.`,
+            `\u201C\u6211\u53EB Gina\u3002\u5F88\u9AD8\u5174\u8BA4\u8BC6\u4F60\uFF01\u201D\u5979\u7B11\u7740\u8BF4\u3002`
+          )}
+          ${ln(
+            `"${wl('here','Here')} is my ${wl('family','family')} ${wl('photo','photo')}," she shows me.`,
+            `\u201C\u8FD9\u662F\u6211\u7684\u5168\u5BB6\u798F\uFF0C\u201D\u5979\u7ED9\u6211\u770B\u3002`
+          )}
+          ${ln(
+            `"This is my ${wl('brother','brother')} Tom, and ${wl('those','those')} are my ${wl('sister','sister')} and ${wl('cousin','cousin')}."`,
+            `\u201C\u8FD9\u662F\u6211\u5F1F\u5F1F Tom\uFF0C\u90A3\u4E9B\u662F\u6211\u59D0\u59D0\u548C\u8868\u59B9\u3002\u201D`
+          )}
+          ${ln(
+            `She points to the photo: "That is my ${wl('parent','parent')}s' ${wl('daughter','daughter')} \u2014 me! And that ${wl('small','small')} ${wl('son','son')} is ${wl('dear','dear')} Tom. He is only five years ${wl('old','old')}."`,
+            `\u5979\u6307\u7740\u7167\u7247\u8BF4\uFF1A\u201C\u90A3\u662F\u6211\u7236\u6BCD\u7684\u5973\u513F\u2014\u2014\u5C31\u662F\u6211\uFF01\u90A3\u4E2A\u5C0F\u7684\u662F\u4EB2\u7231\u7684 Tom\u3002\u4ED6\u624D\u4E94\u5C81\u3002\u201D`
+          )}
+          ${ln(
+            `The ${wl('teacher','teacher')} ${wl('come','come')}s in. "Please share your ${wl('telephone','telephone')} ${wl('number','number')}s."`,
+            `\u8001\u5E08\u8D70\u8FDB\u6765\u3002\u201C\u8BF7\u4EA4\u6362\u4F60\u4EEC\u7684\u7535\u8BDD\u53F7\u7801\u3002\u201D`
+          )}
+          ${ln(
+            `"You can also send me an ${wl('email','email')}!" says Gina. "Our ${wl('last','last')} ${wl('name','name')}s are different, but we can be ${wl('friend','friend')}s!"`,
+            `\u201C\u4F60\u4E5F\u53EF\u4EE5\u53D1\u90AE\u4EF6\u7ED9\u6211\uFF01\u201DGina \u8BF4\u3002\u201C\u6211\u4EEC\u59D3\u4E0D\u4E00\u6837\uFF0C\u4F46\u53EF\u4EE5\u505A\u670B\u53CB\uFF01\u201D`
+          )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 3 · 课堂风云</div>
-          <p>
-            上午的 ${wl('favorite','favorite')} ${wl('subject','subject')} 来了——${wl('science','science')}！
-            ${wl('teacher','Teacher')} 说今天的课会很 ${wl('interesting','interesting')}。
-            她让我们打开 ${wl('dictionary','dictionary')} 查几个词，然后去 ${wl('library','library')} 做实验报告。
-            ${wl('math','Math')} 课就没那么 ${wl('fun','fun')} 了——那些 ${wl('number','number')}s 好
-            ${wl('difficult','difficult')}！不过 ${wl('music','music')} 课让大家重新开心起来。
-          </p>
-          <p>
-            ${wl('chinese','Chinese')} 课上，老师问我们 ${wl('because','because')} 什么喜欢语文。
-            我说："${wl('because','Because')} 语文很 ${wl('useful','useful')}，学好它才能读懂世界！"
-            老师点头说："说得好！现在请大家 ${wl('finish','finish')} 这篇阅读。"
-          </p>
-          <p>
-            下课后我发现自己 ${wl('lost','lost')} 了 ${wl('eraser','eraser')}。
-            到处 ${wl('find','find')} 不到，最后在 ${wl('classroom','classroom')} 的
-            讲台 ${wl('under','under')} 面 ${wl('find','find')} 到了它。${wl('thank','Thank')} goodness!
-          </p>
+          <div class="story-chapter-title">Chapter 3 \xB7 A Day of Lessons</div>
+          ${ln(
+            `My ${wl('favorite','favorite')} ${wl('subject','subject')} is ${wl('science','science')}. The teacher says today's class will be very ${wl('interesting','interesting')}.`,
+            `\u6211\u6700\u559C\u6B22\u7684\u79D1\u76EE\u662F\u79D1\u5B66\u3002\u8001\u5E08\u8BF4\u4ECA\u5929\u7684\u8BFE\u4F1A\u5F88\u6709\u8DA3\u3002`
+          )}
+          ${ln(
+            `She asks us to open the ${wl('dictionary','dictionary')} and look up some words, then go to the ${wl('library','library')}.`,
+            `\u5979\u8BA9\u6211\u4EEC\u6253\u5F00\u8BCD\u5178\u67E5\u51E0\u4E2A\u8BCD\uFF0C\u7136\u540E\u53BB\u56FE\u4E66\u9986\u3002`
+          )}
+          ${ln(
+            `${wl('math','Math')} class is not so ${wl('fun','fun')} \u2014 ${wl('those','those')} ${wl('number','number')}s are really ${wl('difficult','difficult')}!`,
+            `\u6570\u5B66\u8BFE\u5C31\u6CA1\u90A3\u4E48\u6709\u8DA3\u4E86\u2014\u2014\u90A3\u4E9B\u6570\u5B57\u771F\u7684\u597D\u96BE\uFF01`
+          )}
+          ${ln(
+            `But ${wl('music','music')} class makes everyone ${wl('happy','happy')} again.`,
+            `\u4F46\u97F3\u4E50\u8BFE\u8BA9\u5927\u5BB6\u53C8\u5F00\u5FC3\u8D77\u6765\u3002`
+          )}
+          ${ln(
+            `In ${wl('chinese','Chinese')} class, the teacher asks why we like it.`,
+            `\u8BED\u6587\u8BFE\u4E0A\uFF0C\u8001\u5E08\u95EE\u6211\u4EEC\u4E3A\u4EC0\u4E48\u559C\u6B22\u8BED\u6587\u3002`
+          )}
+          ${ln(
+            `I say: "${wl('because','Because')} ${wl('chinese','Chinese')} is very ${wl('useful','useful')}!" The teacher nods: "Good! Now please ${wl('finish','finish')} the reading."`,
+            `\u6211\u8BF4\uFF1A\u201C\u56E0\u4E3A\u8BED\u6587\u975E\u5E38\u6709\u7528\uFF01\u201D\u8001\u5E08\u70B9\u5934\uFF1A\u201C\u5F88\u597D\uFF01\u73B0\u5728\u8BF7\u5B8C\u6210\u9605\u8BFB\u3002\u201D`
+          )}
+          ${ln(
+            `After class, I ${wl('find','find')} that I ${wl('lost','lost')} my ${wl('eraser','eraser')}. ${wl('where','Where')} is it?`,
+            `\u4E0B\u8BFE\u540E\uFF0C\u6211\u53D1\u73B0\u6211\u7684\u6A61\u76AE\u4E22\u4E86\u3002\u5B83\u5728\u54EA\u91CC\uFF1F`
+          )}
+          ${ln(
+            `I ${wl('find','find')} it ${wl('under','under')} the ${wl('teacher','teacher')}'s desk in the ${wl('classroom','classroom')}. ${wl('thank','Thank')} goodness!`,
+            `\u6211\u5728\u6559\u5BA4\u8BB2\u53F0\u4E0B\u9762\u627E\u5230\u4E86\u5B83\u3002\u8C22\u5929\u8C22\u5730\uFF01`
+          )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 4 · 运动时光</div>
-          <p>
-            放学后，${wl('come','Come')} on! 大家去操场做 ${wl('sport','sport')}s！
-            Tom 问："Do you have a ${wl('soccer','soccer')} ball?"
-            "Let's play ${wl('basketball','basketball')}!" Gina 更想打篮球。
-            ${wl('volleyball','volleyball')} 也不错，${wl('tennis','tennis')} 也很 ${wl('easy','easy')} 上手。
-            我觉得坐着不动才是最 ${wl('boring','boring')} 的事——运动总是很 ${wl('fun','fun')}！
-          </p>
-          <p>
-            我 ${wl('know','know')} 一个秘密：操场边的 ${wl('store','store')} 今天在 ${wl('sell','sell')}
-            运动装备，${wl('price','price')} 特别便宜！
-            "How ${wl('much','much')} are ${wl('those','those')} shoes?" 我问店员。
-            "很 ${wl('small','small')} 的价格！" 他笑着说。
-            我决定 ${wl('buy','buy')} 一双新球鞋和一套 ${wl('clothes','clothes')}。
-            运动 ${wl('star','star')} 的梦想，从装备开始！
-          </p>
+          <div class="story-chapter-title">Chapter 4 \xB7 Sports and Shopping</div>
+          ${ln(
+            `After ${wl('school','school')}, ${wl('come','come')} on! Let's play ${wl('sport','sport')}s!`,
+            `\u653E\u5B66\u540E\uFF0C\u52A0\u6CB9\uFF01\u6211\u4EEC\u53BB\u8FD0\u52A8\u5427\uFF01`
+          )}
+          ${ln(
+            `"Do you have a ${wl('soccer','soccer')} ball?" asks Tom.`,
+            `\u201C\u4F60\u6709\u8DB3\u7403\u5417\uFF1F\u201DTom \u95EE\u3002`
+          )}
+          ${ln(
+            `"Let's play ${wl('basketball','basketball')}!" Gina says. ${wl('volleyball','volleyball')} and ${wl('tennis','tennis')} are also ${wl('easy','easy')} and ${wl('fun','fun')}.`,
+            `\u201C\u6211\u4EEC\u6253\u7BEE\u7403\u5427\uFF01\u201DGina \u8BF4\u3002\u6392\u7403\u548C\u7F51\u7403\u4E5F\u5F88\u7B80\u5355\u6709\u8DA3\u3002`
+          )}
+          ${ln(
+            `I ${wl('think','think')} sitting all day is ${wl('boring','boring')}. Playing is much more ${wl('interesting','interesting')}!`,
+            `\u6211\u89C9\u5F97\u6574\u5929\u5750\u7740\u5F88\u65E0\u804A\u3002\u8FD0\u52A8\u6709\u8DA3\u591A\u4E86\uFF01`
+          )}
+          ${ln(
+            `I ${wl('know','know')} a secret: the ${wl('store','store')} near the playground is ${wl('sell','sell')}ing ${wl('sport','sport')}s gear at a great ${wl('price','price')}!`,
+            `\u6211\u77E5\u9053\u4E00\u4E2A\u79D8\u5BC6\uFF1A\u64CD\u573A\u65C1\u7684\u5546\u5E97\u6B63\u5728\u4EE5\u5F88\u597D\u7684\u4EF7\u683C\u5356\u8FD0\u52A8\u88C5\u5907\uFF01`
+          )}
+          ${ln(
+            `"How ${wl('much','much')} are those shoes?" I ask.`,
+            `\u201C\u90A3\u53CC\u978B\u5B50\u591A\u5C11\u94B1\uFF1F\u201D\u6211\u95EE\u3002`
+          )}
+          ${ln(
+            `I decide to ${wl('buy','buy')} a new pair and some ${wl('clothes','clothes')}. They are not ${wl('big','big')}, not ${wl('small','small')} \u2014 just right!`,
+            `\u6211\u51B3\u5B9A\u4E70\u4E00\u53CC\u65B0\u978B\u548C\u4E00\u4E9B\u8863\u670D\u3002\u4E0D\u5927\u4E0D\u5C0F\u2014\u2014\u521A\u521A\u597D\uFF01`
+          )}
+          ${ln(
+            `A ${wl('sport','sport')}s ${wl('star','star')}'s dream starts with good gear!`,
+            `\u8FD0\u52A8\u660E\u661F\u7684\u68A6\u60F3\u4ECE\u597D\u88C5\u5907\u5F00\u59CB\uFF01`
+          )}
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 5 · 生日惊喜</div>
-          <p>
-            ${wl('when','When')} is your birthday? ${wl('January','January')} 还是 ${wl('february','February')}？
-            这个 ${wl('month','month')} 竟然是 Gina 的生日！
-            我们决定办一个 ${wl('party','party')}。
-            大家都很 ${wl('happy','happy')}——除了要准备明天的 ${wl('test','test')} 让人有点紧张。
-          </p>
-          <p>
-            "${wl('happy','Happy')} birthday, ${wl('dear','dear')} Gina!" 我们齐声喊道。
-            Gina 许了个愿望：希望这学期能 ${wl('finish','finish')} 所有功课，然后来一次 ${wl('trip','trip')}。
-            "How ${wl('old','old')} are you now?" Tom 问。
-            "十三岁！" Gina 说，"我已经不 ${wl('small','small')} 了！"
-          </p>
-          <p>
-            这就是我 ${wl('first','first')} 个学期的故事。新的 ${wl('friend','friend')}s、新的
-            ${wl('school','school')}、新的 ${wl('subject','subject')}s——一切都那么 ${wl('nice','nice')}。
-            我 ${wl('know','know')}，这只是开始。
-            ${wl('because','Because')} the best is yet to ${wl('come','come')}!
-          </p>
+          <div class="story-chapter-title">Chapter 5 \xB7 The Birthday Surprise</div>
+          ${ln(
+            `${wl('when','When')} is your birthday? Is it in ${wl('January','January')} or ${wl('february','February')}?`,
+            `\u4F60\u7684\u751F\u65E5\u662F\u4EC0\u4E48\u65F6\u5019\uFF1F\u662F\u4E00\u6708\u8FD8\u662F\u4E8C\u6708\uFF1F`
+          )}
+          ${ln(
+            `This ${wl('month','month')} is Gina's birthday! We plan a ${wl('party','party')} for her.`,
+            `\u8FD9\u4E2A\u6708\u662F Gina \u7684\u751F\u65E5\uFF01\u6211\u4EEC\u7ED9\u5979\u7B56\u5212\u4E86\u4E00\u4E2A\u6D3E\u5BF9\u3002`
+          )}
+          ${ln(
+            `Everyone is ${wl('happy','happy')}, but the ${wl('test','test')} tomorrow makes us a little nervous.`,
+            `\u5927\u5BB6\u90FD\u5F88\u5F00\u5FC3\uFF0C\u4F46\u660E\u5929\u7684\u8003\u8BD5\u8BA9\u6211\u4EEC\u6709\u70B9\u7D27\u5F20\u3002`
+          )}
+          ${ln(
+            `"${wl('happy','Happy')} birthday, ${wl('dear','dear')} Gina!" we all shout together.`,
+            `\u201C\u751F\u65E5\u5FEB\u4E50\uFF0C\u4EB2\u7231\u7684 Gina\uFF01\u201D\u6211\u4EEC\u9F50\u58F0\u558A\u9053\u3002`
+          )}
+          ${ln(
+            `Gina makes a wish: she wants to ${wl('finish','finish')} all her homework and go on a ${wl('trip','trip')}.`,
+            `Gina \u8BB8\u4E86\u4E2A\u613F\uFF1A\u5979\u60F3\u5B8C\u6210\u6240\u6709\u529F\u8BFE\uFF0C\u7136\u540E\u53BB\u65C5\u884C\u3002`
+          )}
+          ${ln(
+            `"How ${wl('old','old')} are you now?" asks Tom. "Thirteen! I'm not ${wl('small','small')} anymore!" Gina laughs.`,
+            `\u201C\u4F60\u73B0\u5728\u591A\u5927\u4E86\uFF1F\u201DTom \u95EE\u3002\u201C\u5341\u4E09\u5C81\uFF01\u6211\u4E0D\u5C0F\u4E86\uFF01\u201DGina \u7B11\u7740\u8BF4\u3002`
+          )}
+          ${ln(
+            `This is the story of my ${wl('first','first')} semester. New ${wl('friend','friend')}s, a new ${wl('school','school')}, new ${wl('subject','subject')}s \u2014 everything is so ${wl('nice','nice')}.`,
+            `\u8FD9\u5C31\u662F\u6211\u7B2C\u4E00\u4E2A\u5B66\u671F\u7684\u6545\u4E8B\u3002\u65B0\u670B\u53CB\u3001\u65B0\u5B66\u6821\u3001\u65B0\u79D1\u76EE\u2014\u2014\u4E00\u5207\u90FD\u90A3\u4E48\u7F8E\u597D\u3002`
+          )}
+          ${ln(
+            `I ${wl('know','know')} this is just the beginning, ${wl('because','because')} the best is yet to ${wl('come','come')}!`,
+            `\u6211\u77E5\u9053\u8FD9\u53EA\u662F\u5F00\u59CB\uFF0C\u56E0\u4E3A\u6700\u597D\u7684\u8FD8\u5728\u540E\u9762\uFF01`
+          )}
         </div>
+
       </div>`;
 
     const footer = `<div class="footer">北京人教版七年级英语词汇多维度分析 &mdash; 让每个单词都有故事</div>`;
