@@ -9,13 +9,16 @@ const TTS = (function(){
   // Detect mobile: on mobile, skip Web Speech entirely → use audio directly
   const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-  // Debug: show toast messages on screen (visible on mobile)
+  // Debug: append messages to on-screen log (never disappears)
   function dbg(msg){
     console.log('[TTS]', msg);
     var t = document.getElementById('tts-toast');
-    if(t){ t.textContent = '[TTS] ' + msg; t.style.opacity = '1'; setTimeout(function(){ t.style.opacity='0'; }, 3000); }
+    if(t){
+      t.style.opacity = '1';
+      t.innerHTML += '<br>' + msg;
+    }
   }
-  dbg('init: mobile=' + isMobile);
+  dbg('init: mobile=' + isMobile + ', synth=' + !!synth);
 
   // Audio element for playback
   let audioEl = null;

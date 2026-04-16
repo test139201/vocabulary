@@ -321,9 +321,8 @@ const WordRenderer = (function(){
       document.body.appendChild(toastEl);
     }
     function showToast(msg){
-      toastEl.textContent = msg;
       toastEl.style.opacity = '1';
-      setTimeout(function(){ toastEl.style.opacity = '0'; }, 3000);
+      toastEl.innerHTML += '<br>' + msg;
     }
 
     // Word-level TTS buttons
