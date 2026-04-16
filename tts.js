@@ -82,29 +82,27 @@ const TTS = (function(){
   function populateSelector(sel){
     var val = sel.value || currentVoiceId;
     sel.innerHTML = '';
-    // Group: online
-    var og1 = document.createElement('optgroup');
-    og1.label = '\uD83C\uDF10 \u5728\u7EBF\u97F3\u6E90'; // 🌐 在线音源
+    // Online voices
     for(var i = 0; i < onlineVoices.length; i++){
       var opt = document.createElement('option');
       opt.value = onlineVoices[i].id;
       opt.textContent = onlineVoices[i].label;
       if(onlineVoices[i].id === val) opt.selected = true;
-      og1.appendChild(opt);
+      sel.appendChild(opt);
     }
-    sel.appendChild(og1);
-    // Group: system voices (if any)
+    // System voices (desktop only) — add a separator
     if(speechVoices.length > 0){
-      var og2 = document.createElement('optgroup');
-      og2.label = '\uD83D\uDCBB \u7CFB\u7EDF\u8BED\u97F3'; // 💻 系统语音
+      var sep = document.createElement('option');
+      sep.disabled = true;
+      sep.textContent = '\u2500\u2500 \u7CFB\u7EDF\u8BED\u97F3 \u2500\u2500';
+      sel.appendChild(sep);
       for(var j = 0; j < speechVoices.length; j++){
         var opt2 = document.createElement('option');
         opt2.value = speechVoices[j].id;
         opt2.textContent = speechVoices[j].label;
         if(speechVoices[j].id === val) opt2.selected = true;
-        og2.appendChild(opt2);
+        sel.appendChild(opt2);
       }
-      sel.appendChild(og2);
     }
   }
 
