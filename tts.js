@@ -1,49 +1,140 @@
-/* ===== TTS Engine — Web Speech API + Baidu/Youdao fetch+blob 回退 ===== */
+/* ===== TTS Engine — 多音源选择 + Web Speech API + fetch+blob 回退 ===== */
 const TTS = (function(){
   const synth = window.speechSynthesis || null;
-  let enVoice = null;
   let rate = 0.8;
   let speaking = false;
   let currentBtn = null;
 
   const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-  /* ── Pick best English voice (desktop only) ── */
-  function pickVoice(){
-    if(!synth) return;
-    try {
-      var voices = synth.getVoices();
-      if(!voices.length) return;
-      var prefs = [
-        function(v){ return /jenny/i.test(v.name) && v.lang.startsWith('en'); },
-        function(v){ return /guy/i.test(v.name) && v.lang.startsWith('en'); },
-        function(v){ return /aria/i.test(v.name) && v.lang.startsWith('en'); },
-        function(v){ return /microsoft.*online/i.test(v.name) && v.lang.startsWith('en'); },
-        function(v){ return /google us english/i.test(v.name); },
-        function(v){ return /google uk english female/i.test(v.name); },
-        function(v){ return v.lang === 'en-US'; },
-        function(v){ return v.lang.startsWith('en'); },
-      ];
-      for(var p = 0; p < prefs.length; p++){
-        var found = voices.find(prefs[p]);
-        if(found){ enVoice = found; break; }
-      }
-    } catch(e){}
+  /* ── Voice definitions ── */
+  // Online audio voices (work everywhere via fetch+blob)
+  var onlineVoices = [
+    { id: 'baidu-3', label: '百度女声 (标准)', provider: 'baidu', spd: 3 },
+    { id: 'baidu-2', label: '百度女声 (慢速)', provider: 'baidu', spd: 2 },
+    { id: 'baidu-4', label: '百度女声 (快速)', provider: 'baidu', spd: 4 },
+    { id: 'youdao-us', label: '有道美式', provider: 'youdao', type: 1 },
+  ];
+
+  // Web Speech voices (desktop only, populated dynamically)
+  var speechVoices = [];
+  var allVoices = [];
+
+  // Current voice selection
+  var currentVoiceId = 'baidu-3';
+
+  function rebuildVoiceList(){
+    allVoices = onlineVoices.slice();
+    if(!isMobile && synth){
+      try {
+        var sv = synth.getVoices();
+        speechVoices = [];
+        var seen = {};
+        for(var i = 0; i < sv.length; i++){
+          var v = sv[i];
+          if(!v.lang.startsWith('en')) continue;
+          // Deduplicate by name
+          if(seen[v.name]) continue;
+          seen[v.name] = true;
+          // Create friendly label
+          var label = v.name.replace(/Microsoft\s+/i, '').replace(/Online \(Natural\)/i, '').trim();
+          var tag = v.lang.indexOf('GB') >= 0 ? '英式' : v.lang.indexOf('AU') >= 0 ? '澳式' : v.lang.indexOf('IN') >= 0 ? '印式' : '美式';
+          label = label + ' (' + tag + ')';
+          speechVoices.push({
+            id: 'speech-' + i,
+            label: label,
+            provider: 'speech',
+            voice: v
+          });
+        }
+        // Sort: prefer Online/Neural voices first
+        speechVoices.sort(function(a, b){
+          var aOnline = /online|neural|natural/i.test(a.voice.name) ? 0 : 1;
+          var bOnline = /online|neural|natural/i.test(b.voice.name) ? 0 : 1;
+          return aOnline - bOnline;
+        });
+        // Limit to 15 to keep the list manageable
+        if(speechVoices.length > 15) speechVoices = speechVoices.slice(0, 15);
+        allVoices = allVoices.concat(speechVoices);
+      } catch(e){}
+    }
+    // Notify UI to rebuild dropdowns
+    updateVoiceSelectors();
   }
 
   if(!isMobile && synth){
     try {
-      if(synth.getVoices().length) pickVoice();
-      synth.addEventListener('voiceschanged', pickVoice);
+      rebuildVoiceList();
+      synth.addEventListener('voiceschanged', rebuildVoiceList);
     } catch(e){}
+  } else {
+    rebuildVoiceList();
   }
 
-  /* ── TTS URL providers ── */
+  /* ── Voice selector UI management ── */
+  var voiceSelectors = [];
+
+  function registerVoiceSelector(sel){
+    voiceSelectors.push(sel);
+    populateSelector(sel);
+  }
+
+  function populateSelector(sel){
+    var val = sel.value || currentVoiceId;
+    sel.innerHTML = '';
+    // Group: online
+    var og1 = document.createElement('optgroup');
+    og1.label = '\uD83C\uDF10 \u5728\u7EBF\u97F3\u6E90'; // 🌐 在线音源
+    for(var i = 0; i < onlineVoices.length; i++){
+      var opt = document.createElement('option');
+      opt.value = onlineVoices[i].id;
+      opt.textContent = onlineVoices[i].label;
+      if(onlineVoices[i].id === val) opt.selected = true;
+      og1.appendChild(opt);
+    }
+    sel.appendChild(og1);
+    // Group: system voices (if any)
+    if(speechVoices.length > 0){
+      var og2 = document.createElement('optgroup');
+      og2.label = '\uD83D\uDCBB \u7CFB\u7EDF\u8BED\u97F3'; // 💻 系统语音
+      for(var j = 0; j < speechVoices.length; j++){
+        var opt2 = document.createElement('option');
+        opt2.value = speechVoices[j].id;
+        opt2.textContent = speechVoices[j].label;
+        if(speechVoices[j].id === val) opt2.selected = true;
+        og2.appendChild(opt2);
+      }
+      sel.appendChild(og2);
+    }
+  }
+
+  function updateVoiceSelectors(){
+    for(var i = 0; i < voiceSelectors.length; i++){
+      populateSelector(voiceSelectors[i]);
+    }
+  }
+
+  function setVoice(id){
+    currentVoiceId = id;
+    // Sync all selectors
+    for(var i = 0; i < voiceSelectors.length; i++){
+      voiceSelectors[i].value = id;
+    }
+  }
+
+  function getVoiceById(id){
+    for(var i = 0; i < allVoices.length; i++){
+      if(allVoices[i].id === id) return allVoices[i];
+    }
+    return onlineVoices[0]; // fallback
+  }
+
+  /* ── TTS URL builders ── */
   function baiduUrl(text, spd){
     return 'https://fanyi.baidu.com/gettts?lan=en&text=' + encodeURIComponent(text) + '&spd=' + (spd||3) + '&source=web';
   }
-  function youdaoUrl(text){
-    return 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
+  function youdaoUrl(text, type){
+    return 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=' + (type||1);
   }
 
   function clearState(){
@@ -52,11 +143,7 @@ const TTS = (function(){
     currentBtn = null;
   }
 
-  function baiduSpd(){
-    return rate <= 0.6 ? 2 : rate <= 0.8 ? 3 : rate <= 1 ? 4 : 5;
-  }
-
-  /* ── Create audio element attached to DOM ── */
+  /* ── Audio element helpers ── */
   function makeAudio(){
     var a = document.createElement('audio');
     a.preload = 'auto';
@@ -74,7 +161,7 @@ const TTS = (function(){
     } catch(e){}
   }
 
-  /* ── Try direct <source> play with timeout ── */
+  /* ── Direct <source> play with timeout ── */
   function tryPlay(url, onOk, onFail){
     var audio = makeAudio();
     var done = false;
@@ -93,10 +180,7 @@ const TTS = (function(){
     }
 
     timer = setTimeout(function(){ finish(false); }, 5000);
-
-    audio.onloadeddata = function(){
-      if(audio.duration === 0) finish(false);
-    };
+    audio.onloadeddata = function(){ if(audio.duration === 0) finish(false); };
     audio.onerror = function(){ finish(false); };
 
     var source = document.createElement('source');
@@ -118,7 +202,7 @@ const TTS = (function(){
     } catch(e){ finish(false); }
   }
 
-  /* ── Fetch as blob then play (bypasses mobile browser audio restrictions) ── */
+  /* ── Fetch+blob play ── */
   function tryFetchPlay(url, onOk, onFail){
     if(typeof fetch === 'undefined'){ onFail(); return; }
     fetch(url, { mode: 'cors', referrerPolicy: 'no-referrer' })
@@ -150,44 +234,67 @@ const TTS = (function(){
       .catch(function(){ onFail(); });
   }
 
-  /* ── 4-tier fallback: direct Baidu → blob Baidu → direct Youdao → blob Youdao ── */
-  function playAudio(text, btn, onEnd){
-    var shortText = text.length > 200 ? text.slice(0, 200) : text;
+  /* ── Build URL for a voice+text combination ── */
+  function voiceUrl(voice, text){
+    if(voice.provider === 'baidu'){
+      // Map our rate to baidu spd, offset from voice's base spd
+      var spd = voice.spd;
+      if(rate <= 0.6) spd = Math.max(1, spd - 1);
+      else if(rate >= 1.2) spd = Math.min(5, spd + 1);
+      return baiduUrl(text, spd);
+    }
+    if(voice.provider === 'youdao'){
+      return youdaoUrl(text, voice.type || 1);
+    }
+    return null;
+  }
 
+  /* ── Play online audio with fallback ── */
+  function playOnlineAudio(text, voice, onOk, onFail){
+    var shortText = text.length > 200 ? text.slice(0, 200) : text;
+    var url = voiceUrl(voice, shortText);
+    if(!url){ onFail(); return; }
+
+    tryPlay(url, onOk, function(){
+      tryFetchPlay(url, onOk, onFail);
+    });
+  }
+
+  /* ── Master play for online voices: selected voice → fallback voices ── */
+  function playAudio(text, btn, onEnd){
     speaking = true;
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
-    var url1 = baiduUrl(shortText, baiduSpd());
-    var url2 = youdaoUrl(shortText);
+    var voice = getVoiceById(currentVoiceId);
 
-    tryPlay(url1,
+    // If selected voice is online, try it then fallback to others
+    playOnlineAudio(text, voice,
       function(){ clearState(); if(onEnd) onEnd(); },
       function(){
-        tryFetchPlay(url1,
+        // Fallback: try other online voices
+        var fallbacks = onlineVoices.filter(function(v){ return v.id !== voice.id; });
+        tryFallbacks(text, fallbacks, 0,
           function(){ clearState(); if(onEnd) onEnd(); },
-          function(){
-            tryPlay(url2,
-              function(){ clearState(); if(onEnd) onEnd(); },
-              function(){
-                tryFetchPlay(url2,
-                  function(){ clearState(); if(onEnd) onEnd(); },
-                  function(){ clearState(); }
-                );
-              }
-            );
-          }
+          function(){ clearState(); }
         );
       }
     );
   }
 
+  function tryFallbacks(text, voices, idx, onOk, onFail){
+    if(idx >= voices.length){ onFail(); return; }
+    playOnlineAudio(text, voices[idx], onOk, function(){
+      tryFallbacks(text, voices, idx + 1, onOk, onFail);
+    });
+  }
+
   /* ── Web Speech playback (desktop) ── */
-  function playSpeech(text, btn, onEnd){
+  function playSpeech(text, voice, btn, onEnd){
     try { synth.cancel(); } catch(e){}
 
     var utter = new SpeechSynthesisUtterance(text);
-    if(enVoice) utter.voice = enVoice;
+    if(voice && voice.voice) utter.voice = voice.voice;
     utter.lang = 'en-US';
     utter.rate = rate;
     utter.pitch = 1;
@@ -214,10 +321,11 @@ const TTS = (function(){
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
-    if(isMobile || !synth){
-      playAudio(text, btn, onEnd);
+    var voice = getVoiceById(currentVoiceId);
+    if(voice.provider === 'speech' && synth){
+      playSpeech(text, voice, btn, onEnd);
     } else {
-      playSpeech(text, btn, onEnd);
+      playAudio(text, btn, onEnd);
     }
   }
 
@@ -232,6 +340,8 @@ const TTS = (function(){
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
+    var voice = getVoiceById(currentVoiceId);
+
     function next(){
       if(idx >= chunks.length || !speaking){
         clearState();
@@ -240,25 +350,21 @@ const TTS = (function(){
       var chunk = chunks[idx].trim();
       idx++;
 
-      if(isMobile || !synth){
-        var u1 = baiduUrl(chunk, baiduSpd());
-        var u2 = youdaoUrl(chunk);
-        tryPlay(u1, next, function(){
-          tryFetchPlay(u1, next, function(){
-            tryPlay(u2, next, function(){
-              tryFetchPlay(u2, next, function(){ clearState(); });
-            });
-          });
-        });
-      } else {
+      if(voice.provider === 'speech' && synth){
         var utter = new SpeechSynthesisUtterance(chunk);
-        if(enVoice) utter.voice = enVoice;
+        if(voice.voice) utter.voice = voice.voice;
         utter.lang = 'en-US';
         utter.rate = rate;
         utter.pitch = 1;
         utter.onend = next;
         utter.onerror = function(){ clearState(); };
         try { synth.speak(utter); } catch(e){ clearState(); }
+      } else {
+        playOnlineAudio(chunk, voice, next, function(){
+          // Fallback to other online voices for this chunk
+          var fallbacks = onlineVoices.filter(function(v){ return v.id !== voice.id; });
+          tryFallbacks(chunk, fallbacks, 0, next, function(){ clearState(); });
+        });
       }
     }
     next();
@@ -300,7 +406,17 @@ const TTS = (function(){
 
   function isSpeaking(){ return speaking; }
 
-  return { speak, speakLong, setRate, getRate, stop, isSpeaking, supported: true };
+  return {
+    speak: speak,
+    speakLong: speakLong,
+    setRate: setRate,
+    getRate: getRate,
+    setVoice: setVoice,
+    registerVoiceSelector: registerVoiceSelector,
+    stop: stop,
+    isSpeaking: isSpeaking,
+    supported: true
+  };
 })();
 
 if(typeof window !== 'undefined') window.TTS = TTS;
