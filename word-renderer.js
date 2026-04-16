@@ -299,7 +299,18 @@ const WordRenderer = (function(){
 
   /* ── TTS init: bind all .tts-btn and .tts-chapter-btn ── */
   function initTTS(rootEl){
-    if(typeof TTS === 'undefined') return;
+    const allBtns = rootEl.querySelectorAll('.tts-btn, .tts-chapter-btn');
+    const allSpeed = rootEl.querySelectorAll('.tts-speed');
+
+    // If TTS not available at all, dim buttons and show hint
+    if(typeof TTS === 'undefined' || !TTS.supported){
+      allBtns.forEach(btn=>{
+        btn.style.opacity = '0.3';
+        btn.title = '\u5F53\u524D\u6D4F\u89C8\u5668\u4E0D\u652F\u6301\u6717\u8BFB\uFF0C\u8BF7\u4F7F\u7528 Chrome \u6216 Edge';
+        btn.style.cursor = 'not-allowed';
+      });
+      return;
+    }
 
     // Word-level TTS buttons
     rootEl.querySelectorAll('.tts-btn').forEach(btn=>{
@@ -313,19 +324,16 @@ const WordRenderer = (function(){
     rootEl.querySelectorAll('.tts-chapter-btn').forEach(btn=>{
       btn.addEventListener('click', function(e){
         e.stopPropagation();
-        // Collect English text from the chapter
         const chapter = this.closest('.story-chapter');
         let text = '';
-        // For bilingual (ln) chapters: grab .story-en lines
         chapter.querySelectorAll('.story-en').forEach(el=>{ text += el.textContent + ' '; });
-        // For block (Chapter 6) format: grab .story-block-en paragraphs
         chapter.querySelectorAll('.story-block-en p').forEach(el=>{ text += el.textContent + ' '; });
         if(text.trim()) TTS.speakLong(text.trim(), this);
       });
     });
 
     // Speed control
-    rootEl.querySelectorAll('.tts-speed').forEach(sel=>{
+    allSpeed.forEach(sel=>{
       sel.addEventListener('change', function(){
         TTS.setRate(parseFloat(this.value));
       });

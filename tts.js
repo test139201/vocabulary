@@ -1,31 +1,29 @@
 /* ===== TTS Engine — Natural text-to-speech using Web Speech API ===== */
+/* Gracefully degrades: if browser has no SpeechSynthesis, TTS.supported = false */
 const TTS = (function(){
-  const synth = window.speechSynthesis;
+  const synth = window.speechSynthesis || null;
+  const supported = !!synth;
+
   let enVoice = null;
-  let rate = 0.9; // slightly slower for learners
+  let rate = 0.8;
   let speaking = false;
   let currentBtn = null;
 
   /* ── Pick the best English voice ── */
   function pickVoice(){
+    if(!synth) return;
     const voices = synth.getVoices();
     if(!voices.length) return;
 
-    // Priority list: prefer natural/neural voices
     const prefs = [
-      // Edge neural voices (extremely natural)
       v => /jenny/i.test(v.name) && v.lang.startsWith('en'),
       v => /guy/i.test(v.name) && v.lang.startsWith('en'),
       v => /aria/i.test(v.name) && v.lang.startsWith('en'),
       v => /microsoft.*online/i.test(v.name) && v.lang.startsWith('en'),
-      // Google voices (Chrome)
       v => /google us english/i.test(v.name),
       v => /google uk english female/i.test(v.name),
-      // Any "enhanced" or "premium" voice
       v => /enhanced|premium|neural|natural/i.test(v.name) && v.lang.startsWith('en'),
-      // Fallback: any en-US voice
       v => v.lang === 'en-US',
-      // Fallback: any English voice
       v => v.lang.startsWith('en'),
     ];
 
@@ -33,27 +31,24 @@ const TTS = (function(){
       const found = voices.find(test);
       if(found){ enVoice = found; break; }
     }
-
-    // Log selected voice for debugging
     if(enVoice) console.log('TTS voice:', enVoice.name, enVoice.lang);
   }
 
-  // Voices load asynchronously in some browsers
-  if(synth.getVoices().length) pickVoice();
-  synth.addEventListener('voiceschanged', pickVoice);
+  if(synth){
+    try {
+      if(synth.getVoices().length) pickVoice();
+      synth.addEventListener('voiceschanged', pickVoice);
+    } catch(e){ /* ignore */ }
+  }
 
   /* ── Speak text ── */
   function speak(text, btn, onEnd){
-    // If already speaking, stop
+    if(!synth) return;
+
     if(speaking){
       synth.cancel();
       if(currentBtn) currentBtn.classList.remove('tts-playing');
-      // If clicking the same button, just stop
-      if(currentBtn === btn){
-        speaking = false;
-        currentBtn = null;
-        return;
-      }
+      if(currentBtn === btn){ speaking = false; currentBtn = null; return; }
     }
 
     const utter = new SpeechSynthesisUtterance(text);
@@ -78,7 +73,6 @@ const TTS = (function(){
       currentBtn = null;
     };
 
-    // Chrome bug: long text gets cut off. Split into sentences.
     synth.speak(utter);
 
     // Chrome pause/resume hack for long utterances
@@ -100,6 +94,7 @@ const TTS = (function(){
 
   /* ── Speak long text by splitting into sentences ── */
   function speakLong(text, btn){
+    if(!synth) return;
     const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
     let i = 0;
 
@@ -127,11 +122,7 @@ const TTS = (function(){
     if(speaking){
       synth.cancel();
       if(currentBtn) currentBtn.classList.remove('tts-playing');
-      if(currentBtn === btn){
-        speaking = false;
-        currentBtn = null;
-        return;
-      }
+      if(currentBtn === btn){ speaking = false; currentBtn = null; return; }
     }
 
     speaking = true;
@@ -140,12 +131,11 @@ const TTS = (function(){
     next();
   }
 
-  /* ── Speed control ── */
   function setRate(r){ rate = r; }
   function getRate(){ return rate; }
 
-  /* ── Stop ── */
   function stop(){
+    if(!synth) return;
     synth.cancel();
     speaking = false;
     if(currentBtn) currentBtn.classList.remove('tts-playing');
@@ -154,7 +144,7 @@ const TTS = (function(){
 
   function isSpeaking(){ return speaking; }
 
-  return { speak, speakLong, setRate, getRate, stop, isSpeaking };
+  return { speak, speakLong, setRate, getRate, stop, isSpeaking, supported };
 })();
 
 if(typeof window !== 'undefined') window.TTS = TTS;
