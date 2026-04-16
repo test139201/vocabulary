@@ -114,10 +114,10 @@ const WordRenderer = (function(){
       <div class="word-card" id="word-${w.word}" data-pos="${posKey}" data-word="${w.word.toLowerCase()}">
         ${header}
         <div class="wc-body">
-          ${rootHtml}${memoryHtml}
+          ${sentHtml}${rootHtml}${memoryHtml}
         </div>
         <div class="wc-full">
-          ${familyHtml}${synHtml}${antHtml}${sentHtml}${funHtml}${usageHtml}
+          ${familyHtml}${synHtml}${antHtml}${funHtml}${usageHtml}
         </div>
       </div>`;
   }
