@@ -76,39 +76,31 @@ const TTS = (function(){
 
   function registerVoiceSelector(sel){
     voiceSelectors.push(sel);
-    populateSelector(sel);
+    // On desktop, append system voices to the existing static options
+    appendSystemVoices(sel);
   }
 
-  function populateSelector(sel){
-    var val = sel.value || currentVoiceId;
-    sel.innerHTML = '';
-    // Online voices
-    for(var i = 0; i < onlineVoices.length; i++){
+  function appendSystemVoices(sel){
+    if(speechVoices.length === 0) return;
+    // Check if already appended
+    if(sel.querySelector('[data-system]')) return;
+    var sep = document.createElement('option');
+    sep.disabled = true;
+    sep.textContent = '\u2500\u2500 \u7CFB\u7EDF\u8BED\u97F3 \u2500\u2500';
+    sep.setAttribute('data-system', '1');
+    sel.appendChild(sep);
+    for(var j = 0; j < speechVoices.length; j++){
       var opt = document.createElement('option');
-      opt.value = onlineVoices[i].id;
-      opt.textContent = onlineVoices[i].label;
-      if(onlineVoices[i].id === val) opt.selected = true;
+      opt.value = speechVoices[j].id;
+      opt.textContent = speechVoices[j].label;
+      opt.setAttribute('data-system', '1');
       sel.appendChild(opt);
-    }
-    // System voices (desktop only) — add a separator
-    if(speechVoices.length > 0){
-      var sep = document.createElement('option');
-      sep.disabled = true;
-      sep.textContent = '\u2500\u2500 \u7CFB\u7EDF\u8BED\u97F3 \u2500\u2500';
-      sel.appendChild(sep);
-      for(var j = 0; j < speechVoices.length; j++){
-        var opt2 = document.createElement('option');
-        opt2.value = speechVoices[j].id;
-        opt2.textContent = speechVoices[j].label;
-        if(speechVoices[j].id === val) opt2.selected = true;
-        sel.appendChild(opt2);
-      }
     }
   }
 
   function updateVoiceSelectors(){
     for(var i = 0; i < voiceSelectors.length; i++){
-      populateSelector(voiceSelectors[i]);
+      appendSystemVoices(voiceSelectors[i]);
     }
   }
 

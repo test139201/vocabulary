@@ -160,7 +160,12 @@ const WordRenderer = (function(){
     });
     filterHtml += `<span style="margin-left:auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
       <span style="font-size:.75rem;color:var(--text3)">\u{1F399}\uFE0F \u97F3\u6E90:</span>
-      <select class="tts-voice"></select>
+      <select class="tts-voice">
+        <option value="baidu-3">\u767E\u5EA6\u5973\u58F0 (\u6807\u51C6)</option>
+        <option value="baidu-2">\u767E\u5EA6\u5973\u58F0 (\u6162\u901F)</option>
+        <option value="baidu-4">\u767E\u5EA6\u5973\u58F0 (\u5FEB\u901F)</option>
+        <option value="youdao-us">\u6709\u9053\u7F8E\u5F0F</option>
+      </select>
       <span style="font-size:.75rem;color:var(--text3)">\u{1F3A4} \u8BED\u901F:</span>
       <select class="tts-speed">
         <option value="0.6">\u8F83\u6162</option>
@@ -472,7 +477,12 @@ const WordRenderer = (function(){
       <div class="story-hint">
         \u{1F4A1} \u70B9\u51FB\u9AD8\u4EAE\u5355\u8BCD\u8DF3\u8F6C\u8BE6\u7EC6\u5206\u6790 | \u70B9\u51FB \u{1F50A} \u6309\u94AE\u6717\u8BFB\u6574\u7AE0
         <span style="margin-left:1rem">\u{1F399}\uFE0F \u97F3\u6E90:
-          <select class="tts-voice"></select>
+          <select class="tts-voice">
+            <option value="baidu-3">\u767E\u5EA6\u5973\u58F0 (\u6807\u51C6)</option>
+            <option value="baidu-2">\u767E\u5EA6\u5973\u58F0 (\u6162\u901F)</option>
+            <option value="baidu-4">\u767E\u5EA6\u5973\u58F0 (\u5FEB\u901F)</option>
+            <option value="youdao-us">\u6709\u9053\u7F8E\u5F0F</option>
+          </select>
         </span>
         <span style="margin-left:.5rem">\u{1F3A4} \u8BED\u901F:
           <select class="tts-speed">
