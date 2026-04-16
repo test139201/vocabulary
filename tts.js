@@ -1,13 +1,13 @@
-/* ===== TTS Engine — Web Speech API + audio fallback ===== */
+/* ===== TTS Engine — Web Speech API + 有道词典音频回退 ===== */
 const TTS = (function(){
   const synth = window.speechSynthesis || null;
   let enVoice = null;
   let rate = 0.8;
   let speaking = false;
   let currentBtn = null;
-  let webSpeechWorks = null; // null = untested, true/false after first attempt
+  let webSpeechWorks = null; // null=untested, true/false after first try
 
-  // Hidden audio element for fallback
+  // Audio element for fallback
   let audioEl = null;
   function getAudio(){
     if(!audioEl){
@@ -18,7 +18,7 @@ const TTS = (function(){
     return audioEl;
   }
 
-  /* ── Pick the best English voice ── */
+  /* ── Pick best English voice ── */
   function pickVoice(){
     if(!synth) return;
     try {
@@ -40,7 +40,7 @@ const TTS = (function(){
         if(found){ enVoice = found; break; }
       }
       if(enVoice) console.log('TTS voice:', enVoice.name, enVoice.lang);
-    } catch(e){ /* ignore */ }
+    } catch(e){}
   }
 
   if(synth){
@@ -50,15 +50,16 @@ const TTS = (function(){
     } catch(e){}
   }
 
-  /* ── Audio fallback: use free TTS endpoint ── */
-  function speakAudioFallback(text, btn, onEnd){
+  /* ── 有道词典 TTS (国内可用，美式发音) ── */
+  function youdaoUrl(text){
+    return 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
+  }
+
+  function speakFallback(text, btn, onEnd){
     const audio = getAudio();
-    // Trim to max ~200 chars per request for URL length safety
-    const shortText = text.length > 200 ? text.slice(0, 200) : text;
-    const encoded = encodeURIComponent(shortText);
-    // Google Translate TTS — widely compatible, no API key needed
-    audio.src = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=' + encoded;
-    audio.playbackRate = rate > 0.9 ? rate : 1; // audio fallback doesn't support very slow, keep >=1
+    // 有道对长文本也能处理，但太长会失败，截取前段
+    const shortText = text.length > 300 ? text.slice(0, 300) : text;
+    audio.src = youdaoUrl(shortText);
 
     speaking = true;
     currentBtn = btn;
@@ -75,7 +76,6 @@ const TTS = (function(){
       if(btn) btn.classList.remove('tts-playing');
       currentBtn = null;
     };
-
     audio.play().catch(function(){
       speaking = false;
       if(btn) btn.classList.remove('tts-playing');
@@ -83,31 +83,28 @@ const TTS = (function(){
     });
   }
 
-  /* ── Stop helper ── */
   function clearState(){
     speaking = false;
     if(currentBtn) currentBtn.classList.remove('tts-playing');
     currentBtn = null;
   }
 
-  /* ── Main speak function ── */
+  /* ── Main speak ── */
   function speak(text, btn, onEnd){
-    // Stop any current speech
     if(speaking){
       stop();
-      if(currentBtn === btn){ return; } // toggle off
+      // Toggle off if same button
+      if(currentBtn === btn) return;
     }
 
-    // If we already know Web Speech doesn't work, go straight to fallback
+    // Already know Web Speech doesn't work → fallback
     if(webSpeechWorks === false || !synth){
-      speakAudioFallback(text, btn, onEnd);
+      speakFallback(text, btn, onEnd);
       return;
     }
 
-    // Try Web Speech API first
-    try {
-      synth.cancel();
-    } catch(e){}
+    // Try Web Speech API
+    try { synth.cancel(); } catch(e){}
 
     const utter = new SpeechSynthesisUtterance(text);
     if(enVoice) utter.voice = enVoice;
@@ -119,54 +116,48 @@ const TTS = (function(){
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
-    // Detect if Web Speech actually produces sound
-    // If onend fires within ~300ms of start, it probably didn't really speak
     let started = false;
     let startTime = Date.now();
 
     utter.onstart = function(){ started = true; };
 
     utter.onend = function(){
-      // If it ended too quickly (< 500ms) and text is non-trivial, Web Speech probably failed silently
-      if(!started || (Date.now() - startTime < 500 && text.length > 5)){
+      // Too fast & didn't really start → silent fail
+      if(!started || (Date.now() - startTime < 500 && text.length > 3)){
         webSpeechWorks = false;
         clearState();
-        speakAudioFallback(text, btn, onEnd);
+        speakFallback(text, btn, onEnd);
         return;
       }
       webSpeechWorks = true;
-      speaking = false;
-      if(btn) btn.classList.remove('tts-playing');
-      currentBtn = null;
+      clearState();
       if(onEnd) onEnd();
     };
 
     utter.onerror = function(){
       webSpeechWorks = false;
       clearState();
-      speakAudioFallback(text, btn, onEnd);
+      speakFallback(text, btn, onEnd);
     };
 
-    try {
-      synth.speak(utter);
-    } catch(e){
+    try { synth.speak(utter); } catch(e){
       webSpeechWorks = false;
       clearState();
-      speakAudioFallback(text, btn, onEnd);
+      speakFallback(text, btn, onEnd);
       return;
     }
 
-    // Safety: if nothing happens after 2 seconds, fall back
+    // 2s safety timeout
     setTimeout(function(){
       if(speaking && !started){
         try { synth.cancel(); } catch(e){}
         webSpeechWorks = false;
         clearState();
-        speakAudioFallback(text, btn, onEnd);
+        speakFallback(text, btn, onEnd);
       }
     }, 2000);
 
-    // Chrome pause/resume hack for long utterances
+    // Chrome long utterance hack
     if(/chrome/i.test(navigator.userAgent) && !/edg/i.test(navigator.userAgent)){
       const keepAlive = setInterval(()=>{
         if(!synth.speaking){ clearInterval(keepAlive); return; }
@@ -175,38 +166,31 @@ const TTS = (function(){
     }
   }
 
-  /* ── Speak long text ── */
+  /* ── Speak long text (story chapters) ── */
   function speakLong(text, btn){
     if(speaking){
       stop();
       if(currentBtn === btn) return;
     }
 
-    // For audio fallback, split into chunks (max ~200 chars)
-    if(webSpeechWorks === false || !synth){
-      const chunks = splitText(text, 200);
-      let i = 0;
-      speaking = true;
-      currentBtn = btn;
-      if(btn) btn.classList.add('tts-playing');
-      function nextChunk(){
-        if(i >= chunks.length || !speaking){ clearState(); return; }
-        speakAudioFallback(chunks[i], null, function(){ i++; nextChunk(); });
-      }
-      nextChunk();
-      return;
-    }
-
-    // Web Speech: split by sentences
-    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    // Split into sentence chunks
+    const chunks = splitText(text, 250);
     let i = 0;
     speaking = true;
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
     function next(){
-      if(i >= sentences.length || !speaking){ clearState(); return; }
-      const utter = new SpeechSynthesisUtterance(sentences[i].trim());
+      if(i >= chunks.length || !speaking){ clearState(); return; }
+
+      if(webSpeechWorks === false || !synth){
+        // Fallback path: chain audio playback
+        speakFallbackChain(chunks, i, btn);
+        return;
+      }
+
+      // Web Speech path
+      const utter = new SpeechSynthesisUtterance(chunks[i].trim());
       if(enVoice) utter.voice = enVoice;
       utter.lang = 'en-US';
       utter.rate = rate;
@@ -218,12 +202,25 @@ const TTS = (function(){
     next();
   }
 
-  /* ── Utility: split text into chunks ── */
+  function speakFallbackChain(chunks, startIdx, btn){
+    let i = startIdx;
+    function next(){
+      if(i >= chunks.length || !speaking){ clearState(); return; }
+      speakFallback(chunks[i], null, function(){ i++; next(); });
+    }
+    // Keep btn state on the chapter button
+    speaking = true;
+    currentBtn = btn;
+    if(btn) btn.classList.add('tts-playing');
+    next();
+  }
+
   function splitText(text, maxLen){
     const result = [];
-    const sentences = text.match(/[^.!?,;]+[.!?,;]*/g) || [text];
+    // Split by sentence-ending punctuation
+    const parts = text.match(/[^.!?]+[.!?]*/g) || [text];
     let chunk = '';
-    for(const s of sentences){
+    for(const s of parts){
       if((chunk + s).length > maxLen && chunk){
         result.push(chunk.trim());
         chunk = '';
@@ -245,7 +242,6 @@ const TTS = (function(){
 
   function isSpeaking(){ return speaking; }
 
-  // Always report as supported — we have fallback now
   return { speak, speakLong, setRate, getRate, stop, isSpeaking, supported: true };
 })();
 
