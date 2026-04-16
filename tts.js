@@ -1,4 +1,4 @@
-/* ===== TTS Engine — Web Speech API + 在线音频回退 ===== */
+/* ===== TTS Engine — Web Speech API + Baidu/Youdao fetch+blob 回退 ===== */
 const TTS = (function(){
   const synth = window.speechSynthesis || null;
   let enVoice = null;
@@ -7,16 +7,6 @@ const TTS = (function(){
   let currentBtn = null;
 
   const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-
-  function dbg(msg){
-    console.log('[TTS]', msg);
-    var t = document.getElementById('tts-toast');
-    if(t){
-      t.style.opacity = '1';
-      t.innerHTML += '<br>' + msg;
-    }
-  }
-  dbg('v12 init: mobile=' + isMobile + ', synth=' + !!synth);
 
   /* ── Pick best English voice (desktop only) ── */
   function pickVoice(){
@@ -66,7 +56,7 @@ const TTS = (function(){
     return rate <= 0.6 ? 2 : rate <= 0.8 ? 3 : rate <= 1 ? 4 : 5;
   }
 
-  /* ── Create audio element attached to DOM (some mobile browsers require this) ── */
+  /* ── Create audio element attached to DOM ── */
   function makeAudio(){
     var a = document.createElement('audio');
     a.preload = 'auto';
@@ -75,7 +65,6 @@ const TTS = (function(){
     return a;
   }
 
-  /* ── Cleanup audio element ── */
   function destroyAudio(a){
     try {
       a.pause();
@@ -85,9 +74,8 @@ const TTS = (function(){
     } catch(e){}
   }
 
-  /* ── Try playing a URL, with timeout ── */
+  /* ── Try direct <source> play with timeout ── */
   function tryPlay(url, onOk, onFail){
-    dbg('try: ' + url.slice(0, 65));
     var audio = makeAudio();
     var done = false;
     var timer = null;
@@ -97,37 +85,20 @@ const TTS = (function(){
       done = true;
       if(timer) clearTimeout(timer);
       if(success){
-        // Don't destroy until playback ends
-        audio.onended = function(){
-          destroyAudio(audio);
-          onOk();
-        };
+        audio.onended = function(){ destroyAudio(audio); onOk(); };
       } else {
         destroyAudio(audio);
         onFail();
       }
     }
 
-    // Timeout: if nothing happens in 5s, treat as failure
-    timer = setTimeout(function(){
-      dbg('timeout 5s');
-      finish(false);
-    }, 5000);
+    timer = setTimeout(function(){ finish(false); }, 5000);
 
     audio.onloadeddata = function(){
-      dbg('loaded dur=' + audio.duration);
-      if(audio.duration === 0){
-        dbg('empty audio');
-        finish(false);
-      }
+      if(audio.duration === 0) finish(false);
     };
-    audio.onerror = function(){
-      var code = audio.error ? audio.error.code : '?';
-      dbg('err=' + code);
-      finish(false);
-    };
+    audio.onerror = function(){ finish(false); };
 
-    // Use <source> element instead of src attribute (better compat with some browsers)
     var source = document.createElement('source');
     source.src = url;
     source.type = 'audio/mpeg';
@@ -137,73 +108,49 @@ const TTS = (function(){
       var p = audio.play();
       if(p && p.then){
         p.then(function(){
-          dbg('playing!');
-          // Clear timeout since audio started
           if(timer){ clearTimeout(timer); timer = null; }
-          // Set up end handler
           audio.onended = function(){
-            dbg('ended OK');
             destroyAudio(audio);
             if(!done){ done = true; onOk(); }
           };
-        }).catch(function(e){
-          dbg('play blocked: ' + e.message);
-          finish(false);
-        });
+        }).catch(function(){ finish(false); });
       }
-    } catch(e){
-      dbg('play exception');
-      finish(false);
-    }
+    } catch(e){ finish(false); }
   }
 
-  /* ── Try fetch+blob approach (bypasses some browser restrictions) ── */
+  /* ── Fetch as blob then play (bypasses mobile browser audio restrictions) ── */
   function tryFetchPlay(url, onOk, onFail){
     if(typeof fetch === 'undefined'){ onFail(); return; }
-    dbg('fetch: ' + url.slice(0, 50));
     fetch(url, { mode: 'cors', referrerPolicy: 'no-referrer' })
       .then(function(r){
         if(!r.ok) throw new Error('HTTP ' + r.status);
         return r.blob();
       })
       .then(function(blob){
-        dbg('blob size=' + blob.size + ' type=' + blob.type);
-        if(blob.size < 100){
-          dbg('blob too small');
-          onFail();
-          return;
-        }
+        if(blob.size < 100){ onFail(); return; }
         var blobUrl = URL.createObjectURL(blob);
         var audio = makeAudio();
         audio.src = blobUrl;
         audio.onended = function(){
-          dbg('blob ended OK');
           destroyAudio(audio);
           URL.revokeObjectURL(blobUrl);
           onOk();
         };
         audio.onerror = function(){
-          dbg('blob play err');
           destroyAudio(audio);
           URL.revokeObjectURL(blobUrl);
           onFail();
         };
-        audio.play().then(function(){
-          dbg('blob playing!');
-        }).catch(function(e){
-          dbg('blob play blocked: ' + e.message);
+        audio.play().catch(function(){
           destroyAudio(audio);
           URL.revokeObjectURL(blobUrl);
           onFail();
         });
       })
-      .catch(function(e){
-        dbg('fetch fail: ' + e.message);
-        onFail();
-      });
+      .catch(function(){ onFail(); });
   }
 
-  /* ── Master play: try direct play → fetch+blob → fallback URL ── */
+  /* ── 4-tier fallback: direct Baidu → blob Baidu → direct Youdao → blob Youdao ── */
   function playAudio(text, btn, onEnd){
     var shortText = text.length > 200 ? text.slice(0, 200) : text;
 
@@ -214,25 +161,18 @@ const TTS = (function(){
     var url1 = baiduUrl(shortText, baiduSpd());
     var url2 = youdaoUrl(shortText);
 
-    // Strategy 1: direct Baidu
     tryPlay(url1,
       function(){ clearState(); if(onEnd) onEnd(); },
       function(){
-        // Strategy 2: fetch Baidu as blob
         tryFetchPlay(url1,
           function(){ clearState(); if(onEnd) onEnd(); },
           function(){
-            // Strategy 3: direct Youdao
             tryPlay(url2,
               function(){ clearState(); if(onEnd) onEnd(); },
               function(){
-                // Strategy 4: fetch Youdao as blob
                 tryFetchPlay(url2,
                   function(){ clearState(); if(onEnd) onEnd(); },
-                  function(){
-                    dbg('ALL 4 strategies failed');
-                    clearState();
-                  }
+                  function(){ clearState(); }
                 );
               }
             );
@@ -271,7 +211,6 @@ const TTS = (function(){
 
   /* ── Main speak ── */
   function speak(text, btn, onEnd){
-    dbg('speak: "' + (text||'').slice(0,30) + '"');
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
@@ -282,14 +221,12 @@ const TTS = (function(){
     }
   }
 
-  /* ── Speak long text ── */
+  /* ── Speak long text (story chapters) ── */
   function speakLong(text, btn){
-    dbg('speakLong len=' + text.length);
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
     var chunks = splitText(text, 180);
-    dbg(chunks.length + ' chunks');
     var idx = 0;
     speaking = true;
     currentBtn = btn;
@@ -297,24 +234,19 @@ const TTS = (function(){
 
     function next(){
       if(idx >= chunks.length || !speaking){
-        dbg('all done');
         clearState();
         return;
       }
       var chunk = chunks[idx].trim();
-      dbg('chunk ' + (idx+1) + '/' + chunks.length);
       idx++;
 
       if(isMobile || !synth){
-        var url = baiduUrl(chunk, baiduSpd());
-        tryPlay(url, next, function(){
-          tryFetchPlay(url, next, function(){
-            var url2 = youdaoUrl(chunk);
-            tryPlay(url2, next, function(){
-              tryFetchPlay(url2, next, function(){
-                dbg('chunk failed all');
-                clearState();
-              });
+        var u1 = baiduUrl(chunk, baiduSpd());
+        var u2 = youdaoUrl(chunk);
+        tryPlay(u1, next, function(){
+          tryFetchPlay(u1, next, function(){
+            tryPlay(u2, next, function(){
+              tryFetchPlay(u2, next, function(){ clearState(); });
             });
           });
         });
@@ -353,9 +285,15 @@ const TTS = (function(){
 
   function stop(){
     if(synth) try { synth.cancel(); } catch(e){}
-    // Stop all audio elements we may have created
     document.querySelectorAll('audio').forEach(function(a){
-      try { a.pause(); } catch(e){}
+      try {
+        a.pause();
+        var src = a.src || '';
+        a.removeAttribute('src');
+        a.load();
+        if(a.parentNode) a.parentNode.removeChild(a);
+        if(src.indexOf('blob:') === 0) URL.revokeObjectURL(src);
+      } catch(e){}
     });
     clearState();
   }

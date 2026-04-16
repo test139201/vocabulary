@@ -312,28 +312,13 @@ const WordRenderer = (function(){
       return;
     }
 
-    // Debug toast (shows at top of screen on tap)
-    let toastEl = document.getElementById('tts-toast');
-    if(!toastEl){
-      toastEl = document.createElement('div');
-      toastEl.id = 'tts-toast';
-      toastEl.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;padding:8px 16px;font-size:13px;color:#fff;background:#1e293b;text-align:center;transition:opacity .3s;opacity:0;pointer-events:none';
-      document.body.appendChild(toastEl);
-    }
-    function showToast(msg){
-      toastEl.style.opacity = '1';
-      toastEl.innerHTML += '<br>' + msg;
-    }
-
     // Word-level TTS buttons
     rootEl.querySelectorAll('.tts-btn').forEach(btn=>{
       btn.addEventListener('click', function(e){
         e.stopPropagation();
-        // Visual click feedback
         this.style.background = '#dbeafe';
         const b = this;
         setTimeout(function(){ b.style.background = ''; }, 300);
-        showToast('\u{1F50A} Playing: ' + (this.dataset.tts||'').slice(0, 40) + '...');
         TTS.speak(this.dataset.tts, this);
       });
     });
@@ -349,7 +334,6 @@ const WordRenderer = (function(){
         let text = '';
         chapter.querySelectorAll('.story-en').forEach(el=>{ text += el.textContent + ' '; });
         chapter.querySelectorAll('.story-block-en p').forEach(el=>{ text += el.textContent + ' '; });
-        showToast('\u{1F50A} Playing chapter...');
         if(text.trim()) TTS.speakLong(text.trim(), this);
       });
     });
