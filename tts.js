@@ -5,9 +5,11 @@ const TTS = (function(){
   let rate = 0.8;
   let speaking = false;
   let currentBtn = null;
-  let webSpeechWorks = null; // null=untested, true/false after first try
 
-  // Audio element for fallback
+  // Detect mobile: on mobile, skip Web Speech entirely → use audio directly
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+  // Audio element for playback
   let audioEl = null;
   function getAudio(){
     if(!audioEl){
@@ -18,7 +20,7 @@ const TTS = (function(){
     return audioEl;
   }
 
-  /* ── Pick best English voice ── */
+  /* ── Pick best English voice (desktop only) ── */
   function pickVoice(){
     if(!synth) return;
     try {
@@ -39,48 +41,19 @@ const TTS = (function(){
         const found = voices.find(test);
         if(found){ enVoice = found; break; }
       }
-      if(enVoice) console.log('TTS voice:', enVoice.name, enVoice.lang);
     } catch(e){}
   }
 
-  if(synth){
+  if(!isMobile && synth){
     try {
       if(synth.getVoices().length) pickVoice();
       synth.addEventListener('voiceschanged', pickVoice);
     } catch(e){}
   }
 
-  /* ── 有道词典 TTS (国内可用，美式发音) ── */
+  /* ── 有道词典 TTS ── */
   function youdaoUrl(text){
     return 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
-  }
-
-  function speakFallback(text, btn, onEnd){
-    const audio = getAudio();
-    // 有道对长文本也能处理，但太长会失败，截取前段
-    const shortText = text.length > 300 ? text.slice(0, 300) : text;
-    audio.src = youdaoUrl(shortText);
-
-    speaking = true;
-    currentBtn = btn;
-    if(btn) btn.classList.add('tts-playing');
-
-    audio.onended = function(){
-      speaking = false;
-      if(btn) btn.classList.remove('tts-playing');
-      currentBtn = null;
-      if(onEnd) onEnd();
-    };
-    audio.onerror = function(){
-      speaking = false;
-      if(btn) btn.classList.remove('tts-playing');
-      currentBtn = null;
-    };
-    audio.play().catch(function(){
-      speaking = false;
-      if(btn) btn.classList.remove('tts-playing');
-      currentBtn = null;
-    });
   }
 
   function clearState(){
@@ -89,21 +62,30 @@ const TTS = (function(){
     currentBtn = null;
   }
 
-  /* ── Main speak ── */
-  function speak(text, btn, onEnd){
-    if(speaking){
-      stop();
-      // Toggle off if same button
-      if(currentBtn === btn) return;
-    }
+  /* ── Audio playback (有道) ── */
+  function playAudio(text, btn, onEnd){
+    const audio = getAudio();
+    // Stop any current playback
+    audio.pause();
+    audio.currentTime = 0;
 
-    // Already know Web Speech doesn't work → fallback
-    if(webSpeechWorks === false || !synth){
-      speakFallback(text, btn, onEnd);
-      return;
-    }
+    const shortText = text.length > 300 ? text.slice(0, 300) : text;
+    audio.src = youdaoUrl(shortText);
 
-    // Try Web Speech API
+    speaking = true;
+    currentBtn = btn;
+    if(btn) btn.classList.add('tts-playing');
+
+    audio.onended = function(){
+      clearState();
+      if(onEnd) onEnd();
+    };
+    audio.onerror = function(){ clearState(); };
+    audio.play().catch(function(){ clearState(); });
+  }
+
+  /* ── Web Speech playback (desktop) ── */
+  function playSpeech(text, btn, onEnd){
     try { synth.cancel(); } catch(e){}
 
     const utter = new SpeechSynthesisUtterance(text);
@@ -116,46 +98,10 @@ const TTS = (function(){
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
-    let started = false;
-    let startTime = Date.now();
+    utter.onend = function(){ clearState(); if(onEnd) onEnd(); };
+    utter.onerror = function(){ clearState(); };
 
-    utter.onstart = function(){ started = true; };
-
-    utter.onend = function(){
-      // Too fast & didn't really start → silent fail
-      if(!started || (Date.now() - startTime < 500 && text.length > 3)){
-        webSpeechWorks = false;
-        clearState();
-        speakFallback(text, btn, onEnd);
-        return;
-      }
-      webSpeechWorks = true;
-      clearState();
-      if(onEnd) onEnd();
-    };
-
-    utter.onerror = function(){
-      webSpeechWorks = false;
-      clearState();
-      speakFallback(text, btn, onEnd);
-    };
-
-    try { synth.speak(utter); } catch(e){
-      webSpeechWorks = false;
-      clearState();
-      speakFallback(text, btn, onEnd);
-      return;
-    }
-
-    // 2s safety timeout
-    setTimeout(function(){
-      if(speaking && !started){
-        try { synth.cancel(); } catch(e){}
-        webSpeechWorks = false;
-        clearState();
-        speakFallback(text, btn, onEnd);
-      }
-    }, 2000);
+    try { synth.speak(utter); } catch(e){ clearState(); }
 
     // Chrome long utterance hack
     if(/chrome/i.test(navigator.userAgent) && !/edg/i.test(navigator.userAgent)){
@@ -166,14 +112,24 @@ const TTS = (function(){
     }
   }
 
+  /* ── Main speak: single text ── */
+  function speak(text, btn, onEnd){
+    // Toggle off if clicking same button
+    if(speaking && currentBtn === btn){ stop(); return; }
+    if(speaking) stop();
+
+    if(isMobile || !synth){
+      playAudio(text, btn, onEnd);
+    } else {
+      playSpeech(text, btn, onEnd);
+    }
+  }
+
   /* ── Speak long text (story chapters) ── */
   function speakLong(text, btn){
-    if(speaking){
-      stop();
-      if(currentBtn === btn) return;
-    }
+    if(speaking && currentBtn === btn){ stop(); return; }
+    if(speaking) stop();
 
-    // Split into sentence chunks
     const chunks = splitText(text, 250);
     let i = 0;
     speaking = true;
@@ -182,42 +138,34 @@ const TTS = (function(){
 
     function next(){
       if(i >= chunks.length || !speaking){ clearState(); return; }
+      const chunk = chunks[i].trim();
+      i++;
 
-      if(webSpeechWorks === false || !synth){
-        // Fallback path: chain audio playback
-        speakFallbackChain(chunks, i, btn);
-        return;
+      if(isMobile || !synth){
+        // Audio chain
+        const audio = getAudio();
+        audio.pause();
+        audio.src = youdaoUrl(chunk);
+        audio.onended = next;
+        audio.onerror = function(){ clearState(); };
+        audio.play().catch(function(){ clearState(); });
+      } else {
+        // Web Speech chain
+        const utter = new SpeechSynthesisUtterance(chunk);
+        if(enVoice) utter.voice = enVoice;
+        utter.lang = 'en-US';
+        utter.rate = rate;
+        utter.pitch = 1;
+        utter.onend = next;
+        utter.onerror = function(){ clearState(); };
+        try { synth.speak(utter); } catch(e){ clearState(); }
       }
-
-      // Web Speech path
-      const utter = new SpeechSynthesisUtterance(chunks[i].trim());
-      if(enVoice) utter.voice = enVoice;
-      utter.lang = 'en-US';
-      utter.rate = rate;
-      utter.pitch = 1;
-      utter.onend = function(){ i++; next(); };
-      utter.onerror = function(){ clearState(); };
-      try { synth.speak(utter); } catch(e){ clearState(); }
     }
-    next();
-  }
-
-  function speakFallbackChain(chunks, startIdx, btn){
-    let i = startIdx;
-    function next(){
-      if(i >= chunks.length || !speaking){ clearState(); return; }
-      speakFallback(chunks[i], null, function(){ i++; next(); });
-    }
-    // Keep btn state on the chapter button
-    speaking = true;
-    currentBtn = btn;
-    if(btn) btn.classList.add('tts-playing');
     next();
   }
 
   function splitText(text, maxLen){
     const result = [];
-    // Split by sentence-ending punctuation
     const parts = text.match(/[^.!?]+[.!?]*/g) || [text];
     let chunk = '';
     for(const s of parts){
