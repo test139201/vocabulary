@@ -20,15 +20,48 @@ const TTS = (function(){
   }
   dbg('init: mobile=' + isMobile + ', synth=' + !!synth);
 
-  // Audio element for playback
+  // Audio element for playback — create eagerly so we can unlock it
   let audioEl = null;
+  let audioUnlocked = false;
   function getAudio(){
     if(!audioEl){
-      audioEl = document.createElement('audio');
-      audioEl.style.display = 'none';
-      document.body.appendChild(audioEl);
+      audioEl = new Audio();
+      audioEl.preload = 'auto';
+      dbg('audio element created');
     }
     return audioEl;
+  }
+
+  /* ── Unlock audio on first user tap (mobile requirement) ── */
+  function unlockAudio(){
+    if(audioUnlocked) return;
+    var a = getAudio();
+    // Play a tiny silent data URI to unlock the audio context
+    try {
+      a.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAYYoRwmHAAAAAAD/+1DEAAAHAAGf9AAAIgAANIAAAARMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7UMQbA8AAAaQAAAAAAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==';
+      var p = a.play();
+      if(p && p.then){
+        p.then(function(){
+          audioUnlocked = true;
+          a.pause();
+          dbg('audio UNLOCKED ok');
+        }).catch(function(e){
+          dbg('audio unlock failed: ' + e.message);
+        });
+      }
+    } catch(e){
+      dbg('audio unlock error: ' + e.message);
+    }
+  }
+
+  // Try to unlock on any user interaction
+  if(isMobile){
+    var unlockEvents = ['touchstart','touchend','click'];
+    function onFirstInteraction(){
+      unlockAudio();
+      unlockEvents.forEach(function(ev){ document.removeEventListener(ev, onFirstInteraction, true); });
+    }
+    unlockEvents.forEach(function(ev){ document.addEventListener(ev, onFirstInteraction, true); });
   }
 
   /* ── Pick best English voice (desktop only) ── */
@@ -75,31 +108,38 @@ const TTS = (function(){
 
   /* ── Audio playback (有道) ── */
   function playAudio(text, btn, onEnd){
-    const audio = getAudio();
+    var audio = getAudio();
     // Stop any current playback
     audio.pause();
     audio.currentTime = 0;
 
-    const shortText = text.length > 300 ? text.slice(0, 300) : text;
-    audio.src = youdaoUrl(shortText);
+    var shortText = text.length > 300 ? text.slice(0, 300) : text;
+    var url = youdaoUrl(shortText);
+    dbg('playAudio url=' + url.slice(0, 80) + '...');
+    audio.src = url;
 
     speaking = true;
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
+    audio.onloadeddata = function(){
+      dbg('audio loaded, duration=' + audio.duration);
+    };
     audio.onended = function(){
       dbg('audio ended OK');
       clearState();
       if(onEnd) onEnd();
     };
     audio.onerror = function(e){
-      dbg('audio error: ' + (e.message||'unknown'));
+      var code = audio.error ? audio.error.code : '?';
+      var msg = audio.error ? audio.error.message : 'unknown';
+      dbg('audio error: code=' + code + ' msg=' + msg);
       clearState();
     };
     audio.play().then(function(){
-      dbg('audio play started');
+      dbg('audio play started!');
     }).catch(function(e){
-      dbg('audio play blocked: ' + e.message);
+      dbg('audio play BLOCKED: ' + e.message);
       clearState();
     });
   }
@@ -134,47 +174,70 @@ const TTS = (function(){
 
   /* ── Main speak: single text ── */
   function speak(text, btn, onEnd){
-    dbg('speak called, text=' + (text||'').slice(0,30));
+    dbg('speak called, text="' + (text||'').slice(0,30) + '"');
     // Toggle off if clicking same button
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
     if(isMobile || !synth){
-      dbg('using audio fallback (youdao)');
+      dbg('→ audio path (youdao)');
       playAudio(text, btn, onEnd);
     } else {
-      dbg('using Web Speech');
+      dbg('→ Web Speech path');
       playSpeech(text, btn, onEnd);
     }
   }
 
   /* ── Speak long text (story chapters) ── */
   function speakLong(text, btn){
+    dbg('speakLong called, len=' + text.length);
     if(speaking && currentBtn === btn){ stop(); return; }
     if(speaking) stop();
 
-    const chunks = splitText(text, 250);
-    let i = 0;
+    var chunks = splitText(text, 250);
+    dbg('speakLong: ' + chunks.length + ' chunks');
+    var i = 0;
     speaking = true;
     currentBtn = btn;
     if(btn) btn.classList.add('tts-playing');
 
     function next(){
-      if(i >= chunks.length || !speaking){ clearState(); return; }
-      const chunk = chunks[i].trim();
+      if(i >= chunks.length || !speaking){
+        dbg('speakLong: all chunks done');
+        clearState();
+        return;
+      }
+      var chunk = chunks[i].trim();
+      dbg('speakLong chunk #' + (i+1) + '/' + chunks.length + ': "' + chunk.slice(0,40) + '..."');
       i++;
 
       if(isMobile || !synth){
-        // Audio chain
-        const audio = getAudio();
+        // Mobile: use audio element
+        var audio = getAudio();
         audio.pause();
+        audio.currentTime = 0;
         audio.src = youdaoUrl(chunk);
-        audio.onended = next;
-        audio.onerror = function(){ clearState(); };
-        audio.play().catch(function(){ clearState(); });
+        audio.onloadeddata = function(){
+          dbg('chunk loaded, dur=' + audio.duration);
+        };
+        audio.onended = function(){
+          dbg('chunk ended OK, next...');
+          next();
+        };
+        audio.onerror = function(){
+          var code = audio.error ? audio.error.code : '?';
+          dbg('chunk error: code=' + code);
+          clearState();
+        };
+        audio.play().then(function(){
+          dbg('chunk playing!');
+        }).catch(function(e){
+          dbg('chunk play BLOCKED: ' + e.message);
+          clearState();
+        });
       } else {
-        // Web Speech chain
-        const utter = new SpeechSynthesisUtterance(chunk);
+        // Desktop: Web Speech chain
+        var utter = new SpeechSynthesisUtterance(chunk);
         if(enVoice) utter.voice = enVoice;
         utter.lang = 'en-US';
         utter.rate = rate;
@@ -188,10 +251,11 @@ const TTS = (function(){
   }
 
   function splitText(text, maxLen){
-    const result = [];
-    const parts = text.match(/[^.!?]+[.!?]*/g) || [text];
-    let chunk = '';
-    for(const s of parts){
+    var result = [];
+    var parts = text.match(/[^.!?]+[.!?]*/g) || [text];
+    var chunk = '';
+    for(var j = 0; j < parts.length; j++){
+      var s = parts[j];
       if((chunk + s).length > maxLen && chunk){
         result.push(chunk.trim());
         chunk = '';
