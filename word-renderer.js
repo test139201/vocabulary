@@ -8,8 +8,12 @@ const WordRenderer = (function(){
   /* ── render one word card ── */
   function renderWord(w, idx){
     const posKey = w.posClass || 'n';
+    // Build TTS text: word, then example sentences
+    const ttsText = w.word + '. ' + (w.sentences||[]).map(s=>s.en).join('. ');
+
     const header = `
       <div class="wc-header pos-${posKey}">
+        <button class="tts-btn" data-tts="${ttsText.replace(/"/g,'&quot;')}" title="朗读单词和例句">\u{1F50A}</button>
         <span class="wc-word">${w.word}</span>
         <span class="wc-phonetic">${w.phonetic}</span>
         <span class="wc-pos">${POS_LABELS[posKey]||w.pos}</span>
@@ -154,7 +158,16 @@ const WordRenderer = (function(){
     posTypes.forEach(p=>{
       filterHtml += `<button class="fbtn" data-filter="${p}">${POS_LABELS[p]||p}</button>`;
     });
-    filterHtml += `<button class="fbtn" data-action="quiz" style="margin-left:auto;background:#8b5cf6;color:#fff;border-color:#8b5cf6">\u{1F3AE} \u8D76\u5FEB\u6D4B\u8BD5</button></div>`;
+    filterHtml += `<span style="margin-left:auto;display:flex;align-items:center;gap:.5rem">
+      <span style="font-size:.75rem;color:var(--text3)">\u{1F3A4} \u8BED\u901F:</span>
+      <select class="tts-speed">
+        <option value="0.6">\u8F83\u6162</option>
+        <option value="0.8" selected>\u9002\u4E2D</option>
+        <option value="1">\u6B63\u5E38</option>
+        <option value="1.2">\u8F83\u5FEB</option>
+      </select>
+      <button class="fbtn" data-action="quiz" style="background:#8b5cf6;color:#fff;border-color:#8b5cf6">\u{1F3AE} \u8D76\u5FEB\u6D4B\u8BD5</button>
+    </span></div>`;
 
     /* Search */
     const searchHtml = `<div class="search-wrap" style="margin-bottom:1.5rem">
@@ -211,6 +224,9 @@ const WordRenderer = (function(){
 
     // Quiz
     initQuiz(unit, rootEl);
+
+    // TTS buttons on word cards
+    initTTS(rootEl);
   }
 
   /* ── Quiz Mode ── */
@@ -279,6 +295,41 @@ const WordRenderer = (function(){
     if(nextBtn) nextBtn.addEventListener('click', nextQuestion);
     if(closeBtn) closeBtn.addEventListener('click', function(){ overlay.classList.remove('active'); });
     overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.classList.remove('active'); });
+  }
+
+  /* ── TTS init: bind all .tts-btn and .tts-chapter-btn ── */
+  function initTTS(rootEl){
+    if(typeof TTS === 'undefined') return;
+
+    // Word-level TTS buttons
+    rootEl.querySelectorAll('.tts-btn').forEach(btn=>{
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        TTS.speak(this.dataset.tts, this);
+      });
+    });
+
+    // Chapter-level TTS buttons (story)
+    rootEl.querySelectorAll('.tts-chapter-btn').forEach(btn=>{
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        // Collect English text from the chapter
+        const chapter = this.closest('.story-chapter');
+        let text = '';
+        // For bilingual (ln) chapters: grab .story-en lines
+        chapter.querySelectorAll('.story-en').forEach(el=>{ text += el.textContent + ' '; });
+        // For block (Chapter 6) format: grab .story-block-en paragraphs
+        chapter.querySelectorAll('.story-block-en p').forEach(el=>{ text += el.textContent + ' '; });
+        if(text.trim()) TTS.speakLong(text.trim(), this);
+      });
+    });
+
+    // Speed control
+    rootEl.querySelectorAll('.tts-speed').forEach(sel=>{
+      sel.addEventListener('change', function(){
+        TTS.setRate(parseFloat(this.value));
+      });
+    });
   }
 
   /* ── Render Index Page ── */
@@ -394,11 +445,21 @@ const WordRenderer = (function(){
 
     const storyHtml = `
       <h2>\u{1F4D6} A Story With All the Words</h2>
-      <div class="story-hint">\u{1F4A1} Click any highlighted word to jump to its detailed analysis page / \u70B9\u51FB\u9AD8\u4EAE\u5355\u8BCD\u53EF\u8DF3\u8F6C\u5230\u8BE6\u7EC6\u5206\u6790\u9875</div>
+      <div class="story-hint">
+        \u{1F4A1} \u70B9\u51FB\u9AD8\u4EAE\u5355\u8BCD\u8DF3\u8F6C\u8BE6\u7EC6\u5206\u6790 | \u70B9\u51FB \u{1F50A} \u6309\u94AE\u6717\u8BFB\u6574\u7AE0
+        <span style="margin-left:1rem">\u{1F3A4} \u8BED\u901F:
+          <select class="tts-speed">
+            <option value="0.6">\u8F83\u6162</option>
+            <option value="0.8" selected>\u9002\u4E2D</option>
+            <option value="1">\u6B63\u5E38</option>
+            <option value="1.2">\u8F83\u5FEB</option>
+          </select>
+        </span>
+      </div>
       <div class="story-card">
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 1 \xB7 A Busy Morning</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 1 \xB7 A Busy Morning</div>
           ${ln(
             `${wl('hello','Hello')}! My ${wl('name','name')} is Li Ming. I am a ${wl('nice','nice')} boy from ${wl('china','China')}.`,
             `\u4F60\u597D\uFF01\u6211\u7684\u540D\u5B57\u53EB\u674E\u660E\u3002\u6211\u662F\u4E00\u4E2A\u6765\u81EA\u4E2D\u56FD\u7684\u53CB\u5584\u7537\u5B69\u3002`
@@ -442,7 +503,7 @@ const WordRenderer = (function(){
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 2 \xB7 New Friends at School</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 2 \xB7 New Friends at School</div>
           ${ln(
             `I walk into the ${wl('school','school')} ${wl('classroom','classroom')} and see a new girl.`,
             `\u6211\u8D70\u8FDB\u5B66\u6821\u7684\u6559\u5BA4\uFF0C\u770B\u5230\u4E00\u4E2A\u65B0\u6765\u7684\u5973\u5B69\u3002`
@@ -478,7 +539,7 @@ const WordRenderer = (function(){
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 3 \xB7 A Day of Lessons</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 3 \xB7 A Day of Lessons</div>
           ${ln(
             `My ${wl('favorite','favorite')} ${wl('subject','subject')} is ${wl('science','science')}. The teacher says today's class will be very ${wl('interesting','interesting')}.`,
             `\u6211\u6700\u559C\u6B22\u7684\u79D1\u76EE\u662F\u79D1\u5B66\u3002\u8001\u5E08\u8BF4\u4ECA\u5929\u7684\u8BFE\u4F1A\u5F88\u6709\u8DA3\u3002`
@@ -514,7 +575,7 @@ const WordRenderer = (function(){
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 4 \xB7 Sports and Shopping</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 4 \xB7 Sports and Shopping</div>
           ${ln(
             `After ${wl('school','school')}, ${wl('come','come')} on! Let's play ${wl('sport','sport')}s!`,
             `\u653E\u5B66\u540E\uFF0C\u52A0\u6CB9\uFF01\u6211\u4EEC\u53BB\u8FD0\u52A8\u5427\uFF01`
@@ -550,7 +611,7 @@ const WordRenderer = (function(){
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 5 \xB7 The Birthday Surprise</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 5 \xB7 The Birthday Surprise</div>
           ${ln(
             `${wl('when','When')} is your birthday? Is it in ${wl('January','January')} or ${wl('february','February')}?`,
             `\u4F60\u7684\u751F\u65E5\u662F\u4EC0\u4E48\u65F6\u5019\uFF1F\u662F\u4E00\u6708\u8FD8\u662F\u4E8C\u6708\uFF1F`
@@ -586,7 +647,7 @@ const WordRenderer = (function(){
         </div>
 
         <div class="story-chapter">
-          <div class="story-chapter-title">Chapter 6 \xB7 A Letter to My Future Self (Full English + Full Translation)</div>
+          <div class="story-chapter-title"><button class="tts-chapter-btn" title="朗读本章">\u{1F50A}</button> Chapter 6 \xB7 A Letter to My Future Self</div>
           <div class="story-block-en">
             <p>${wl('dear','Dear')} Future Me,</p>
             <p>${wl('hello','Hello')}! My ${wl('name','name')} is Li Ming. I am writing this letter at ${wl('school','school')} in ${wl('china','China')}, sitting on a ${wl('chair','chair')} in the ${wl('classroom','classroom')}. It is ${wl('january','January')} now, the ${wl('first','first')} ${wl('month','month')} of the new year, and I am very ${wl('happy','happy')}.</p>
@@ -661,6 +722,9 @@ const WordRenderer = (function(){
     document.addEventListener('click', function(e){
       if(!e.target.closest('.search-wrap')) resultsEl.classList.remove('active');
     });
+
+    // TTS for story chapters
+    initTTS(rootEl);
   }
 
   return { renderWord, renderUnit, renderIndex };
