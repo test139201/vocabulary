@@ -192,6 +192,8 @@ a.unit-card{text-decoration:none;color:inherit;display:block}
 .story-line{margin-bottom:.7rem}
 .story-en{font-size:.95rem;color:var(--text);line-height:1.8}
 .story-zh{font-size:.82rem;color:var(--text3);line-height:1.6;padding-left:.5rem;border-left:2px solid #e2e8f0;margin-top:.1rem}
+.story-en,.story-block-en p{transition:background .2s,box-shadow .2s;border-radius:4px;padding:2px 4px;margin:-2px -4px}
+.story-line-playing{background:rgba(59,130,246,.1);box-shadow:inset 3px 0 0 #3b82f6}
 .story-word{display:inline-block;color:#2563eb;font-weight:700;text-decoration:none;padding:0 3px;border-radius:3px;background:rgba(37,99,235,.06);border-bottom:2px solid rgba(37,99,235,.3);transition:all .15s;cursor:pointer}
 .story-word:hover{background:rgba(37,99,235,.12);border-bottom-color:#2563eb;transform:translateY(-1px)}
 .story-block-en{margin-bottom:1rem}

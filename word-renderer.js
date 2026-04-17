@@ -363,7 +363,7 @@ const WordRenderer = (function(){
       });
     });
 
-    // Chapter-level TTS buttons (story)
+    // Chapter-level TTS buttons (story) + click-to-seek on lines
     rootEl.querySelectorAll('.tts-chapter-btn').forEach(btn=>{
       btn.addEventListener('click', function(e){
         e.stopPropagation();
@@ -371,10 +371,47 @@ const WordRenderer = (function(){
         const b = this;
         setTimeout(function(){ b.style.background = ''; }, 300);
         const chapter = this.closest('.story-chapter');
-        let text = '';
-        chapter.querySelectorAll('.story-en').forEach(el=>{ text += el.textContent + ' '; });
-        chapter.querySelectorAll('.story-block-en p').forEach(el=>{ text += el.textContent + ' '; });
-        if(text.trim()) TTS.speakLong(text.trim(), this);
+        playChapterFrom(chapter, 0, this);
+      });
+    });
+
+    /* Collect English line elements for a chapter */
+    function getChapterLineEls(chapter){
+      const enEls = chapter.querySelectorAll('.story-en');
+      if(enEls.length) return Array.from(enEls);
+      return Array.from(chapter.querySelectorAll('.story-block-en p'));
+    }
+
+    /* Play a chapter starting from lineIdx */
+    function playChapterFrom(chapter, lineIdx, btn){
+      if(!btn) btn = chapter.querySelector('.tts-chapter-btn');
+      const lineEls = getChapterLineEls(chapter);
+      const lines = lineEls.map(el => el.textContent);
+      if(!lines.length) return;
+
+      // Highlight callback
+      TTS.setLineHighlight(function(idx){
+        lineEls.forEach((el, i) => {
+          if(i === idx){
+            el.classList.add('story-line-playing');
+          } else {
+            el.classList.remove('story-line-playing');
+          }
+        });
+      });
+
+      TTS.speakLines(lines, lineIdx, btn);
+    }
+
+    /* Click on a story line to jump playback there */
+    rootEl.querySelectorAll('.story-chapter').forEach(chapter=>{
+      const lineEls = getChapterLineEls(chapter);
+      lineEls.forEach((el, idx)=>{
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', function(e){
+          if(e.target.closest('a')) return; // let word links work
+          playChapterFrom(chapter, idx, null);
+        });
       });
     });
 

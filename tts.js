@@ -280,6 +280,63 @@ const TTS = (function(){
     return result;
   }
 
+  /* ── Speak an array of lines, starting from a given index ── */
+  function speakLines(lines, startIdx, btn){
+    if(speaking) stop();
+    if(!lines.length) return;
+
+    var idx = startIdx || 0;
+    speaking = true;
+    currentBtn = btn;
+    if(btn) btn.classList.add('tts-playing');
+
+    function next(){
+      if(idx >= lines.length || !speaking){
+        clearState();
+        if(typeof onLineHighlight === 'function') onLineHighlight(-1);
+        return;
+      }
+      var line = lines[idx].trim();
+      if(typeof onLineHighlight === 'function') onLineHighlight(idx);
+      idx++;
+      if(!line){ next(); return; }
+
+      var chunks = splitText(line, 180);
+      var ci = 0;
+      function nextChunk(){
+        if(ci >= chunks.length || !speaking){ next(); return; }
+        var chunk = chunks[ci].trim();
+        ci++;
+
+        if(isMobile || !synth){
+          var u1 = baiduUrl(chunk, baiduSpd());
+          var u2 = youdaoUrl(chunk);
+          tryPlay(u1, nextChunk, function(){
+            tryFetchPlay(u1, nextChunk, function(){
+              tryPlay(u2, nextChunk, function(){
+                tryFetchPlay(u2, nextChunk, function(){ clearState(); if(typeof onLineHighlight === 'function') onLineHighlight(-1); });
+              });
+            });
+          });
+        } else {
+          var utter = new SpeechSynthesisUtterance(chunk);
+          if(enVoice) utter.voice = enVoice;
+          utter.lang = 'en-US';
+          utter.rate = rate;
+          utter.pitch = 1;
+          utter.onend = nextChunk;
+          utter.onerror = function(){ clearState(); if(typeof onLineHighlight === 'function') onLineHighlight(-1); };
+          try { synth.speak(utter); } catch(e){ clearState(); }
+        }
+      }
+      nextChunk();
+    }
+    next();
+  }
+
+  var onLineHighlight = null;
+  function setLineHighlight(fn){ onLineHighlight = fn; }
+
   function setRate(r){ rate = r; }
   function getRate(){ return rate; }
 
@@ -295,12 +352,13 @@ const TTS = (function(){
         if(src.indexOf('blob:') === 0) URL.revokeObjectURL(src);
       } catch(e){}
     });
+    if(typeof onLineHighlight === 'function') onLineHighlight(-1);
     clearState();
   }
 
   function isSpeaking(){ return speaking; }
 
-  return { speak, speakLong, setRate, getRate, stop, isSpeaking, supported: true };
+  return { speak, speakLong, speakLines, setLineHighlight, setRate, getRate, stop, isSpeaking, supported: true };
 })();
 
 if(typeof window !== 'undefined') window.TTS = TTS;
