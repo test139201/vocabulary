@@ -121,6 +121,14 @@ a.unit-card{text-decoration:none;color:inherit;display:block}
 .dim-panel.dp-fun .dim-title{color:#db2777}
 .dim-panel.dp-usage{border-left-color:#64748b}
 .dim-panel.dp-usage .dim-title{color:#475569}
+.dim-panel.dp-visual{border-left-color:#f472b6}
+.dim-panel.dp-visual .dim-title{color:#db2777}
+.dim-panel.dp-confuse{border-left-color:#fb923c}
+.dim-panel.dp-confuse .dim-title{color:#ea580c}
+.dim-panel.dp-rhyme{border-left-color:#a78bfa}
+.dim-panel.dp-rhyme .dim-title{color:#7c3aed}
+.dim-panel.dp-scene{border-left-color:#34d399}
+.dim-panel.dp-scene .dim-title{color:#059669}
 
 .dim-panel p,.dim-panel li{font-size:.82rem;color:var(--text2);line-height:1.6}
 .dim-panel ul{padding-left:1.1rem;margin:0}
