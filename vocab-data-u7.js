@@ -21,7 +21,11 @@ const UNIT7 = {
         { en: "Where were you born?", zh: "你在哪里出生的？" }
       ],
       fun: "be born 永远是被动语态！没有人说 'I born'——因为没人能自己把自己生出来。born 和 borne 都是 bear 的过去分词，但 born 专指出生，borne 指承受。",
-      usage: "be born in + 地点/年份。be born on + 具体日期。was/were born 是固定搭配，永远用过去时被动语态。"
+      usage: "be born in + 地点/年份。be born on + 具体日期。was/were born 是固定搭配，永远用过去时被动语态。",
+      visual: "想象一个超大的快递箱子从天上掉下来，箱子打开，蹦出来一个婴儿，包裹上写着'出生快递，签收地：北京'，旁边的护士拿着扫码枪滴一声签收了。",
+      confuse: "born vs borne：born 专指出生（I was born），borne 指承受/搬运（The cost was borne by him）。born vs burn：born 是出生，burn 是燃烧，别把宝宝烧了！",
+      rhyme: "born 搬出来，was born 被动态；地点年份用 in，具体日期 on 来带。",
+      scene: "出生相关词汇：born（出生）、birth（出生）、baby（婴儿）、hospital（医院）、birthday（生日）、age（年龄）、grow up（长大）。"
     },
     {
       word: "strict",
@@ -39,7 +43,11 @@ const UNIT7 = {
         { en: "My parents are strict with me about homework.", zh: "我父母对我的作业要求很严格。" }
       ],
       fun: "be strict with sb. = 对某人严格。英语有句谚语：Strict parents raise responsible children.（严格的父母养出有责任心的孩子。）和中文'严师出高徒'异曲同工！",
-      usage: "be strict with sb. = 对某人严格。be strict about/in sth. = 在某事上严格。注意介词搭配不能搞混。"
+      usage: "be strict with sb. = 对某人严格。be strict about/in sth. = 在某事上严格。注意介词搭配不能搞混。",
+      visual: "想象一个老师手里拿着一把超长的尺子，眼睛像X光一样扫描每个同学的作业，谁写错一个字尺子就自动伸长敲桌子，全班同学吓得腰板挺得像竹竿一样直。",
+      confuse: "strict vs serious：strict 是严格（对人有要求），serious 是严肃/认真（表情或态度）。老师可以 strict（严格要求你）但不 serious（脸上带笑）。",
+      rhyme: "strict 死追课，规则拉得紧；with 对人严，about 对事真。",
+      scene: "描述老师相关词汇：strict（严格的）、friendly（友好的）、nice（好的）、primary school（小学）、character（性格）、born（出生）。"
     },
     {
       word: "friendly",
@@ -57,7 +65,11 @@ const UNIT7 = {
         { en: "She gave me a friendly smile.", zh: "她给了我一个友好的微笑。" }
       ],
       fun: "以 -ly 结尾但不是副词的形容词还有：lovely（可爱的）、lonely（孤独的）、lively（活泼的）、ugly（丑的）、silly（傻的）。不要被 -ly 骗了！",
-      usage: "be friendly to/towards sb. = 对某人友好。friendly 没有副词形式，要说 in a friendly way/manner。user-friendly = 用户友好的。"
+      usage: "be friendly to/towards sb. = 对某人友好。friendly 没有副词形式，要说 in a friendly way/manner。user-friendly = 用户友好的。",
+      visual: "想象一只金毛犬见到每个路人都摇着尾巴冲上去拥抱，连邮递员都被它舔了一脸口水，邮递员笑得邮件撒了一地——这就是 friendly 的最高境界！",
+      confuse: "friendly vs friend：friendly 是形容词（友好的），friend 是名词（朋友）。注意 friendly 以 -ly 结尾却不是副词！不能说 He speaks friendly，要说 He speaks in a friendly way。",
+      rhyme: "friendly 像朋友，-ly 结尾是形容；to 和 towards 都能用，待人友好暖融融。",
+      scene: "性格描述词汇：friendly（友好的）、strict（严格的）、nice（好的）、naughty（淘气的）、kind（善良的）、character（性格）。"
     },
     {
       word: "primary",
@@ -75,7 +87,11 @@ const UNIT7 = {
         { en: "Reading is a primary skill for students.", zh: "阅读是学生的基本技能。" }
       ],
       fun: "primary school（小学）在美国叫 elementary school。primary 在美国政治中还指'初选'（primary election）——选举的'第一轮'。primary colors（三原色）= 红黄蓝，一切颜色的'起源'。",
-      usage: "primary school = 小学。primary 强调'最初的、首要的'。primary concern = 首要关切。"
+      usage: "primary school = 小学。primary 强调'最初的、首要的'。primary concern = 首要关切。",
+      visual: "想象一个巨大的金色奖杯上刻着大大的数字'1'，王子(prince)站在奖杯上骄傲地宣布：'我是 primary——第一名！'周围的小学生们仰头崇拜地看着。",
+      confuse: "primary vs prime：都有'首要的'意思，但 primary 多指'初级的/最初的'（primary school），prime 多指'最好的/全盛的'（prime time 黄金时段）。primary vs private：primary 是初级的，private 是私人的，别混了！",
+      rhyme: "primary 排第一，小学就是初级地；prim 开头记得牢，王子 prince 也第一。",
+      scene: "学校相关词汇：primary school（小学）、secondary school（中学）、teacher（老师）、strict（严格的）、friendly（友好的）、student（学生）。"
     },
     {
       word: "primary school",
@@ -93,7 +109,11 @@ const UNIT7 = {
         { en: "My primary school was near my home.", zh: "我的小学离我家很近。" }
       ],
       fun: "英式英语说 primary school，美式英语说 elementary school。英国的小学通常是5-11岁，中国是6-12岁。你还记得你的小学叫什么名字吗？",
-      usage: "at primary school = 在上小学（英式）。in elementary school = 在上小学（美式）。注意英式用 at，美式用 in。"
+      usage: "at primary school = 在上小学（英式）。in elementary school = 在上小学（美式）。注意英式用 at，美式用 in。",
+      visual: "想象一群小豆丁背着比自己还大的书包，排着队走进一个写着'第一关'的彩虹大门，门口有个巨大的'1'气球。毕业时他们从滑梯滑到隔壁'第二关'——中学！",
+      confuse: "primary school（英式）vs elementary school（美式）：同一个意思，不同说法。primary school 不要写成 primery school，注意拼写是 a-r-y 结尾！",
+      rhyme: "primary school 小学校，英式说法要记好；美国人说 elementary，at 和 in 别搞错了。",
+      scene: "学校生活词汇：primary school（小学）、born（出生）、strict（严格的）、friendly（友好的）、character（角色）、was/were（过去式）、ago（以前）。"
     },
     {
       word: "town",
@@ -111,7 +131,11 @@ const UNIT7 = {
         { en: "Our town has a beautiful park.", zh: "我们镇上有一个美丽的公园。" }
       ],
       fun: "英语中大小排序：village（村庄）< town（城镇）< city（城市）< metropolis（大都市）。go to town 有个俚语意思 = 大干一场/全力以赴！",
-      usage: "in town = 在城里。out of town = 出城了/不在。go to town = 进城/全力以赴。hometown = 家乡。"
+      usage: "in town = 在城里。out of town = 出城了/不在。go to town = 进城/全力以赴。hometown = 家乡。",
+      visual: "想象一个地方，左边是几栋小楼和一条热闹的街，右边是田野和牛羊——不大不小，刚好夹在 village 和 city 中间。镇长站在中间举着牌子：'我们不大不小刚刚好！'",
+      confuse: "town vs city：town 是城镇（比较小），city 是城市（比较大，有市政府）。town vs down：town 是城镇，down 是向下，发音相似别写错。downtown = down + town = 市中心。",
+      rhyme: "town 城镇不大不小，village 和 city 中间找；hometown 家乡最亲切，downtown 市中心热闹。",
+      scene: "居住地相关词汇：town（城镇）、village（村庄）、garden（花园）、pond（池塘）、store（商店）、movie theater（电影院）、born（出生）。"
     },
     {
       word: "village",
@@ -129,7 +153,11 @@ const UNIT7 = {
         { en: "There were lots of trees in the village.", zh: "村庄里有很多树。" }
       ],
       fun: "莎士比亚笔下最著名的角色 Hamlet（哈姆雷特）的名字和 hamlet（小村庄）拼写一样！Global Village（地球村）是指互联网让世界变得像一个村庄一样紧密相连。",
-      usage: "in a/the village = 在村子里。village 通常比 town 小。fishing village = 渔村。global village = 地球村。"
+      usage: "in a/the village = 在村子里。village 通常比 town 小。fishing village = 渔村。global village = 地球村。",
+      visual: "想象一个迷你小村子，几间茅草屋围着一棵大树，鸡鸭鹅满地跑，村口的大爷坐在树下下棋。旁边立着一块路牌：'village 人口：50人，含鸡鸭鹅200只'。",
+      confuse: "village vs town：village 是村庄（很小，几十户人家），town 是城镇（更大，有商店街道）。village vs villa：village 是村庄，villa 是别墅，虽然同源但大不同！",
+      rhyme: "village 小村庄，villa 别墅旁；villager 村民住，全球也有地球庄。",
+      scene: "乡村生活词汇：village（村庄）、town（城镇）、garden（花园）、pond（池塘）、store（商店）、back（回）、ago（以前）。"
     },
     {
       word: "nice",
@@ -147,7 +175,11 @@ const UNIT7 = {
         { en: "She is a very nice teacher.", zh: "她是一位非常好的老师。" }
       ],
       fun: "nice 是英语中最'万能'也最'空洞'的形容词——什么都能说 nice，但什么都说得不够具体。英语老师常说：Don't just say 'nice'! 尝试用 wonderful, fantastic, brilliant 等更精确的词。",
-      usage: "Nice to meet you. = 很高兴认识你。It's nice of you to... = 你真好……。have a nice day = 祝你有美好的一天。"
+      usage: "Nice to meet you. = 很高兴认识你。It's nice of you to... = 你真好……。have a nice day = 祝你有美好的一天。",
+      visual: "想象一个万能胶水瓶上写着'NICE'，什么东西都能往上粘：好吃的饭——nice！好看的衣服——nice！好天气——nice！旁边的英语老师气得头冒烟：'能不能换个词！'",
+      confuse: "nice vs kind：nice 偏向'令人愉快的'（nice weather 好天气），kind 偏向'善良的/体贴的'（kind heart 善良的心）。nice vs rice：nice 是好的，rice 是米饭，一个字母之差，别写成'米饭老师'！",
+      rhyme: "nice 万能好好好，天气人物都能到；想要作文得高分，换个词汇更奇妙。",
+      scene: "描述人物性格：nice（好的）、friendly（友好的）、strict（严格的）、naughty（淘气的）、kind（善良的）、character（人物/性格）。"
     },
     {
       word: "US",
@@ -165,7 +197,11 @@ const UNIT7 = {
         { en: "The US is a big country.", zh: "美国是一个大国。" }
       ],
       fun: "美国有50个州（states），每个州都有自己的法律，就像50个'小国家'联合在一起。美国国旗上的50颗星代表50个州，13条红白条纹代表最初的13个殖民地。",
-      usage: "the US / the USA 前面要加 the。American 既指'美国的'也指'美国人'。注意：America 还可以指整个美洲大陆。"
+      usage: "the US / the USA 前面要加 the。American 既指'美国的'也指'美国人'。注意：America 还可以指整个美洲大陆。",
+      visual: "想象50个小人手拉手围成一个大圈，每人举着一颗星星，他们大喊'United！States！'然后合体成一面巨大的星条旗飘在天上，旁边路过的人说：'US 还是 us？大写还是小写？'",
+      confuse: "US vs us：US（大写）= 美国，us（小写）= 我们。USA vs UK：USA 是美国，UK 是英国。American 既指美国的也指美洲的，南美人有时对此不太开心。",
+      rhyme: "US 大写是美国，us 小写是我们；前面记得加个 the，五十颗星亮闪闪。",
+      scene: "国家与地点词汇：US（美国）、town（城镇）、village（村庄）、born（出生）、primary school（小学）。"
     },
     {
       word: "hey",
@@ -183,7 +219,11 @@ const UNIT7 = {
         { en: "Hey, look at this!", zh: "嘿，看看这个！" }
       ],
       fun: "hey 是非常口语化的打招呼方式，适合朋友之间使用。对老师或长辈不要用 hey，要用 hello 或 excuse me。The Beatles（甲壳虫乐队）有一首经典歌曲叫 'Hey Jude'。",
-      usage: "hey 用于非正式场合打招呼或引起注意。正式场合用 hello/excuse me。hey 也可以表示惊讶：Hey! What happened?（嘿！怎么了？）"
+      usage: "hey 用于非正式场合打招呼或引起注意。正式场合用 hello/excuse me。hey 也可以表示惊讶：Hey! What happened?（嘿！怎么了？）",
+      visual: "想象你走在路上，一个同学在马路对面疯狂挥手大喊'Hey！Hey！HEY！'声音一次比一次大，路人全都回头看他，他脸红了——原来他认错人了。",
+      confuse: "hey vs hi vs hello：hey 最随意（朋友之间），hi 比较日常，hello 最正式。hey vs hay：hey 是嘿（感叹词），hay 是干草，发音一样拼写不同！",
+      rhyme: "hey 嘿嘿打招呼，朋友之间随意说；见了老师要礼貌，hello 才是好选择。",
+      scene: "打招呼相关词汇：hey（嘿）、hi（嗨）、hello（你好）、nice（好的）、friendly（友好的）、character（人物）。"
     },
     {
       word: "character",
@@ -201,7 +241,11 @@ const UNIT7 = {
         { en: "The main character in this story is a boy.", zh: "这个故事的主角是一个男孩。" }
       ],
       fun: "character 的三个常见意思：1. 人物/角色（story character）；2. 性格/品格（good character）；3. 文字/符号（Chinese characters = 汉字）。同一个词，三种完全不同的用法！",
-      usage: "main character = 主角。in character = 符合角色/本性。out of character = 不合常理。Chinese characters = 汉字。"
+      usage: "main character = 主角。in character = 符合角色/本性。out of character = 不合常理。Chinese characters = 汉字。",
+      visual: "想象一本故事书突然打开，里面的卡通人物一个个蹦出来：孙悟空、哈利波特、蜘蛛侠排成一排自我介绍——'我们都是 character！'旁边一个汉字'龙'也跳出来说：'我也是 character！'",
+      confuse: "character vs characteristic：character 是角色/性格（整体），characteristic 是特征/特点（具体某一个特点）。character vs chapter：character 是角色，chapter 是章节，别搞混了！",
+      rhyme: "character 三个意思记心间：角色性格和文字，刻出印记不一般。",
+      scene: "故事与人物词汇：character（角色）、nice（好的）、friendly（友好的）、strict（严格的）、naughty（淘气的）、bored（无聊的）。"
     },
     {
       word: "was",
@@ -219,7 +263,11 @@ const UNIT7 = {
         { en: "She was a teacher before.", zh: "她以前是一位老师。" }
       ],
       fun: "英语的 be 动词有8种形式：be, am, is, are, was, were, been, being——它是英语中变化最多的动词！其他语言也类似：法语的 être 有超过20种变化形式。",
-      usage: "I/he/she/it + was。There was + 单数名词。was 用于一般过去时，表示过去的状态。wasn't = was not。"
+      usage: "I/he/she/it + was。There was + 单数名词。was 用于一般过去时，表示过去的状态。wasn't = was not。",
+      visual: "想象一个时光机器，am 和 is 坐上去'嗖'一下飞到了过去，落地后变身成了 was，穿着古装说：'我现在是过去的我了！'旁边 are 也想坐，变成了 were。",
+      confuse: "was vs were：was 用于 I/he/she/it（单数），were 用于 we/you/they（复数）。was vs is：was 是过去时，is 是现在时。was 不要拼成 waz！",
+      rhyme: "I was 他她它也 was，单数过去全靠它；am is 穿越到过去，was 就是它的新名字。",
+      scene: "过去时态词汇：was（是，单数过去式）、were（是，复数过去式）、ago（以前）、born（出生）、back（回）。"
     },
     {
       word: "were",
@@ -237,7 +285,11 @@ const UNIT7 = {
         { en: "Where were you yesterday?", zh: "你昨天在哪里？" }
       ],
       fun: "虚拟语气中，不管主语是单数还是复数，都用 were：If I were you...（如果我是你的话……）。这是语法中的特殊规则，表示与事实相反的假设。",
-      usage: "we/you/they + were。There were + 复数名词。If I were you = 如果我是你（虚拟语气）。weren't = were not。"
+      usage: "we/you/they + were。There were + 复数名词。If I were you = 如果我是你（虚拟语气）。weren't = were not。",
+      visual: "想象一群小人（we/you/they）一起走进过去时光隧道，are 的衣服自动变成了 were 的衣服。其中一个 I 偷偷混进来，假装自己是复数——'If I were you'——虚拟语气的特权！",
+      confuse: "were vs where：were 是'是'的过去式（We were happy），where 是'哪里'（Where are you?）。发音几乎一样，但拼写和意思完全不同！were vs we're：were 是过去式，we're = we are。",
+      rhyme: "were 是复数过去时，we you they 都用它；虚拟语气更特殊，If I were 也用它。",
+      scene: "过去时态词汇：were（是，复数过去式）、was（是，单数过去式）、ago（以前）、born（出生）、back（回）、primary school（小学）。"
     },
     {
       word: "bedroom",
@@ -255,7 +307,11 @@ const UNIT7 = {
         { en: "There were three bedrooms in our old house.", zh: "我们的老房子里有三间卧室。" }
       ],
       fun: "英语房间名称大多是'功能+room'：bedroom（睡觉的房间）、bathroom（洗澡的房间）、classroom（上课的房间）、mushroom……等等，mushroom 是蘑菇，不是房间！",
-      usage: "a two-bedroom apartment = 两居室公寓。master bedroom = 主卧。spare bedroom = 客房。"
+      usage: "a two-bedroom apartment = 两居室公寓。master bedroom = 主卧。spare bedroom = 客房。",
+      visual: "想象一张超级大的床占满了整个房间，人只能从门口跳到床上，床上堆满了枕头和玩偶，连猫都在床上睡觉——这个房间除了床什么都没有，名副其实的 bed+room！",
+      confuse: "bedroom vs bathroom：bedroom 是卧室（有bed床），bathroom 是浴室（有bath浴缸）。别走错房间！bedroom vs living room：bedroom 是睡觉的，living room 是活动的。",
+      rhyme: "bedroom 有张床，bathroom 能洗澡；kitchen 做饭香，living room 聊天笑。",
+      scene: "房间相关词汇：bedroom（卧室）、bathroom（浴室）、kitchen（厨房）、living room（客厅）、garden（花园）、pond（池塘）。"
     },
     {
       word: "bathroom",
@@ -273,7 +329,11 @@ const UNIT7 = {
         { en: "Can I use the bathroom?", zh: "我可以用一下洗手间吗？" }
       ],
       fun: "英美对'厕所'的说法大不同：英国人说 toilet/loo，美国人说 bathroom/restroom。在美国说 toilet 会让人觉得太直白。而 WC（water closet）主要在欧洲大陆使用。",
-      usage: "bathroom 在美式英语中 = 厕所/洗手间。go to the bathroom = 上厕所（委婉说法）。"
+      usage: "bathroom 在美式英语中 = 厕所/洗手间。go to the bathroom = 上厕所（委婉说法）。",
+      visual: "想象一个美国人上课举手说'Can I use the bathroom?'，老师说'可以'。他走进 bathroom 发现里面真的只有一个浴缸——'我只是想上厕所啊！'原来英式和美式意思不一样！",
+      confuse: "bathroom vs restroom：在美国都指厕所，但 restroom 更正式（公共场所用）。bathroom vs bedroom：bath 洗澡 vs bed 睡觉，一字之差房间功能完全不同！",
+      rhyme: "bathroom 洗澡间，美国也当厕所看；restroom 更正式，公共场所用这个。",
+      scene: "房间相关词汇：bathroom（浴室）、bedroom（卧室）、kitchen（厨房）、living room（客厅）、garden（花园）、pond（池塘）。"
     },
     {
       word: "garden",
@@ -291,7 +351,11 @@ const UNIT7 = {
         { en: "My grandmother loves working in the garden.", zh: "我奶奶喜欢在花园里劳作。" }
       ],
       fun: "kindergarten（幼儿园）是德语借词：Kinder（孩子们）+ Garten（花园）= 孩子们的花园。这个名字是德国教育家福禄贝尔发明的——他认为孩子就像花园里的花朵，需要精心培育。",
-      usage: "in the garden = 在花园里。garden party = 花园聚会。beer garden = 露天啤酒屋。"
+      usage: "in the garden = 在花园里。garden party = 花园聚会。beer garden = 露天啤酒屋。",
+      visual: "想象一个被高高围墙围起来的秘密花园，推开门一看——哇！花朵们都活了过来在跳舞，蝴蝶在指挥，蜜蜂在打鼓，园丁(gardener)拿着水管浇水像在指挥消防队。",
+      confuse: "garden vs park：garden 是花园（通常属于私人住宅），park 是公园（公共的）。garden vs yard：garden 有花草种植，yard 只是一块院子空地。",
+      rhyme: "garden 花园真漂亮，围墙里面花芬芳；gardener 园丁来浇水，kindergarten 儿童庄。",
+      scene: "房屋与花园词汇：garden（花园）、pond（池塘）、bedroom（卧室）、bathroom（浴室）、kitchen（厨房）、living room（客厅）、village（村庄）。"
     },
     {
       word: "pond",
@@ -309,7 +373,11 @@ const UNIT7 = {
         { en: "Ducks were swimming in the pond.", zh: "鸭子在池塘里游泳。" }
       ],
       fun: "across the pond = 大西洋对面——英国人和美国人互相说对方在'池塘对面'。把大西洋说成'池塘'，这是英式幽默的典型！",
-      usage: "fish pond = 鱼塘。pond 比 lake 小，比 puddle（水坑）大。across the pond = 大西洋对岸（英式幽默）。"
+      usage: "fish pond = 鱼塘。pond 比 lake 小，比 puddle（水坑）大。across the pond = 大西洋对岸（英式幽默）。",
+      visual: "想象一个圆滚滚的池塘，里面挤满了胖嘟嘟的金鱼和鸭子，鸭子排着队在水面上像碰碰船一样互相撞来撞去，青蛙坐在荷叶上当裁判。池塘边立着牌子：'此 pond 非 lake，小而美！'",
+      confuse: "pond vs pool：pond 是天然的池塘，pool 是人造的游泳池。pond vs pound：pond 是池塘，pound 是英镑/磅，拼写只差一个字母！",
+      rhyme: "pond 池塘胖又圆，鱼儿鸭子住里面；比 lake 小一号，花园里面最常见。",
+      scene: "花园景色词汇：pond（池塘）、garden（花园）、village（村庄）、town（城镇）、back（回）、ago（以前）。"
     },
     {
       word: "living room",
@@ -327,7 +395,11 @@ const UNIT7 = {
         { en: "The living room was very large.", zh: "客厅非常大。" }
       ],
       fun: "living room 这个叫法是20世纪才流行的。以前英国人叫它 drawing room（缩自 withdrawing room，意为'退席后休息的房间'）。美国人则叫它 den（兽穴！因为是全家人窝着的地方）。",
-      usage: "in the living room = 在客厅。living room 是两个词，不要写成一个词。"
+      usage: "in the living room = 在客厅。living room 是两个词，不要写成一个词。",
+      visual: "想象一家人在客厅里'生活(living)'的画面：爸爸瘫在沙发上看球赛大喊大叫，妈妈在旁边追剧，孩子在地上搭积木，猫在茶几上打翻了水杯——这就是最真实的 living room！",
+      confuse: "living room vs dining room：living room 是客厅（生活/娱乐），dining room 是餐厅（吃饭）。living room vs sitting room：意思一样，living room 更美式，sitting room 更英式。",
+      rhyme: "living room 客厅大，全家生活都在它；看电视来聊聊天，最温馨的是我家。",
+      scene: "房间相关词汇：living room（客厅）、bedroom（卧室）、bathroom（浴室）、kitchen（厨房）、garden（花园）、pond（池塘）。"
     },
     {
       word: "kitchen",
@@ -345,7 +417,11 @@ const UNIT7 = {
         { en: "The kitchen was small but clean.", zh: "厨房很小但很干净。" }
       ],
       fun: "kitchen sink = 厨房水槽。everything but the kitchen sink = 除了厨房水槽以外的所有东西 = 能带的都带了（形容打包太多东西）。这是一个很有画面感的英语习语！",
-      usage: "in the kitchen = 在厨房里。kitchen garden = 菜园。kitchenware = 厨具。"
+      usage: "in the kitchen = 在厨房里。kitchen garden = 菜园。kitchenware = 厨具。",
+      visual: "想象一只巨大的 chicken（鸡）穿着厨师帽站在 kitchen（厨房）里炒菜，锅里居然在炒字母汤。它一边炒一边说：'我是 chicken，这是我的 kitchen！只差一个字母！'",
+      confuse: "kitchen vs chicken：kitchen 是厨房，chicken 是鸡肉，拼写像但意思完全不同——鸡在厨房里！kitchen vs kite：kitchen 是厨房（tch 发'奇'），kite 是风筝，别搞混。",
+      rhyme: "kitchen 厨房做饭忙，chicken 鸡肉锅里香；cook 大厨来掌勺，kitchenware 是厨房装。",
+      scene: "房间相关词汇：kitchen（厨房）、living room（客厅）、bedroom（卧室）、bathroom（浴室）、garden（花园）、pond（池塘）。"
     },
     {
       word: "back",
@@ -363,7 +439,11 @@ const UNIT7 = {
         { en: "I want to go back to my hometown.", zh: "我想回到我的家乡。" }
       ],
       fun: "back 组成的短语超级多：come back（回来）、look back（回顾）、pay back（还钱/报复）、fight back（反击）、call back（回电话）。掌握 back 就掌握了几十个短语动词！",
-      usage: "come back = 回来。go back = 回去。give back = 归还。back and forth = 来回地。"
+      usage: "come back = 回来。go back = 回去。give back = 归还。back and forth = 来回地。",
+      visual: "想象一个人走着走着突然转过身，'背'(back)对着前方往回走，他的背上贴满了便利贴：come back、go back、give back、look back——back 简直是短语动词的万能胶！",
+      confuse: "back（副词，回）vs back（名词，背部）vs back（动词，支持）：同一个词三种词性！'I'll back you up'是'我支持你'，不是'我背你起来'。back vs bag：back 是回/背，bag 是包，发音接近别混淆。",
+      rhyme: "back 回来又回去，come back go back 全靠它；背上背包 backpack，back and forth 来回跑。",
+      scene: "时间与回忆词汇：back（回）、ago（以前）、was/were（过去式）、born（出生）、primary school（小学）、town（城镇）、village（村庄）。"
     },
     {
       word: "ago",
@@ -381,7 +461,11 @@ const UNIT7 = {
         { en: "Long ago, there was a beautiful village.", zh: "很久以前，有一个美丽的村庄。" }
       ],
       fun: "ago 只能和一般过去时搭配，不能用于完成时。不能说 'I have come here two years ago'（错误！），要说 'I came here two years ago'。这是考试常见陷阱！",
-      usage: "时间段 + ago = ……以前。ago 只用于一般过去时。long long ago = 很久很久以前（讲故事开头）。"
+      usage: "时间段 + ago = ……以前。ago 只用于一般过去时。long long ago = 很久很久以前（讲故事开头）。",
+      visual: "想象时间是一条长长的路，一个小人站在'现在'这个路标旁边，往身后看——路上插着一个个牌子：'1 day ago'、'1 year ago'、'long long ago'，越远的牌子越模糊，最远处写着'恐龙时代 ago'。",
+      confuse: "ago vs before：ago 从现在往回算（two days ago = 从今天算两天前），before 从过去某个时间往回算（two days before the party = 聚会前两天）。ago 只搭配一般过去时，这是考试必考点！",
+      rhyme: "ago 放在时间后，两年前说 two years ago；只能搭配过去时，完成时态不能搞。",
+      scene: "时间表达词汇：ago（以前）、back（回）、was/were（过去式）、born（出生）、primary school（小学）、before（之前）。"
     },
     {
       word: "store",
@@ -399,7 +483,11 @@ const UNIT7 = {
         { en: "We went to the store to buy food.", zh: "我们去商店买食物。" }
       ],
       fun: "美式英语说 store，英式英语说 shop。但 department store（百货商店）两边通用。App Store = 应用商店——连苹果公司也用 store！",
-      usage: "in store = 即将来临。store up = 储存。convenience store = 便利店。department store = 百货商店。"
+      usage: "in store = 即将来临。store up = 储存。convenience store = 便利店。department store = 百货商店。",
+      visual: "想象一个巨大的仓库，里面堆满了各种商品从地板到天花板，门口挂着'STORE'的招牌。老板一边往里搬货一边喊：'我又 store（储存）又 store（卖），我就是 store（商店）！'",
+      confuse: "store vs shop：store 是美式说法，shop 是英式说法，意思一样。store vs story：store 是商店/储存，story 是故事，差一个字母意思完全不同！store vs score：store 是商店，score 是分数，别写错了。",
+      rhyme: "store 商店又储存，美式说法记在心；bookstore 书店 App Store 应用店，store 到处都能行。",
+      scene: "城镇设施词汇：store（商店）、movie theater（电影院）、town（城镇）、village（村庄）、primary school（小学）。"
     },
     {
       word: "movie theater",
@@ -417,7 +505,11 @@ const UNIT7 = {
         { en: "Let's go to the movie theater this weekend.", zh: "这个周末我们去电影院吧。" }
       ],
       fun: "美国说 movie theater，英国说 cinema。movie 是美式用法，英式英语更常说 film。好莱坞（Hollywood）是全球电影工业的中心，名字的意思是'冬青树林'。",
-      usage: "movie theater（美式）= cinema（英式）。go to the movies = 去看电影。movie star = 电影明星。"
+      usage: "movie theater（美式）= cinema（英式）。go to the movies = 去看电影。movie star = 电影明星。",
+      visual: "想象一块巨大的屏幕上，画面里的人物突然从屏幕里跳出来跑到观众席——因为 movie 就是'会动(move)的画面'嘛！观众吓得爆米花撒了一地，但超级开心。",
+      confuse: "movie theater vs cinema：movie theater 是美式说法，cinema 是英式说法。movie vs film：movie 美式，film 英式。theater vs theatre：前者美式拼写，后者英式拼写，同一个词！",
+      rhyme: "movie theater 看电影，美式说法要牢记；英国人说 cinema，会动画面真神奇。",
+      scene: "娱乐设施词汇：movie theater（电影院）、store（商店）、town（城镇）、bored（无聊的）、back（回）。"
     },
     {
       word: "bored",
@@ -435,7 +527,11 @@ const UNIT7 = {
         { en: "Are you bored with this game?", zh: "你对这个游戏感到无聊了吗？" }
       ],
       fun: "-ed 和 -ing 形容词的区别是中国学生的经典易错点：excited/exciting, interested/interesting, surprised/surprising... 记住：人的感受用 -ed，事物的特点用 -ing！",
-      usage: "be bored with sth. = 对某事感到无聊。bored to death = 无聊死了。bored 描述人的感受，boring 描述事物的特征。"
+      usage: "be bored with sth. = 对某事感到无聊。bored to death = 无聊死了。bored 描述人的感受，boring 描述事物的特征。",
+      visual: "想象一个学生趴在课桌上，灵魂已经飘出身体在天花板上飞，嘴里不停打哈欠，口水流了一桌子。黑板上老师在讲'钻孔(bore)的一百种方法'——难怪 bored 来自'钻孔'，重复到让人崩溃！",
+      confuse: "bored vs boring：bored 是'（人）感到无聊的'（I am bored），boring 是'（事物）令人无聊的'（The movie is boring）。bored vs board：bored 是无聊的，board 是木板/黑板，发音一样拼写不同！",
+      rhyme: "bored 人感到无聊，boring 事物太无趣；-ed 形容人感受，-ing 描述事物去。",
+      scene: "情绪感受词汇：bored（无聊的）、naughty（淘气的）、nice（好的）、friendly（友好的）、strict（严格的）、character（性格）。"
     },
     {
       word: "naughty",
@@ -453,7 +549,11 @@ const UNIT7 = {
         { en: "Don't be naughty!", zh: "别淘气了！" }
       ],
       fun: "在西方圣诞传统中，圣诞老人有一份 naughty list（淘气名单）和 nice list（乖孩子名单）。淘气的孩子只能得到一块煤炭作为圣诞礼物！",
-      usage: "naughty 在英式英语中比较常用，语气不太重。naughty boy/girl = 淘气包。a naughty word = 脏话/不雅的词。"
+      usage: "naughty 在英式英语中比较常用，语气不太重。naughty boy/girl = 淘气包。a naughty word = 脏话/不雅的词。",
+      visual: "想象圣诞老人打开一个超长的卷轴名单，上面写满了淘气孩子的名字。一个小男孩在教室里往老师椅子上放图钉、把同学的橡皮藏起来，圣诞老人摇摇头在他名字后面画了个大大的叉。",
+      confuse: "naughty vs nice：naughty 是淘气的，nice 是好的/乖的——圣诞老人的两张名单！naughty vs naught：naughty 是淘气的（形容词），naught 是零/无（名词）。naughty vs nighty：naughty 是淘气的，nighty 是睡衣，别穿着睡衣去淘气！",
+      rhyme: "naughty 又闹又踢，淘气包考零分；圣诞老人看名单，naughty list 没礼品。",
+      scene: "性格描述词汇：naughty（淘气的）、strict（严格的）、friendly（友好的）、nice（好的）、bored（无聊的）、character（人物/性格）。"
     }
   ]
 };

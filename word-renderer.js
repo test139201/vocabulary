@@ -110,14 +110,54 @@ const WordRenderer = (function(){
         </div>`;
     }
 
+    /* Visual imagination */
+    let visualHtml = '';
+    if(w.visual){
+      visualHtml = `
+        <div class="dim-panel dp-visual">
+          <div class="dim-title"><span class="dim-icon">\u{1F3A8}</span> 联想画面</div>
+          <p>${w.visual}</p>
+        </div>`;
+    }
+
+    /* Confusable words */
+    let confuseHtml = '';
+    if(w.confuse){
+      confuseHtml = `
+        <div class="dim-panel dp-confuse">
+          <div class="dim-title"><span class="dim-icon">\u{26A0}\u{FE0F}</span> 易混辨析</div>
+          <p>${w.confuse}</p>
+        </div>`;
+    }
+
+    /* Mnemonic rhyme */
+    let rhymeHtml = '';
+    if(w.rhyme){
+      rhymeHtml = `
+        <div class="dim-panel dp-rhyme">
+          <div class="dim-title"><span class="dim-icon">\u{1F3B6}</span> 速记口诀</div>
+          <p>${w.rhyme}</p>
+        </div>`;
+    }
+
+    /* Scene cluster */
+    let sceneHtml = '';
+    if(w.scene){
+      sceneHtml = `
+        <div class="dim-panel dp-scene">
+          <div class="dim-title"><span class="dim-icon">\u{1F30D}</span> 同类串记</div>
+          <p>${w.scene}</p>
+        </div>`;
+    }
+
     return `
       <div class="word-card" id="word-${w.word}" data-pos="${posKey}" data-word="${w.word.toLowerCase()}">
         ${header}
         <div class="wc-body">
-          ${sentHtml}${rootHtml}${memoryHtml}
+          ${sentHtml}${rootHtml}${memoryHtml}${visualHtml}${rhymeHtml}
         </div>
         <div class="wc-full">
-          ${familyHtml}${synHtml}${antHtml}${funHtml}${usageHtml}
+          ${familyHtml}${synHtml}${antHtml}${confuseHtml}${sceneHtml}${funHtml}${usageHtml}
         </div>
       </div>`;
   }
@@ -352,7 +392,7 @@ const WordRenderer = (function(){
     const cover = `
       <div class="cover">
         <h1>\u{1F4D6} \u5916\u7814\u7248\u4E03\u5E74\u7EA7\u4E0B\u518C\u82F1\u8BED\u8BCD\u6C47\u591A\u7EF4\u5EA6\u5206\u6790</h1>
-        <div class="cover-sub">词源探秘 · 记忆妙招 · 近反义词 · 趣味知识 · 用法提示</div>
+        <div class="cover-sub">词源探秘 · 记忆妙招 · 联想画面 · 速记口诀 · 近反义词 · 易混辨析 · 同类串记 · 趣味知识 · 用法提示</div>
         <div class="cover-meta">
           <span>\u{1F3AF} ${units.reduce((s,u)=>s+u.words.length,0)} \u4E2A\u6838\u5FC3\u8BCD\u6C47</span>
           <span>\u{1F4DA} ${units.length} \u4E2A\u6A21\u5757</span>

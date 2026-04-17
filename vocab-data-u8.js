@@ -21,7 +21,11 @@ const UNIT8 = {
         { en: "Once upon a time, there was a king.", zh: "从前，有一位国王。" }
       ],
       fun: "once 有三个意思：1. 曾经（I once saw a bear）；2. 一次（once a week = 每周一次）；3. 一旦（Once you start, don't stop = 一旦开始就别停）。小词大用！",
-      usage: "once upon a time = 从前（故事开头）。at once = 立刻。once more = 再一次。once in a while = 偶尔。"
+      usage: "once upon a time = 从前（故事开头）。at once = 立刻。once more = 再一次。once in a while = 偶尔。",
+      visual: "想象一个老爷爷翻开一本巨大的发光魔法书，书页上写着大大的数字'1'，旁边飞出一堆童话人物——因为 once 就是'一次'，每个伟大的故事都只需要开始'一次'！",
+      confuse: "once（从前/一次）vs. one（一）vs. ones（一些）：once 是副词表示'曾经/一次'，one 是数词'一'，ones 是代词代替复数名词。once 来自 one，但用法完全不同！",
+      rhyme: "once 一次就一次，从前故事由此始；at once 立刻别拖延，once more 再来一次看。",
+      scene: "故事开场词汇组：once upon a time（从前）、begin（开始）、bear（熊）、dark（黑暗的）——从前(once)故事开始(begin)了，黑暗(dark)森林里住着熊(bear)。"
     },
     {
       word: "upon",
@@ -39,7 +43,11 @@ const UNIT8 = {
         { en: "The cat jumped upon the table.", zh: "猫跳到了桌子上。" }
       ],
       fun: "upon 在现代英语中主要出现在固定短语里：once upon a time（从前）、upon my word（我发誓）、depend upon（取决于）。日常对话中几乎都用 on 代替 upon。",
-      usage: "once upon a time = 从前。upon 比 on 更正式/文学化。口语中一般用 on 就够了。"
+      usage: "once upon a time = 从前。upon 比 on 更正式/文学化。口语中一般用 on 就够了。",
+      visual: "一只猫穿着礼服戴着高帽子，踩着红地毯优雅地走'上'桌子——因为 upon 就是 on 穿了正装的样子，特别有仪式感！",
+      confuse: "upon（在……上，正式）vs. on（在……上，日常）vs. up（向上）：upon = up + on，是 on 的高级版本。日常口语说 on the table，讲故事时说 upon the table 更有感觉。",
+      rhyme: "upon 就是 on 的升级版，故事开头用它显高端；日常说话 on 就行，upon 留给文学用。",
+      scene: "故事开场词汇组：once upon a time（从前）、begin（开始）、enter（进入）——从前(once upon a time)，故事开始(begin)了，主角进入(enter)了一个神秘的世界。"
     },
     {
       word: "once upon a time",
@@ -57,7 +65,11 @@ const UNIT8 = {
         { en: "Once upon a time, animals could talk.", zh: "从前，动物能说话。" }
       ],
       fun: "几乎所有文化都有类似的故事开头：中文'很久很久以前'、日语'むかしむかし'（昔昔）、法语'Il était une fois'、德语'Es war einmal'。全世界的人都爱用这种方式开始讲故事！",
-      usage: "once upon a time 只用在故事开头。对应的结尾是：and they lived happily ever after（从此他们过上了幸福的生活）。"
+      usage: "once upon a time 只用在故事开头。对应的结尾是：and they lived happily ever after（从此他们过上了幸福的生活）。",
+      visual: "想象一本巨大的金色故事书自己翻开了第一页，书页上闪闪发光地写着 Once upon a time...，然后字母变成了蝴蝶飞进了一片魔法森林里！",
+      confuse: "once upon a time（从前，只用于故事开头）vs. long ago（很久以前，可以用在任何地方）vs. in the past（在过去，较正式）：once upon a time 是专属于童话故事的魔法开头语！",
+      rhyme: "Once upon a time 故事开场白，听到这句话就知童话来；结尾配上 happily ever after，从头到尾童话真精彩。",
+      scene: "童话故事框架词汇组：once upon a time（从前）、bear（熊）、dark（黑暗的）、escape（逃跑）——从前(once upon a time)在黑暗(dark)森林里有熊(bear)，主角最终逃跑(escape)了。"
     },
     {
       word: "bear",
@@ -75,7 +87,11 @@ const UNIT8 = {
         { en: "Baby bear was the smallest.", zh: "小熊是最小的。" }
       ],
       fun: "teddy bear（泰迪熊）得名于美国总统 Theodore 'Teddy' Roosevelt——他在打猎时拒绝射杀一只被绑住的小熊，这个故事被画成漫画后，玩具商就制作了'泰迪熊'。",
-      usage: "bear 做名词是'熊'，做动词是'承受/忍受'：I can't bear it!（我受不了！）。bear in mind = 记住。"
+      usage: "bear 做名词是'熊'，做动词是'承受/忍受'：I can't bear it!（我受不了！）。bear in mind = 记住。",
+      visual: "一只巨大的棕熊穿着超人披风，一只手举着一辆汽车——因为 bear 不仅是'熊'还是'承受'，这只熊什么都能承受！它旁边一只泰迪熊在鼓掌。",
+      confuse: "bear（熊/承受）vs. bare（赤裸的/光秃的）：发音完全一样！bear 是那个毛茸茸的大家伙，bare 是光秃秃什么都没穿的。一个有毛(bear)一个没毛(bare)！",
+      rhyme: "bear 是熊，bear 能扛，名词动词都要记；熊(bear)能承受(bear)千斤重，I can't bear it 受不了。",
+      scene: "森林动物词汇组：bear（熊）、dark（黑暗的）、basket（篮子）、pick（采摘）——在黑暗(dark)的森林里，提着篮子(basket)采摘(pick)果子时遇到了熊(bear)。"
     },
     {
       word: "begin",
@@ -93,7 +109,11 @@ const UNIT8 = {
         { en: "Class began at eight o'clock.", zh: "八点钟开始上课。" }
       ],
       fun: "begin 和 start 有什么区别？大多数情况可以互换，但 begin 更正式。有些固定搭配只能用其中一个：start a car（发动汽车）不能说 begin a car；to begin with（首先）不能说 to start with。",
-      usage: "begin to do / begin doing = 开始做某事。begin with = 以……开始。to begin with = 首先。beginner's luck = 新手的好运。"
+      usage: "begin to do / begin doing = 开始做某事。begin with = 以……开始。to begin with = 首先。beginner's luck = 新手的好运。",
+      visual: "想象一个巨大的红色按钮上面写着 BEGIN，一个小朋友猛拍按钮，烟花齐放、音乐响起，一场魔法表演开始了——每个精彩故事都需要一个'开始'按钮！",
+      confuse: "begin（开始，正式）vs. start（开始，日常）：两者大多时候可以互换，但 start a car（发动汽车）不能用 begin，to begin with（首先）不能用 start。begin 变化：begin-began-begun。",
+      rhyme: "begin 开始 i-a-u，began begun 跟着走；故事开始用 begin，finish 结束紧跟后。",
+      scene: "故事发展词汇组：begin（开始）、decide（决定）、notice（注意到）、enter（进入）——故事开始(begin)了，主角决定(decide)去探险，注意到(notice)一座小屋，进入(enter)了里面。"
     },
     {
       word: "decide",
@@ -111,7 +131,11 @@ const UNIT8 = {
         { en: "I can't decide which book to read.", zh: "我没法决定读哪本书。" }
       ],
       fun: "-cide 词根（切/杀）家族：decide（决定=切断选项）、suicide（自杀）、insecticide（杀虫剂）、homicide（谋杀）。所有带 -cide 的词都和'切断/杀死'有关！",
-      usage: "decide to do sth. = 决定做某事。decide on sth. = 决定选择某物。make a decision = 做决定。"
+      usage: "decide to do sth. = 决定做某事。decide on sth. = 决定选择某物。make a decision = 做决定。",
+      visual: "一个人站在岔路口，拿着一把巨大的剪刀，咔嚓咔嚓把其他路都剪断了，只留下一条路——这就是 decide（决定），把其他选项都'切掉'！",
+      confuse: "decide（决定做某事）vs. determine（下定决心/确定）vs. choose（选择）：decide 强调做出决定的过程，choose 强调从多个选项中挑选，determine 更强调坚定的意志。decide to do sth. 是最常用的搭配。",
+      rhyme: "decide 决定砍选项，de 是去掉 cide 是切；犹豫不决别太久，果断 decide 向前冲。",
+      scene: "做决定词汇组：decide（决定）、try（尝试）、without（没有）、hurry（赶快）——她决定(decide)不跟妈妈说(without)就赶紧(hurry)去尝试(try)冒险。"
     },
     {
       word: "basket",
@@ -129,7 +153,11 @@ const UNIT8 = {
         { en: "There were apples in the basket.", zh: "篮子里有苹果。" }
       ],
       fun: "basketball（篮球）= basket（篮子）+ ball（球）——把球投进篮子里！篮球是1891年由加拿大人 James Naismith 发明的，最初真的是用桃子篮当球框。",
-      usage: "a basket of = 一篮……。put all your eggs in one basket = 把所有鸡蛋放在一个篮子里 = 孤注一掷。shopping basket = 购物篮。"
+      usage: "a basket of = 一篮……。put all your eggs in one basket = 把所有鸡蛋放在一个篮子里 = 孤注一掷。shopping basket = 购物篮。",
+      visual: "小红帽提着一个超级巨大的篮子走在路上，篮子大到能装下一头牛！篮子里装满了各种好吃的——蛋糕、水果、还有一个篮球。因为 basket 就是那个万能的'篮子'！",
+      confuse: "basket（篮子/筐）vs. bucket（桶）：basket 是编织的，有洞能透气，装水果蔬菜；bucket 是实心的桶，能装水。打篮球投的是 basket（篮筐），不是 bucket！",
+      rhyme: "basket 篮子装东西，basketball 投篮去；小红帽提篮走森林，basket 里面有惊喜。",
+      scene: "森林冒险装备词汇组：basket（篮子）、pick up（捡起）、pick（采摘）、without（没有）——提起(pick up)篮子(basket)去采摘(pick)，没有(without)告诉妈妈就出门了。"
     },
     {
       word: "notice",
@@ -147,7 +175,11 @@ const UNIT8 = {
         { en: "Did you notice anything strange?", zh: "你注意到什么奇怪的事了吗？" }
       ],
       fun: "notice 做名词时意思完全不同：a notice on the wall = 墙上的公告；give notice = 提前通知/辞职通知；until further notice = 直到另行通知。一个词跨越了'看'和'说'两个领域！",
-      usage: "notice sb. doing sth. = 注意到某人正在做某事。take notice of = 注意。at short notice = 临时通知。"
+      usage: "notice sb. doing sth. = 注意到某人正在做某事。take notice of = 注意。at short notice = 临时通知。",
+      visual: "一个侦探拿着巨大的放大镜，眼睛瞪得像铜铃一样大，突然发现地上有一个闪闪发亮的脚印——'我注意到(notice)了！'他兴奋地掏出笔记本(note)记下来！",
+      confuse: "notice（注意到，不经意间发现）vs. find（找到，经过寻找后发现）vs. discover（发现，重大发现）：notice 是偶然看到的，find 是努力找到的，discover 是首次发现新事物。走路时 notice 一朵花，但 discover 一个新星球！",
+      rhyme: "notice 注意看仔细，note 笔记记下去；森林小屋被发现，notice 就是眼睛利。",
+      scene: "发现探索词汇组：notice（注意到）、dark（黑暗的）、door（门）、enter（进入）——在黑暗(dark)中注意到(notice)一扇门(door)，好奇地进入(enter)了里面。"
     },
     {
       word: "all alone",
@@ -165,7 +197,11 @@ const UNIT8 = {
         { en: "I was all alone at home.", zh: "我独自一人在家。" }
       ],
       fun: "alone 和 lonely 的区别：alone 是客观状态（一个人），lonely 是主观感受（孤独）。You can be alone without being lonely.（你可以独自一人但并不感到孤独。）也可以 feel lonely in a crowd（在人群中感到孤独）。",
-      usage: "all alone = 完全独自一人（加强语气）。leave sb. alone = 别打扰某人。let alone = 更不用说。"
+      usage: "all alone = 完全独自一人（加强语气）。leave sb. alone = 别打扰某人。let alone = 更不用说。",
+      visual: "想象一个小女孩站在一片超级巨大的空旷草原中央，四周一个人都没有，连蚂蚁都没有，只有风呼呼地吹——这就是 all alone 的感觉，完完全全只有自己一个人！",
+      confuse: "all alone（完全独自一人）vs. alone（独自的）vs. lonely（孤独的）：alone 是客观事实'一个人'，lonely 是内心感受'好孤独'，all alone 是加强版的'完全就我一个人'。人多也能 lonely，一个人也不一定 lonely。",
+      rhyme: "all alone 独一人，alone 拆开 all 加 one；一个人不一定孤独，lonely 才是心里苦。",
+      scene: "独自冒险词汇组：all alone（独自一人）、dark（黑暗的）、without（没有）、cry（哭）——独自一人(all alone)走在黑暗(dark)中，没有(without)人陪伴，忍不住哭(cry)了起来。"
     },
     {
       word: "dark",
@@ -183,7 +219,11 @@ const UNIT8 = {
         { en: "She has dark hair and big eyes.", zh: "她有一头黑发和大眼睛。" }
       ],
       fun: "Star Wars（星球大战）中有 the Dark Side（黑暗面）和 the Dark Lord（黑暗领主）。Dark Horse（黑马）= 出人意料的获胜者——这个用法来自赛马，不引人注意的马突然赢了！",
-      usage: "in the dark = 在黑暗中 / 不知情。dark horse = 黑马。after dark = 天黑以后。dark + 颜色 = 深色（dark blue 深蓝）。"
+      usage: "in the dark = 在黑暗中 / 不知情。dark horse = 黑马。after dark = 天黑以后。dark + 颜色 = 深色（dark blue 深蓝）。",
+      visual: "一个小朋友走进森林，突然天完全黑了，伸手不见五指！他打开手电筒，照到一棵树上居然画着两只巨大的眼睛在盯着他——森林里的 dark 真的太吓人了！",
+      confuse: "dark（黑暗的/深色的）vs. dim（昏暗的，有一点光）vs. black（黑色的）：dark 是'黑暗的'最常用词，dim 比 dark 亮一点（有微弱的光），black 专指颜色。dark blue 是'深蓝'不是'黑蓝'！",
+      rhyme: "dark 黑暗 park 公园，天黑别去公园玩；dark blue 深蓝不是黑，dark horse 黑马跑在前。",
+      scene: "恐怖森林词汇组：dark（黑暗的）、all alone（独自一人）、bear（熊）、knock（敲门）、door（门）——黑暗(dark)中独自一人(all alone)，突然听到敲(knock)门(door)声，是熊(bear)！"
     },
     {
       word: "pick",
@@ -201,7 +241,11 @@ const UNIT8 = {
         { en: "Let me pick a book for you.", zh: "让我给你挑一本书。" }
       ],
       fun: "pickpocket（扒手）= pick（拿取）+ pocket（口袋）= 从别人口袋里拿东西的人！toothpick（牙签）= tooth（牙）+ pick（戳）= 戳牙齿的小棍。",
-      usage: "pick flowers = 摘花。pick up = 捡起/接人/学会。pick on sb. = 欺负某人。picky = 挑剔的。"
+      usage: "pick flowers = 摘花。pick up = 捡起/接人/学会。pick on sb. = 欺负某人。picky = 挑剔的。",
+      visual: "一只猴子在果园里上蹿下跳，这边摘一个苹果，那边摘一个桃子，还挑三拣四嫌这个不红嫌那个太小——这只猴子太 picky（挑剔）了，pick 来 pick 去选不好！",
+      confuse: "pick（采摘/挑选）vs. choose（选择，更正式）vs. select（精选，最正式）：pick 最口语化'随手拿'，choose 是认真选，select 是精挑细选。pick flowers（摘花）不能用 choose 或 select。",
+      rhyme: "pick 采摘又挑选，pick flowers 摘花看；pick up 捡起来，picky 的人真难办。",
+      scene: "采摘活动词汇组：pick（采摘）、basket（篮子）、pick up（捡起）、hurry（赶快）——赶快(hurry)拿着篮子(basket)去采摘(pick)，掉地上的也捡起来(pick up)！"
     },
     {
       word: "pick up",
@@ -219,7 +263,11 @@ const UNIT8 = {
         { en: "Can you pick up that pen for me?", zh: "你能帮我捡起那支笔吗？" }
       ],
       fun: "pick up 的意思多到离谱：1. 捡起；2. 接人（pick you up at school）；3. 学会（pick up English）；4. 好转（Business is picking up）；5. 接电话（pick up the phone）。同一个短语，五种不同含义！",
-      usage: "pick up sth. / pick sth. up = 捡起某物。pick sb. up = 接某人。pick up a language = 学会一门语言。pick up speed = 加速。"
+      usage: "pick up sth. / pick sth. up = 捡起某物。pick sb. up = 接某人。pick up a language = 学会一门语言。pick up speed = 加速。",
+      visual: "想象一个超级英雄弯腰从地上捡起一个发光的宝石，宝石越举越高，最后举到天上变成了一颗星星——pick(拿) up(往上) = 从下往上拿，这个动作太帅了！",
+      confuse: "pick up（捡起/接人/学会）vs. put down（放下/贬低）vs. take up（开始从事/占据）：pick up 和 put down 是反义词。pick up the phone = 接电话，put down the phone = 挂电话。pick up 还能表示'学会'，很神奇！",
+      rhyme: "pick up 捡起往上拿，接人学会都是它；put down 放下是反义，pick up 用法真是大。",
+      scene: "捡东西动作词汇组：pick up（捡起）、basket（篮子）、hurry（赶快）、rush（冲）——赶快(hurry)冲(rush)过去捡起(pick up)地上的篮子(basket)！"
     },
     {
       word: "hurry",
@@ -237,7 +285,11 @@ const UNIT8 = {
         { en: "She hurried to school.", zh: "她匆忙赶去学校。" }
       ],
       fun: "Hurry up! 可能是学校里听到最多的英语短语——上课要迟到的时候同学们互相喊。但在英国，人们更礼貌地说 'Do you mind hurrying up a bit?'——即使着急也很客气。",
-      usage: "hurry up = 快点。in a hurry = 匆忙地。no hurry = 不急。hurry to do sth. = 急忙做某事。"
+      usage: "hurry up = 快点。in a hurry = 匆忙地。no hurry = 不急。hurry to do sth. = 急忙做某事。",
+      visual: "一个学生头发像被风吹炸了，书包还没拉上拉链书本到处飞，一边跑一边穿鞋子，嘴里叼着面包——这就是 hurry 的画面，每天早上迟到的你！",
+      confuse: "hurry（赶快，强调着急）vs. rush（冲，强调速度快）vs. run（跑）：hurry 重在'着急忙慌'的感觉，rush 重在'飞快冲过去'的速度，run 就是单纯的跑。in a hurry（匆忙地）和 in a rush（匆忙地）意思差不多。",
+      rhyme: "hurry hurry 别迟到，rush rush 冲着跑；Hurry up 催你快，no hurry 说不急就好。",
+      scene: "匆忙紧急词汇组：hurry（赶快）、rush（冲）、without（没有）、escape（逃跑）——赶快(hurry)冲(rush)出去，来不及(without)想太多就逃跑(escape)了！"
     },
     {
       word: "without",
@@ -255,7 +307,11 @@ const UNIT8 = {
         { en: "I can't live without music.", zh: "我不能没有音乐。" }
       ],
       fun: "without 后面接动词时要用 -ing 形式：without saying a word（一声不吭地）。英语谚语：Without health, life is not life.（没有健康，人生就不是人生。）",
-      usage: "without + 名词/动名词。without doing sth. = 没有做某事。go without = 没有也凑合。without doubt = 毫无疑问。"
+      usage: "without + 名词/动名词。without doing sth. = 没有做某事。go without = 没有也凑合。without doubt = 毫无疑问。",
+      visual: "一个小朋友出门，口袋是空的没带钱，手上没拿伞，脚上没穿袜子，头上没戴帽子——浑身上下什么都 without！妈妈在后面追着喊：'你什么都没带！'",
+      confuse: "without（没有，介词）vs. within（在……之内）vs. with（有/和）：这三个词长得很像！with = 有，without = 没有（反义），within = 在里面。without doing sth. 后面接动名词，不能接 to do！",
+      rhyme: "with 有 without 没有，一对反义要记牢；without 后面加 doing，不说 to do 别搞错。",
+      scene: "冒险出发词汇组：without（没有）、decide（决定）、all alone（独自一人）、dark（黑暗的）——她决定(decide)独自一人(all alone)出发，没有(without)告诉任何人，走进了黑暗(dark)的森林。"
     },
     {
       word: "knock",
@@ -273,7 +329,11 @@ const UNIT8 = {
         { en: "Knock, knock! Who's there?", zh: "咚咚！谁在那儿？" }
       ],
       fun: "Knock knock jokes（敲门笑话）是英语中最经典的笑话形式：'Knock knock!' 'Who's there?' 'Lettuce.' 'Lettuce who?' 'Let us in!'（lettuce 谐音 let us）。",
-      usage: "knock on/at the door = 敲门。knock out = 击倒/打昏。knock off = 下班/停止。knock it off! = 别闹了！"
+      usage: "knock on/at the door = 敲门。knock out = 击倒/打昏。knock off = 下班/停止。knock it off! = 别闹了！",
+      visual: "一只大灰狼穿着奶奶的衣服站在门前，使劲敲门——咚！咚！咚！门都快被敲出一个洞了！注意它的 k 是隐身的——knock 的 k 不发音，像一个偷偷藏起来的字母。",
+      confuse: "knock（敲，一般力度）vs. tap（轻轻敲/拍）vs. bang（猛敲/砰砰砰）：knock 是正常敲门的力度，tap 是轻轻碰一下，bang 是使劲砸。注意 knock 的 k 不发音，和 know、knee、knife 一样！",
+      rhyme: "knock knock 谁敲门，k 不发音要记清；know knee knife knight，kn 开头 k 隐身。",
+      scene: "进入房屋词汇组：knock（敲门）、door（门）、enter（进入）、notice（注意到）——注意到(notice)一扇门(door)，敲(knock)了敲门，然后进入(enter)了房子。"
     },
     {
       word: "door",
@@ -291,7 +351,11 @@ const UNIT8 = {
         { en: "Someone is knocking at the door.", zh: "有人在敲门。" }
       ],
       fun: "door 相关的习语非常多：open doors = 打开机会；behind closed doors = 秘密地；next door = 隔壁；show sb. the door = 请某人离开。opportunity knocks at the door = 机会来敲门。",
-      usage: "at the door = 在门口。answer the door = 去开门。out of doors = 户外。door to door = 挨家挨户。"
+      usage: "at the door = 在门口。answer the door = 去开门。out of doors = 户外。door to door = 挨家挨户。",
+      visual: "一扇巨大的彩色门上贴满了各种标签：'推/拉/别敲/请敲/小心熊出没'——这扇 door 上的规矩太多了！门旁边还站着一个门铃(doorbell)在打瞌睡。",
+      confuse: "door（门，建筑物的门）vs. gate（大门/院门/城门）vs. entrance（入口）：door 是房子上的门，gate 是围墙或院子的大门，entrance 是任何建筑的入口。学校的正门是 gate，教室的门是 door。",
+      rhyme: "door 是门 floor 是地，发音规律要注意；knock the door 敲敲门，answer the door 去开门。",
+      scene: "进入房屋词汇组：door（门）、knock（敲门）、enter（进入）、bowl（碗）——敲(knock)了门(door)进入(enter)房间，桌上放着三个碗(bowl)。"
     },
     {
       word: "enter",
@@ -309,7 +373,11 @@ const UNIT8 = {
         { en: "Please enter your password.", zh: "请输入你的密码。" }
       ],
       fun: "键盘上的 Enter 键就是'进入/确认'的意思——按下去就'进入'下一步。enter 在电脑时代有了新含义：enter data（输入数据）、enter a password（输入密码）。",
-      usage: "enter + 地点（不加 into）。enter a competition = 参加比赛。enter data = 输入数据。No Entry = 禁止入内。"
+      usage: "enter + 地点（不加 into）。enter a competition = 参加比赛。enter data = 输入数据。No Entry = 禁止入内。",
+      visual: "一个人站在一扇巨大的门前，门上有一个超大的回车键(Enter键)，他使劲一拍，门自动打开了，他走了进去——enter 就是'进入'，和键盘上的 Enter 一个意思！",
+      confuse: "enter（进入，后面直接加地点）vs. go into（走进去）vs. come in（进来）：enter the room 不要说 enter into the room！enter 比 go into 更正式。come in 是从外面进来（说话人在里面），go into 是从这里去那里。",
+      rhyme: "enter 进入不加 into，直接后面接地点；Enter 键按下确认，enter 也能输密码。",
+      scene: "进入探索词汇组：enter（进入）、door（门）、knock（敲门）、notice（注意到）、bowl（碗）——注意到(notice)小屋，敲(knock)了门(door)后进入(enter)，发现桌上有碗(bowl)。"
     },
     {
       word: "bowl",
@@ -327,7 +395,11 @@ const UNIT8 = {
         { en: "There were three bowls on the table.", zh: "桌子上有三个碗。" }
       ],
       fun: "Super Bowl（超级碗）是美国最大的体育赛事——NFL（美国橄榄球联赛）的总决赛。为什么叫'碗'？因为最早的体育场是碗形的（bowl-shaped stadium）。",
-      usage: "a bowl of = 一碗……。rice bowl = 饭碗（也比喻工作/生计）。bowling = 保龄球。"
+      usage: "a bowl of = 一碗……。rice bowl = 饭碗（也比喻工作/生计）。bowling = 保龄球。",
+      visual: "三只大小不同的碗排成一排：大碗冒着热气像火山爆发，中碗刚刚好，小碗里只有一粒米在可怜巴巴地躺着——就像金凤花姑娘尝的三碗粥！",
+      confuse: "bowl（碗，圆底深容器）vs. plate（盘子，平的浅的）vs. dish（碟/菜肴）：bowl 是深的可以盛汤，plate 是平的放菜，dish 既可以是盘子也可以指一道菜。喝粥用 bowl，吃牛排用 plate！",
+      rhyme: "bowl 是碗圆又深，ball 是球也是圆；a bowl of soup 一碗汤，三碗粥里故事藏。",
+      scene: "餐桌用餐词汇组：bowl（碗）、hungry（饥饿的）、finish（吃完）、piece（一块）——饿(hungry)了坐到桌前，碗(bowl)里有粥，吃了一块(piece)面包就吃完(finish)了。"
     },
     {
       word: "hungry",
@@ -345,7 +417,11 @@ const UNIT8 = {
         { en: "The hungry girl ate all the porridge.", zh: "饥饿的女孩吃光了所有的粥。" }
       ],
       fun: "I'm starving! 比 I'm hungry 语气强得多——starving 原意是'快饿死了'。Steve Jobs 的名言：Stay hungry, stay foolish.（求知若渴，虚心若愚。）——这里 hungry 是'渴望'的意思。",
-      usage: "be hungry for = 渴望……（比喻用法）。go hungry = 挨饿。hungry 的比较级是 hungrier。"
+      usage: "be hungry for = 渴望……（比喻用法）。go hungry = 挨饿。hungry 的比较级是 hungrier。",
+      visual: "一个人的肚子像一个黑洞一样，把桌上的饭菜、盘子、甚至桌布都吸进去了——还不够！他张大嘴巴对着冰箱，整个冰箱也被吸进去了——这就是 hungry 到极致的画面！",
+      confuse: "hungry（饥饿的，普通程度）vs. starving（饿极了，快饿死了）vs. famished（极度饥饿，正式用词）：hungry 是正常的饿，starving 是夸张地表示'饿死了'，famished 很正式。日常口语最常说 I'm hungry 或 I'm starving。",
+      rhyme: "hungry 饿了咕咕叫，starving 饿得受不了；Stay hungry 求知渴，a bowl of rice 就吃饱。",
+      scene: "吃东西词汇组：hungry（饥饿的）、bowl（碗）、finish（吃完）、try（尝试）——饿(hungry)了就尝试(try)桌上碗(bowl)里的食物，吃完(finish)了还想要！"
     },
     {
       word: "finish",
@@ -363,7 +439,11 @@ const UNIT8 = {
         { en: "Have you finished your homework?", zh: "你做完作业了吗？" }
       ],
       fun: "finish line = 终点线。photo finish = 需要用照片判定的接近终点（比赛太接近了！）。finish 和 final 来自同一个拉丁语词根 finis——全都指向'结束'。",
-      usage: "finish doing sth. = 完成做某事（后接-ing，不接to do）。finish off = 完成/吃光。finish up = 结束。"
+      usage: "finish doing sth. = 完成做某事（后接-ing，不接to do）。finish off = 完成/吃光。finish up = 结束。",
+      visual: "一个运动员冲过终点线(finish line)，然后一屁股坐在地上，把旁边所有的水和食物都吃完(finish)了——碗里一粒米都不剩！裁判举牌：'Finished!'",
+      confuse: "finish（完成/吃完，后接 doing）vs. complete（完成，更正式）vs. end（结束，强调终止）：finish doing sth. 后面必须接 -ing，不能说 finish to do！finish 强调'做完了'，end 强调'到此为止'。",
+      rhyme: "finish 完成 final 终，fin 词根是终点；finish doing 接动名，千万别说 finish to。",
+      scene: "用餐结束词汇组：finish（吃完）、hungry（饥饿的）、bowl（碗）、either（也不）——碗(bowl)里的粥太烫也(either)不行太冷也(either)不行，饥饿(hungry)的女孩把刚好的那碗吃完(finish)了。"
     },
     {
       word: "either",
@@ -381,7 +461,11 @@ const UNIT8 = {
         { en: "She can't swim, and I can't, either.", zh: "她不会游泳，我也不会。" }
       ],
       fun: "either 的发音有两种：英式 /ˈaɪðə/，美式 /ˈiːðər/，两种都对！有首有趣的老歌：'You say either and I say either'——就是拿这个发音差异开玩笑。",
-      usage: "否定句 + either = 也不。either...or... = 要么……要么……。either 做形容词 = 两者中任一的（either side = 任一边）。"
+      usage: "否定句 + either = 也不。either...or... = 要么……要么……。either 做形容词 = 两者中任一的（either side = 任一边）。",
+      visual: "两扇门前站着一个纠结的人，左边门写着'要么A'，右边门写着'要么B'——这就是 either...or...。然后他的朋友说'我也不选'(not...either)，两个人都蹲在门前发呆！",
+      confuse: "either（也不/要么，用在否定句）vs. too（也，用在肯定句）vs. also（也，放句中）：'我也喜欢'= I like it, too / I also like it。'我也不喜欢'= I don't like it, either。否定句千万别用 too！",
+      rhyme: "肯定 too 否定 either，这条规则别忘记；either or 二选一，neither nor 都不要。",
+      scene: "表达感受词汇组：either（也不）、hungry（饥饿的）、cry（哭）、asleep（睡着的）——我也(either)不饿(hungry)了，也不想哭(cry)了，只想睡着(asleep)。"
     },
     {
       word: "piece",
@@ -399,7 +483,11 @@ const UNIT8 = {
         { en: "Can I have a piece of bread?", zh: "我能要一片面包吗？" }
       ],
       fun: "a piece of cake = 小菜一碟！这个习语来自美国，因为吃蛋糕是世界上最容易的事（谁不会吃蛋糕呢？）。masterpiece（杰作）= master（大师）+ piece（作品）= 大师之作。",
-      usage: "a piece of + 不可数名词（a piece of paper/advice/news）。in pieces = 碎了。go to pieces = 崩溃。piece of cake = 小事一桩。"
+      usage: "a piece of + 不可数名词（a piece of paper/advice/news）。in pieces = 碎了。go to pieces = 崩溃。piece of cake = 小事一桩。",
+      visual: "一个蛋糕被切成了好几块(piece)，每一块上面都插着小旗子写着'a piece of cake = 小菜一碟'！旁边一把椅子碎成了一堆碎片(in pieces)，显得特别惨。",
+      confuse: "piece（一块/片/件）vs. peace（和平）：发音完全一样 /piːs/！拼写不同：piece 里有个 'pie'（派），一块(piece)派(pie)。peace 里有个 'pea'（豌豆）。记住 pie 切成 piece！",
+      rhyme: "piece 一片 peace 和平，发音一样写法异；a piece of cake 小菜碟，pie 切成 piece 好记忆。",
+      scene: "破坏现场词汇组：piece（碎片）、destroy（毁坏）、try（尝试）、cry（哭）——椅子被毁坏(destroy)成碎片(pieces)，尝试(try)修好但修不好，只好哭(cry)了。"
     },
     {
       word: "rush",
@@ -417,7 +505,11 @@ const UNIT8 = {
         { en: "Don't rush! Take your time.", zh: "别急！慢慢来。" }
       ],
       fun: "rush hour（高峰时段）——上下班时间所有人都在'冲'！gold rush（淘金热）——19世纪人们疯狂冲向加州挖金子。sugar rush（糖分高峰）——吃太多糖后的兴奋状态。",
-      usage: "rush hour = 高峰时段。in a rush = 匆忙地。rush to do sth. = 急忙做某事。no rush = 不急。"
+      usage: "rush hour = 高峰时段。in a rush = 匆忙地。rush to do sth. = 急忙做某事。no rush = 不急。",
+      visual: "一群人像洪水一样从地铁里冲出来，书包飞了、鞋掉了、手机也飞了——这就是 rush hour（高峰期）的画面！人人都在 rush（冲），谁也不让谁。",
+      confuse: "rush（冲/奔，强调快速猛烈）vs. hurry（赶快，强调着急）vs. dash（猛冲，强调短距离快冲）：rush 比 hurry 更快更猛，dash 是瞬间的短距离冲刺。in a rush 和 in a hurry 意思相近，都是'匆忙地'。",
+      rhyme: "rush 猛冲 hurry 急，两个词都在赶时间；rush hour 高峰堵得慌，no rush 不急慢慢来。",
+      scene: "紧急逃离词汇组：rush（冲）、hurry（赶快）、escape（逃跑）、jump（跳）——赶快(hurry)冲(rush)出去，跳(jump)出窗户逃跑(escape)！"
     },
     {
       word: "try",
@@ -435,7 +527,11 @@ const UNIT8 = {
         { en: "Try your best and never give up!", zh: "尽你所能，永不放弃！" }
       ],
       fun: "try on = 试穿衣服。try out = 试用/选拔。try one's best = 尽最大努力。Nice try! 可以是真的夸奖（好尝试！），也可以是讽刺（想得美！）——要看语境。",
-      usage: "try to do sth. = 努力做某事。try doing sth. = 尝试做某事（看效果如何）。两者有区别！try on = 试穿。have a try = 试一试。"
+      usage: "try to do sth. = 努力做某事。try doing sth. = 尝试做某事（看效果如何）。两者有区别！try on = 试穿。have a try = 试一试。",
+      visual: "金凤花姑娘一会儿试大碗的粥（太烫！），一会儿试中碗的（太冷！），一会儿试小碗的（刚好！）——她就是一个 try 专家，什么都要试一试！",
+      confuse: "try to do（努力去做，不一定做成）vs. try doing（尝试做做看效果）vs. manage to do（设法做成了）：try to open the door = 努力想开门（可能没开成），try opening the door = 试着开门看看（换种方法），manage to open the door = 成功开了门。",
+      rhyme: "try to do 努力做，try doing 试着做；try 只有三个字母，不试怎么知结果。",
+      scene: "尝试体验词汇组：try（尝试）、bowl（碗）、hungry（饥饿的）、finish（吃完）——饥饿(hungry)的女孩尝试(try)了每个碗(bowl)里的粥，把最合适的那碗吃完(finish)了。"
     },
     {
       word: "destroy",
@@ -453,7 +549,11 @@ const UNIT8 = {
         { en: "The storm destroyed many houses.", zh: "暴风雨摧毁了许多房屋。" }
       ],
       fun: "destroy 比 damage 程度重得多：damage（损坏）= 可以修复；destroy（摧毁）= 完全不能修复了。Thanos 在电影里说 'I will destroy half the universe'——这个词的破坏力有多大可想而知。",
-      usage: "destroy 表示彻底毁坏（无法修复）。damage 表示部分损坏（可修复）。destroy 的名词形式是 destruction。"
+      usage: "destroy 表示彻底毁坏（无法修复）。damage 表示部分损坏（可修复）。destroy 的名词形式是 destruction。",
+      visual: "一只愤怒的大熊像哥斯拉一样站起来，一巴掌把一把椅子拍成了碎片，碎片飞得满屋子都是——这就是 destroy 的威力！旁边写着'反向建造(de+stroy)=摧毁'。",
+      confuse: "destroy（摧毁，完全毁掉不能修）vs. damage（损坏，可以修复）vs. break（打破/弄坏）：destroy 最严重——彻底没了；damage 中等——坏了但能修；break 最日常——打碎了弄坏了。椅子 destroy 了就没法坐了！",
+      rhyme: "destroy 毁坏不能修，damage 损坏还能救；de 是反 stroy 是建，反向建造就是毁。",
+      scene: "破坏场景词汇组：destroy（毁坏）、piece（碎片）、cry（哭）、return（返回）——熊返回(return)家发现椅子被毁坏(destroy)成碎片(pieces)，小熊哭(cry)了。"
     },
     {
       word: "cry",
@@ -471,7 +571,11 @@ const UNIT8 = {
         { en: "Don't cry. Everything will be OK.", zh: "别哭了。一切都会好的。" }
       ],
       fun: "cry wolf = 喊'狼来了'——来自伊索寓言中放羊的男孩谎称狼来了。现在用来形容经常发假警报的人。cry over spilt milk = 为打翻的牛奶哭泣 = 为已经发生的事后悔。",
-      usage: "cry for help = 呼救。cry out = 大声喊叫。cry wolf = 发假警报。a cry baby = 爱哭鬼。"
+      usage: "cry for help = 呼救。cry out = 大声喊叫。cry wolf = 发假警报。a cry baby = 爱哭鬼。",
+      visual: "小熊回到家看到自己的椅子碎了、粥被吃光了，眼泪像喷泉一样往外喷，喷得比房子还高——整个房间都被泪水淹了！这就是小熊 cry 的威力！",
+      confuse: "cry（哭/喊叫，最常用）vs. weep（哭泣，文雅安静地哭）vs. sob（抽泣，一抽一抽地哭）：cry 是最普通的哭，weep 是默默流泪，sob 是哭得上气不接下气。小孩子一般 cry，大人伤心时 weep。",
+      rhyme: "cry 是哭也是喊，cry wolf 狼来了；cry baby 爱哭鬼，Don't cry 别哭啦。",
+      scene: "情绪表达词汇组：cry（哭）、shout（大喊）、point（指）、destroy（毁坏）——看到东西被毁坏(destroy)了，先大喊(shout)，再用手指(point)着哭(cry)起来。"
     },
     {
       word: "asleep",
@@ -489,7 +593,11 @@ const UNIT8 = {
         { en: "The baby is fast asleep.", zh: "婴儿正酣睡着。" }
       ],
       fun: "fall asleep = 睡着（'掉进'睡眠中）。fast asleep 中的 fast 不是'快'的意思，而是'牢固地'——睡得很沉！这是 fast 的古老含义，类似于 hold fast（紧紧抓住）。",
-      usage: "fall asleep = 入睡。fast/sound asleep = 熟睡。asleep 只做表语（The cat is asleep），不做定语（不说 an asleep cat，要说 a sleeping cat）。"
+      usage: "fall asleep = 入睡。fast/sound asleep = 熟睡。asleep 只做表语（The cat is asleep），不做定语（不说 an asleep cat，要说 a sleeping cat）。",
+      visual: "金凤花姑娘躺在小熊的床上，打着超级响的呼噜，头上飘着一串 Z-Z-Z，口水流了一枕头——她 fall asleep（睡着）了！旁边三只熊踮着脚尖进来看。",
+      confuse: "asleep（睡着的，只做表语）vs. sleeping（睡着的，可做定语）vs. sleepy（困倦的，想睡）：The cat is asleep（对），但不能说 an asleep cat（错），要说 a sleeping cat（对）。sleepy 是'想睡'还没睡着，asleep 是已经睡着了。",
+      rhyme: "asleep 睡着 awake 醒，a 加状态这规律；fall asleep 入睡了，fast asleep 睡得沉。",
+      scene: "睡觉场景词汇组：asleep（睡着的）、try（尝试）、return（返回）、jump（跳）——她尝试(try)了每张床然后睡着(asleep)了，熊返回(return)后她跳(jump)起来逃跑。"
     },
     {
       word: "return",
@@ -507,7 +615,11 @@ const UNIT8 = {
         { en: "Please return the book to the library.", zh: "请把书还给图书馆。" }
       ],
       fun: "Return of the Jedi（绝地归来）是星球大战系列的经典电影名。键盘上的 Return 键就是 Enter 键的另一个名字——'回车'，来自打字机时代把打字头'返回'到行首。",
-      usage: "return to + 地点 = 返回某地。return sth. to sb. = 把某物还给某人。in return = 作为回报。many happy returns = 生日快乐（祝你年年快乐）。"
+      usage: "return to + 地点 = 返回某地。return sth. to sb. = 把某物还给某人。in return = 作为回报。many happy returns = 生日快乐（祝你年年快乐）。",
+      visual: "三只熊排成一队像回家的士兵一样走在路上，领头的大熊扛着一块写着're-TURN'（再转回来）的路牌，指向家的方向——return 就是再(re)转(turn)回来！",
+      confuse: "return（返回/归还，较正式）vs. come back（回来，口语化）vs. go back（回去，口语化）：return 一个词包含了 come back 和 go back 两种意思。return the book = 还书，come back with the book = 带着书回来。",
+      rhyme: "return 返回 re 加 turn，再次转身把家回；归还东西也用它，return 一词两用记。",
+      scene: "回家发现词汇组：return（返回）、notice（注意到）、destroy（毁坏）、cry（哭）、shout（大喊）——熊返回(return)家，注意到(notice)东西被毁坏(destroy)了，大喊(shout)起来，小熊哭(cry)了。"
     },
     {
       word: "point",
@@ -525,7 +637,11 @@ const UNIT8 = {
         { en: "Don't point at people. It's not polite.", zh: "不要用手指人，这不礼貌。" }
       ],
       fun: "在西方文化中，用手指指人(point at someone)被认为是非常不礼貌的——就像中国文化一样！但是上课时老师经常说 'Good point!'（说得好！）——这里 point = 观点。",
-      usage: "point at/to = 指向。point out = 指出。What's the point? = 有什么意义？That's a good point = 说得对。"
+      usage: "point at/to = 指向。point out = 指出。What's the point? = 有什么意义？That's a good point = 说得对。",
+      visual: "小熊气得用手指指着金凤花姑娘，手指尖上还冒着火——'就是她(point)吃了我的粥！'但是妈妈熊拍掉他的手说：'不要用手指人(point at)，不礼貌！'",
+      confuse: "point at（指着，近距离/带情绪）vs. point to（指向，远处方向）vs. point out（指出，说明）：point at the girl = 指着那个女孩（可能不太礼貌），point to the door = 指向门的方向，point out the mistake = 指出错误。",
+      rhyme: "point 手指指方向，point at 指人不礼貌；Good point 说得好，What's the point 啥意义。",
+      scene: "发现入侵者词汇组：point（指）、shout（大喊）、cry（哭）、escape（逃跑）——用手指(point)着入侵者大喊(shout)，吓得入侵者逃跑(escape)，小熊哭(cry)了。"
     },
     {
       word: "shout",
@@ -543,7 +659,11 @@ const UNIT8 = {
         { en: "Don't shout in the library!", zh: "不要在图书馆里大喊！" }
       ],
       fun: "音量从小到大排列：whisper（低语）→ speak（说话）→ shout（大喊）→ yell（大叫）→ scream（尖叫）。shout-out 在社交媒体上 = 公开推荐/提及某人——给某人一个 shout-out！",
-      usage: "shout at sb. = 对某人大叫（含怒气）。shout to sb. = 对远处的人喊话（无怒气）。注意 at 和 to 的区别！"
+      usage: "shout at sb. = 对某人大叫（含怒气）。shout to sb. = 对远处的人喊话（无怒气）。注意 at 和 to 的区别！",
+      visual: "小熊站在桌子上，嘴巴张得像河马一样大，声波把窗户玻璃都震碎了——'她在那儿！'这就是 shout 的威力，整个森林都听到了！",
+      confuse: "shout（大喊，正常大声说）vs. scream（尖叫，恐惧或兴奋的高音）vs. yell（大叫，比shout更激动）：shout 是对着人大声说话，scream 是吓到了发出的尖叫，yell 是情绪激动地大喊。shout at（冲某人吼，生气）和 shout to（对远处的人喊）意思很不同！",
+      rhyme: "shout 大喊 out 出来，shout out 大声喊出来；shout at 生气冲人吼，shout to 远处喊过来。",
+      scene: "发现闯入者词汇组：shout（大喊）、point（指）、cry（哭）、jump（跳）、escape（逃跑）——大喊(shout)着用手指(point)着，吓得对方跳(jump)起来逃跑(escape)了。"
     },
     {
       word: "jump",
@@ -561,7 +681,11 @@ const UNIT8 = {
         { en: "The frog jumped into the pond.", zh: "青蛙跳进了池塘。" }
       ],
       fun: "jump 的分类：jump = 双脚跳，hop = 单脚跳，skip = 蹦蹦跳跳，leap = 大步跳跃。jump the queue（英式）= 插队——在英国这可是大忌！英国人最讨厌不排队的人。",
-      usage: "jump out of = 从……跳出。jump rope = 跳绳。jump to conclusions = 匆忙下结论。jump the queue = 插队（英式）。"
+      usage: "jump out of = 从……跳出。jump rope = 跳绳。jump to conclusions = 匆忙下结论。jump the queue = 插队（英式）。",
+      visual: "金凤花姑娘从床上像弹簧一样弹起来，蹦得头都撞到天花板了——砰！然后又落回床上又弹起来——这就是 jump 的画面，跳得太高了！",
+      confuse: "jump（跳，双脚起跳）vs. hop（跳，单脚跳）vs. leap（跳，大幅度跳跃）vs. skip（蹦跳着走）：jump 是最普通的跳，hop 像兔子一样单脚蹦，leap 是用力的大跳，skip 是开心地蹦蹦跳跳。jump out of bed = 从床上跳起来。",
+      rhyme: "jump 双脚跳起来，hop 单脚蹦蹦蹦；jump out of bed 起床跳，jump the queue 插队不要搞。",
+      scene: "逃跑动作词汇组：jump（跳）、rush（冲）、escape（逃跑）、hurry（赶快）——从床上跳(jump)起来，赶快(hurry)冲(rush)出门逃跑(escape)！"
     },
     {
       word: "escape",
@@ -579,7 +703,11 @@ const UNIT8 = {
         { en: "The cat escaped through the window.", zh: "猫从窗户逃走了。" }
       ],
       fun: "键盘上的 Esc 键 = Escape 键，按下去就是从当前操作'逃跑'！escape room（密室逃脱）是现在很流行的游戏——被锁在房间里，要解谜才能'逃出去'。",
-      usage: "escape from = 从……逃跑。narrow escape = 九死一生。fire escape = 安全出口/消防梯。escape 也可以做名词。"
+      usage: "escape from = 从……逃跑。narrow escape = 九死一生。fire escape = 安全出口/消防梯。escape 也可以做名词。",
+      visual: "金凤花姑娘被三只熊追着跑，她一边跑一边把身上的披风(cape)往后一甩——披风被熊抓住了，但她已经溜走了！这就是 escape（脱掉斗篷逃走）的由来！键盘上的 Esc 键在为她加油。",
+      confuse: "escape（逃跑，成功逃离危险）vs. flee（逃离，强调快速离开）vs. run away（逃跑，最口语化）：escape 强调'成功逃脱'，flee 更正式更紧急，run away 最日常。escape from the house = 从房子逃出来。注意 escape 后面常跟 from。",
+      rhyme: "escape 逃跑脱披风，ex 出去 cape 斗篷；Esc 键一按就逃走，escape room 密室冲。",
+      scene: "故事结局词汇组：escape（逃跑）、jump（跳）、rush（冲）、return（返回）、shout（大喊）——熊返回(return)大喊(shout)，女孩跳(jump)起来冲(rush)出去逃跑(escape)了！"
     }
   ]
 };
