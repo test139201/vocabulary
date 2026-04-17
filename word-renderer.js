@@ -363,53 +363,159 @@ const WordRenderer = (function(){
       });
     });
 
-    // Chapter-level TTS buttons (story) + click-to-seek on lines
-    rootEl.querySelectorAll('.tts-chapter-btn').forEach(btn=>{
-      btn.addEventListener('click', function(e){
-        e.stopPropagation();
-        this.style.background = '#dbeafe';
-        const b = this;
-        setTimeout(function(){ b.style.background = ''; }, 300);
-        const chapter = this.closest('.story-chapter');
-        playChapterFrom(chapter, 0, this);
-      });
-    });
+    /* ── Chapter progress bar + play/pause/stop + click-to-seek ── */
 
-    /* Collect English line elements for a chapter */
     function getChapterLineEls(chapter){
       const enEls = chapter.querySelectorAll('.story-en');
       if(enEls.length) return Array.from(enEls);
       return Array.from(chapter.querySelectorAll('.story-block-en p'));
     }
 
-    /* Play a chapter starting from lineIdx */
-    function playChapterFrom(chapter, lineIdx, btn){
-      if(!btn) btn = chapter.querySelector('.tts-chapter-btn');
-      const lineEls = getChapterLineEls(chapter);
-      const lines = lineEls.map(el => el.textContent);
-      if(!lines.length) return;
+    // Track which chapter is active so we can clear highlights properly
+    var activeChapter = null;
 
-      // Highlight callback
-      TTS.setLineHighlight(function(idx){
-        lineEls.forEach((el, i) => {
-          if(i === idx){
-            el.classList.add('story-line-playing');
-          } else {
-            el.classList.remove('story-line-playing');
-          }
-        });
+    function clearHighlights(){
+      if(!activeChapter) return;
+      activeChapter.querySelectorAll('.story-line-playing').forEach(function(el){
+        el.classList.remove('story-line-playing');
       });
-
-      TTS.speakLines(lines, lineIdx, btn);
     }
 
-    /* Click on a story line to jump playback there */
-    rootEl.querySelectorAll('.story-chapter').forEach(chapter=>{
-      const lineEls = getChapterLineEls(chapter);
-      lineEls.forEach((el, idx)=>{
+    function updateProgressBar(chapter, lineIdx, total, state){
+      var bar = chapter.querySelector('.ch-progress');
+      if(!bar) return;
+      var fill = bar.querySelector('.ch-progress-fill');
+      var text = bar.querySelector('.ch-progress-text');
+      var playBtn = bar.querySelector('.ch-play-btn');
+      var stopBtn = bar.querySelector('.ch-stop-btn');
+
+      if(state === 'idle' || state === 'stop' || state === 'finish'){
+        bar.style.display = 'none';
+        playBtn.textContent = '\u25B6';
+        playBtn.title = '\u64AD\u653E';
+        return;
+      }
+      bar.style.display = '';
+      var pct = total > 0 ? Math.round(((lineIdx) / total) * 100) : 0;
+      fill.style.width = pct + '%';
+      text.textContent = (lineIdx) + ' / ' + total;
+      if(state === 'paused'){
+        playBtn.textContent = '\u25B6';
+        playBtn.title = '\u7EE7\u7EED\u64AD\u653E';
+      } else {
+        playBtn.textContent = '\u23F8';
+        playBtn.title = '\u6682\u505C';
+      }
+    }
+
+    function playChapterFrom(chapter, lineIdx, btn){
+      if(!btn) btn = chapter.querySelector('.tts-chapter-btn');
+      var lineEls = getChapterLineEls(chapter);
+      var lines = lineEls.map(function(el){ return el.textContent; });
+      if(!lines.length) return;
+
+      clearHighlights();
+      activeChapter = chapter;
+
+      TTS.chapterPlay(lines, lineIdx, btn, function(evt, idx, total){
+        // Highlight current line
+        lineEls.forEach(function(el, i){
+          if(evt === 'line' && i === idx) el.classList.add('story-line-playing');
+          else el.classList.remove('story-line-playing');
+        });
+
+        if(evt === 'line'){
+          updateProgressBar(chapter, idx + 1, total, 'playing');
+          // Scroll playing line into view
+          var playing = lineEls[idx];
+          if(playing && playing.scrollIntoView){
+            playing.scrollIntoView({behavior:'smooth', block:'nearest'});
+          }
+        } else if(evt === 'pause'){
+          updateProgressBar(chapter, idx, total, 'paused');
+        } else if(evt === 'resume'){
+          updateProgressBar(chapter, idx, total, 'playing');
+        } else if(evt === 'finish' || evt === 'stop'){
+          clearHighlights();
+          updateProgressBar(chapter, 0, total, 'idle');
+          activeChapter = null;
+        }
+      });
+
+      updateProgressBar(chapter, lineIdx, lines.length, 'playing');
+    }
+
+    // Insert progress bar HTML after each chapter title
+    rootEl.querySelectorAll('.story-chapter').forEach(function(chapter){
+      var title = chapter.querySelector('.story-chapter-title');
+      if(!title) return;
+      var bar = document.createElement('div');
+      bar.className = 'ch-progress';
+      bar.style.display = 'none';
+      bar.innerHTML =
+        '<div class="ch-progress-controls">' +
+          '<button class="ch-play-btn" title="\u6682\u505C">\u23F8</button>' +
+          '<button class="ch-stop-btn" title="\u505C\u6B62">\u25A0</button>' +
+        '</div>' +
+        '<div class="ch-progress-track">' +
+          '<div class="ch-progress-fill"></div>' +
+        '</div>' +
+        '<span class="ch-progress-text">0 / 0</span>';
+      title.after(bar);
+
+      // Progress bar play/pause button
+      bar.querySelector('.ch-play-btn').addEventListener('click', function(e){
+        e.stopPropagation();
+        var st = TTS.chapterState();
+        if(st === 'playing') TTS.chapterPause();
+        else if(st === 'paused') TTS.chapterResume();
+      });
+
+      // Progress bar stop button
+      bar.querySelector('.ch-stop-btn').addEventListener('click', function(e){
+        e.stopPropagation();
+        TTS.chapterStop();
+      });
+
+      // Click on progress track to seek
+      var track = bar.querySelector('.ch-progress-track');
+      track.addEventListener('click', function(e){
+        var rect = track.getBoundingClientRect();
+        var pct = (e.clientX - rect.left) / rect.width;
+        var lineEls = getChapterLineEls(chapter);
+        var seekIdx = Math.floor(pct * lineEls.length);
+        if(seekIdx < 0) seekIdx = 0;
+        if(seekIdx >= lineEls.length) seekIdx = lineEls.length - 1;
+        playChapterFrom(chapter, seekIdx, null);
+      });
+    });
+
+    // Chapter button: toggle play/pause, or start from beginning
+    rootEl.querySelectorAll('.tts-chapter-btn').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var chapter = this.closest('.story-chapter');
+        var st = TTS.chapterState();
+
+        if(st === 'playing' && TTS.chapterActiveBtn() === this){
+          TTS.chapterPause();
+          return;
+        }
+        if(st === 'paused' && TTS.chapterActiveBtn() === this){
+          TTS.chapterResume();
+          return;
+        }
+        playChapterFrom(chapter, 0, this);
+      });
+    });
+
+    // Click on a story line to jump playback there
+    rootEl.querySelectorAll('.story-chapter').forEach(function(chapter){
+      var lineEls = getChapterLineEls(chapter);
+      lineEls.forEach(function(el, idx){
         el.style.cursor = 'pointer';
         el.addEventListener('click', function(e){
-          if(e.target.closest('a')) return; // let word links work
+          if(e.target.closest('a')) return;
           playChapterFrom(chapter, idx, null);
         });
       });

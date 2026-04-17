@@ -194,6 +194,16 @@ a.unit-card{text-decoration:none;color:inherit;display:block}
 .story-zh{font-size:.82rem;color:var(--text3);line-height:1.6;padding-left:.5rem;border-left:2px solid #e2e8f0;margin-top:.1rem}
 .story-en,.story-block-en p{transition:background .2s,box-shadow .2s;border-radius:4px;padding:2px 4px;margin:-2px -4px}
 .story-line-playing{background:rgba(59,130,246,.1);box-shadow:inset 3px 0 0 #3b82f6}
+
+/* ===== Chapter Progress Bar ===== */
+.ch-progress{display:flex;align-items:center;gap:.5rem;padding:.4rem 0 .6rem;margin-bottom:.3rem}
+.ch-progress-controls{display:flex;gap:.3rem;flex-shrink:0}
+.ch-play-btn,.ch-stop-btn{width:26px;height:26px;border:1px solid var(--border);border-radius:6px;background:var(--card);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .15s;padding:0;color:var(--text2)}
+.ch-play-btn:hover,.ch-stop-btn:hover{background:#eff6ff;border-color:#93c5fd;color:var(--link)}
+.ch-progress-track{flex:1;height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;cursor:pointer;position:relative}
+.ch-progress-track:hover{height:10px}
+.ch-progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:3px;transition:width .3s ease;width:0}
+.ch-progress-text{font-size:.7rem;color:var(--text3);flex-shrink:0;min-width:3.5rem;text-align:right}
 .story-word{display:inline-block;color:#2563eb;font-weight:700;text-decoration:none;padding:0 3px;border-radius:3px;background:rgba(37,99,235,.06);border-bottom:2px solid rgba(37,99,235,.3);transition:all .15s;cursor:pointer}
 .story-word:hover{background:rgba(37,99,235,.12);border-bottom-color:#2563eb;transform:translateY(-1px)}
 .story-block-en{margin-bottom:1rem}
