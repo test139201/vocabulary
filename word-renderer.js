@@ -373,6 +373,7 @@ const WordRenderer = (function(){
 
     // Track which chapter is active so we can clear highlights properly
     var activeChapter = null;
+    var activeLineIdx = -1;
 
     function clearHighlights(){
       if(!activeChapter) return;
@@ -418,15 +419,13 @@ const WordRenderer = (function(){
       activeChapter = chapter;
 
       TTS.chapterPlay(lines, lineIdx, btn, function(evt, idx, total){
-        // Highlight current line
-        lineEls.forEach(function(el, i){
-          if(evt === 'line' && i === idx) el.classList.add('story-line-playing');
-          else el.classList.remove('story-line-playing');
-        });
-
         if(evt === 'line'){
+          activeLineIdx = idx;
+          lineEls.forEach(function(el, i){
+            if(i === idx) el.classList.add('story-line-playing');
+            else el.classList.remove('story-line-playing');
+          });
           updateProgressBar(chapter, idx + 1, total, 'playing');
-          // Scroll playing line into view
           var playing = lineEls[idx];
           if(playing && playing.scrollIntoView){
             playing.scrollIntoView({behavior:'smooth', block:'nearest'});
@@ -439,6 +438,7 @@ const WordRenderer = (function(){
           clearHighlights();
           updateProgressBar(chapter, 0, total, 'idle');
           activeChapter = null;
+          activeLineIdx = -1;
         }
       });
 
@@ -520,7 +520,7 @@ const WordRenderer = (function(){
           if(st === 'idle') return;
           if(activeChapter !== chapter) return;
           // Clicking the line currently being read: toggle pause/resume
-          if(el.classList.contains('story-line-playing')){
+          if(idx === activeLineIdx){
             if(st === 'playing') TTS.chapterPause();
             else if(st === 'paused') TTS.chapterResume();
             return;
