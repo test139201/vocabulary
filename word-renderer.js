@@ -509,13 +509,23 @@ const WordRenderer = (function(){
       });
     });
 
-    // Click on a story line to jump playback there
+    // Click on a story line: only works when this chapter is active
     rootEl.querySelectorAll('.story-chapter').forEach(function(chapter){
       var lineEls = getChapterLineEls(chapter);
       lineEls.forEach(function(el, idx){
         el.style.cursor = 'pointer';
         el.addEventListener('click', function(e){
           if(e.target.closest('a')) return;
+          var st = TTS.chapterState();
+          if(st === 'idle') return;
+          if(activeChapter !== chapter) return;
+          // Clicking the line currently being read: toggle pause/resume
+          if(el.classList.contains('story-line-playing')){
+            if(st === 'playing') TTS.chapterPause();
+            else if(st === 'paused') TTS.chapterResume();
+            return;
+          }
+          // Jump to a different line
           playChapterFrom(chapter, idx, null);
         });
       });
