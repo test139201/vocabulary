@@ -416,7 +416,6 @@ const WordRenderer = (function(){
       if(!lines.length) return;
 
       clearHighlights();
-      activeChapter = chapter;
 
       TTS.chapterPlay(lines, lineIdx, btn, function(evt, idx, total){
         if(evt === 'line'){
@@ -442,6 +441,8 @@ const WordRenderer = (function(){
         }
       });
 
+      activeChapter = chapter;
+      activeLineIdx = lineIdx;
       updateProgressBar(chapter, lineIdx, lines.length, 'playing');
     }
 
